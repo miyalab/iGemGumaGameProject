@@ -2,16 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>b837830b-5894-45c2-8f81-15c605a3b194</ProjectGuid>
+    <ProjectGuid>3b21c401-61d9-422b-b18c-0b57b68d157b</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>test.py</StartupFile>
+    <StartupFile>RPG.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>test</Name>
-    <RootNamespace>test</RootNamespace>
-    <TestFramework>Pytest</TestFramework>
+    <Name>RPG</Name>
+    <RootNamespace>RPG</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="test.py" />
+    <Compile Include="RPG.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
