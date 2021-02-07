@@ -1,2 +1,2 @@
 # iGemGumaGameProject-
-Development of iGEM Gunma Cloud founding Project
+Development of iGEM Gunma Cloud founding Game Project
