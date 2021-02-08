@@ -4,13 +4,14 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>3b21c401-61d9-422b-b18c-0b57b68d157b</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>RPG.py</StartupFile>
+    <StartupFile>rpg_main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>RPG</Name>
     <RootNamespace>RPG</RootNamespace>
+    <InterpreterId>Global|PythonCore|3.7-32</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +22,30 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="RPG.py" />
+    <Compile Include="const.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="rpg_battle.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="rpg_main.py" />
+    <Compile Include="rpg_define.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="rpg_map.py">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|PythonCore|3.7" />
+    <InterpreterReference Include="Global|PythonCore|3.7-32" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="img\" />
+    <Folder Include="img\map\" />
+    <Folder Include="img\enemy\" />
+    <Folder Include="img\player\" />
+    <Folder Include="sound\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
