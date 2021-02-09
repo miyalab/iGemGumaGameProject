@@ -12,6 +12,16 @@ namespace ImageResolutionConverter
 {
     public partial class FormMain : Form
     {
+        readonly string[] imgExt =
+        {
+            "png",
+            "PNG",
+            "jpg",
+            "JPG",
+            "bmp",
+            "BMP"
+        };
+
         private List<string> convertFileList;
 
         /// <summary>
@@ -41,8 +51,19 @@ namespace ImageResolutionConverter
             textBoxLog.AppendText("ドロップファイル");
             foreach(string file in files)
             {
-                string ext 
                 textBoxLog.AppendText(file + Environment.NewLine);
+
+                // 拡張子チェック
+                string[] ext = file.Split('.');
+                foreach(string check in imgExt)
+                {
+                    if (ext[ext.Count() - 1] == check)
+                    {
+                        convertFileList.Add(file);
+                        break;
+                    }
+                }
+                
             }
         }
 
@@ -86,6 +107,11 @@ namespace ImageResolutionConverter
             textBoxLog.AppendText("変換ファイル" + Environment.NewLine);
             foreach(string file in convertFileList)
             {
+                textBoxLog.AppendText(file + Environment.NewLine);
+
+                // 解像度を指定して読み込み
+                Bitmap bmp = new Bitmap(Image.FromFile(file), new Size(ConvertWidth, ConvertHeight));
+                bmp.Save(file + ".resize.png", System.Drawing.Imaging.ImageFormat.Png);
                 
             }
         }
