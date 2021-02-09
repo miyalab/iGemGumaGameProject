@@ -43,7 +43,9 @@
   <ItemGroup>
     <Folder Include="img\" />
     <Folder Include="img\map\" />
-    <Folder Include="img\enemy\" />
+    <Folder Include="img\battle\enemy\" />
+    <Folder Include="img\battle\" />
+    <Folder Include="img\battle\background\" />
     <Folder Include="img\player\" />
     <Folder Include="sound\" />
   </ItemGroup>

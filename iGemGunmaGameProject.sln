@@ -7,6 +7,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "test", "test\test.pyproj", 
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "RPG", "RPG\RPG.pyproj", "{3B21C401-61D9-422B-B18C-0B57B68D157B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageResolutionConverter", "ImageResolutionConverter\ImageResolutionConverter.csproj", "{CB6EBE34-BFE2-4D53-A311-AF9E2B23897F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{B837830B-5894-45C2-8F81-15C605A3B194}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B21C401-61D9-422B-B18C-0B57B68D157B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3B21C401-61D9-422B-B18C-0B57B68D157B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB6EBE34-BFE2-4D53-A311-AF9E2B23897F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB6EBE34-BFE2-4D53-A311-AF9E2B23897F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB6EBE34-BFE2-4D53-A311-AF9E2B23897F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB6EBE34-BFE2-4D53-A311-AF9E2B23897F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,8 +1,8 @@
-#
-# Project Name : iGemGunmaGameProject
-# File Name    : rpg_define.py
-# Description  : 定数定義ファイル
-#
+'''
+Project Name : iGemGunmaGameProject
+File Name    : rpg_define.py
+Description  : 定数定義ファイル
+'''
 
 # import
 import pygame
@@ -24,6 +24,22 @@ const.COLOR_BLUE = (0,0,255)
 
 # 進行イベント定義
 const.EVENT_OPENING = 1
+
+# playerクラス
+class player():
+    Name = 'Name'
+    HP = 0
+    MaxHP = 0
+    MP = 0
+    MaxMP = 0
+    LV = 0
+    ATK = 0
+    DEF = 0
+    INT = 0
+    AGI = 0
+    LUK = 0
+    EXP = 0
+
 
 #----------------------------------------------------------------------
 # end of file
