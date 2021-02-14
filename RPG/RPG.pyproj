@@ -50,9 +50,15 @@
     <Folder Include="sound\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="img\battle\enemy\enemy2.png" />
-    <Content Include="img\battle\enemy\enemy3.png" />
-    <Content Include="img\battle\enemy\enemy4.png" />
+    <Content Include="img\map\01.PNG" />
+    <Content Include="img\map\02.PNG" />
+    <Content Include="img\map\03.PNG" />
+    <Content Include="img\map\04.PNG" />
+    <Content Include="img\map\05.PNG" />
+    <Content Include="img\map\06.PNG" />
+    <Content Include="img\map\07.PNG" />
+    <Content Include="img\map\08.PNG" />
+    <Content Include="img\map\09.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
