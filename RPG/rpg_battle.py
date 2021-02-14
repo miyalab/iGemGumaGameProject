@@ -11,9 +11,15 @@ import sys
 import random
 from pygame.locals import *
 
+commandFontSize : int = 30
+messageFontSize : int = 25
+
+text_margin : int = 5
+
 imgBtlBG = pygame.image.load("img/battle/background/btlbg0.png")
 imgEffect = pygame.image.load("img/battle/effect/effect_attack.png")
 imgEnemy = pygame.image.load("img/battle/enemy/enemy4.png")
+emy_num = 0
 emy_x = idef.WINDOW_WIDTH/2-imgEnemy.get_width()/2
 emy_y = idef.WINDOW_HEIGHT/2-imgEnemy.get_height()
 emy_step = 0
@@ -22,40 +28,18 @@ dmg_eff = 0
 COMMAND = ["[A]ttack", "[P]otion", "[B]laze gem", "[R]un"]
 message = [""]*10
 
+# バトル開始用
 def init_battle():
     global imgEnemy, emy_num, emy_x, emy_y
     emy_num = emy_num + 1
     if emy_num == 5:
         emy_num = 1
-    imgEnemy = pygame.image.load("img/battle/enemy/enemy"+str(emy_num)+".png")
-    emy_x = 440-imgEnemy.get_width()/2
-    emy_y = 560-imgEnemy.get_height()
+    imgEnemy = pygame.image.load("img/battle/enemy/enemy4.png")
+    emy_x = idef.WINDOW_WIDTH/2-imgEnemy.get_width()/2
+    emy_y = idef.WINDOW_HEIGHT/2-imgEnemy.get_height()
 
-def draw_battle(bg, fnt):
-    bg.blit(imgBtlBG, [0, 0])
-    bg.blit(imgEnemy, [emy_x, emy_y])
-    sur = fnt.render("img/battle/enemy/enemy"+str(emy_num)+".png", True, idef.COLOR_WHITE)
-    bg.blit(sur, [360, 580])
 
-def init_message():
-    for i in range(10):
-        message[i] = ""
-
-def set_message(msg):
-    for i in range(10):
-        if message[i] == "":
-            message[i] = msg
-            return
-    for i in range(9):
-        message[i] = message[i+1]
-    message[9] = msg
-
-def draw_text(bg, txt, x, y, fnt, col):
-    sur = fnt.render(txt, True, idef.COLOR_BLACK)
-    bg.blit(sur, [x+1, y+2])
-    sur = fnt.render(txt, True, col)
-    bg.blit(sur, [x, y])
-
+# バトル画面描画
 def draw_battle(bg, fnt):
     global emy_blink, dmg_eff
     bx = 0
@@ -66,16 +50,40 @@ def draw_battle(bg, fnt):
         by = random.randint(-10, 10)
     bg.blit(imgBtlBG, [bx, by])
     if emy_blink%2 == 0:
-        bg.blit(imgEnemy, [emy_x, emy_y+emy_step])
+        bg.blit(imgEnemy, [emy_x, emy_y + emy_step])
     if emy_blink > 0:
         emy_blink = emy_blink - 1
     for i in range(10):
         draw_text(bg, message[i], 450, 50+i*30, fnt, idef.COLOR_WHITE)
 
+# コマンド描画
 def battle_command(bg, fnt):
     for i in range(4):
         draw_text(bg, COMMAND[i], 20, 120+30*i, fnt, idef.COLOR_WHITE)
 
+# メッセージ初期化
+def init_message():
+    for i in range(10):
+        message[i] = ""
+
+# メッセージセット
+def set_message(msg):
+    for i in range(10):
+        if message[i] == "":
+            message[i] = msg
+            return
+    for i in range(9):
+        message[i] = message[i+1]
+    message[9] = msg
+
+# テキスト描画
+def draw_text(bg, txt, x, y, fnt, col):
+    sur = fnt.render(txt, True, idef.COLOR_BLACK)
+    bg.blit(sur, [x+1, y+2])
+    sur = fnt.render(txt, True, col)
+    bg.blit(sur, [x, y])
+
+# バトル処理
 def battle_main():
     global emy_step, emy_blink, dmg_eff
     idx = 10
@@ -85,9 +93,10 @@ def battle_main():
     pygame.display.set_caption("ターン制の処理")
     screen = pygame.display.set_mode(idef.WINDOW_SIZE)
     clock = pygame.time.Clock()
-    command_font = pygame.font.Font(None, 30)
-    message_font = pygame.font.Font(None, 25)
-
+    command_font = pygame.font.Font(None, commandFontSize)
+    message_font = pygame.font.Font(None, messageFontSize)
+    #emy_num = 3
+    init_battle()
     init_message()
 
     while True:
@@ -140,4 +149,4 @@ def battle_main():
                 tmr = 0
 
         pygame.display.update()
-        clock.tick(5)
+        clock.tick(10)
