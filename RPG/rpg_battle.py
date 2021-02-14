@@ -14,8 +14,8 @@ from pygame.locals import *
 imgBtlBG = pygame.image.load("img/battle/background/btlbg0.png")
 imgEffect = pygame.image.load("img/battle/effect/effect_attack.png")
 imgEnemy = pygame.image.load("img/battle/enemy/enemy4.png")
-emy_x = 440-imgEnemy.get_width()/2
-emy_y = 560-imgEnemy.get_height()
+emy_x = idef.WINDOW_WIDTH/2-imgEnemy.get_width()/2
+emy_y = idef.WINDOW_HEIGHT/2-imgEnemy.get_height()
 emy_step = 0
 emy_blink = 0
 dmg_eff = 0
@@ -34,7 +34,7 @@ def init_battle():
 def draw_battle(bg, fnt):
     bg.blit(imgBtlBG, [0, 0])
     bg.blit(imgEnemy, [emy_x, emy_y])
-    sur = fnt.render("img/battle/enemy/enemy"+str(emy_num)+".png", True, WHITE)
+    sur = fnt.render("img/battle/enemy/enemy"+str(emy_num)+".png", True, idef.COLOR_WHITE)
     bg.blit(sur, [360, 580])
 
 def init_message():
@@ -70,11 +70,11 @@ def draw_battle(bg, fnt):
     if emy_blink > 0:
         emy_blink = emy_blink - 1
     for i in range(10):
-        draw_text(bg, message[i], 600, 100+i*50, fnt, idef.COLOR_WHITE)
+        draw_text(bg, message[i], 450, 50+i*30, fnt, idef.COLOR_WHITE)
 
 def battle_command(bg, fnt):
     for i in range(4):
-        draw_text(bg, COMMAND[i], 20, 360+60*i, fnt, idef.COLOR_WHITE)
+        draw_text(bg, COMMAND[i], 20, 120+30*i, fnt, idef.COLOR_WHITE)
 
 def battle_main():
     global emy_step, emy_blink, dmg_eff
@@ -83,9 +83,10 @@ def battle_main():
 
     pygame.init()
     pygame.display.set_caption("ターン制の処理")
-    screen = pygame.display.set_mode((880, 720))
+    screen = pygame.display.set_mode(idef.WINDOW_SIZE)
     clock = pygame.time.Clock()
-    font = pygame.font.Font(None, 30)
+    command_font = pygame.font.Font(None, 30)
+    message_font = pygame.font.Font(None, 25)
 
     init_message()
 
@@ -95,7 +96,7 @@ def battle_main():
                 pygame.quit()
                 sys.exit()
 
-        draw_battle(screen, font)
+        draw_battle(screen, message_font)
         tmr = tmr + 1
         key = pygame.key.get_pressed()
 
@@ -107,7 +108,9 @@ def battle_main():
 
         elif idx == 11: # プレイヤー入力待ち
             if tmr == 1: set_message("Your turn.")
-            battle_command(screen, font)
+            battle_command(screen, command_font)
+
+            # key入力分岐
             if key[K_a] == 1 or key[K_SPACE] == 1:
                 idx = 12
                 tmr = 0
@@ -115,7 +118,7 @@ def battle_main():
         elif idx == 12: # プレイヤーの攻撃
             if tmr == 1: set_message("You attack!")
             if 2 <= tmr and tmr <= 4:
-                screen.blit(imgEffect, [700-tmr*120, -100+tmr*120])
+                screen.blit(imgEffect, [400-tmr*60, -100+tmr*60])
             if tmr == 5:
                 emy_blink = 5
                 set_message("***pts of damage!")
