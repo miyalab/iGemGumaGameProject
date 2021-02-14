@@ -49,6 +49,11 @@
     <Folder Include="img\player\" />
     <Folder Include="sound\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="img\battle\enemy\enemy2.png" />
+    <Content Include="img\battle\enemy\enemy3.png" />
+    <Content Include="img\battle\enemy\enemy4.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
        Visual Studio and specify your pre- and post-build commands in
