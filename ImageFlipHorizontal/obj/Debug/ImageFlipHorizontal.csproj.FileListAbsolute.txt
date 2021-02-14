@@ -1,0 +1,10 @@
+C:\Users\miyak\Documents\GitHub\iGemGumaGameProject\ImageFlipHorizontal\bin\Debug\ImageFlipHorizontal.exe.config
+C:\Users\miyak\Documents\GitHub\iGemGumaGameProject\ImageFlipHorizontal\bin\Debug\ImageFlipHorizontal.exe
+C:\Users\miyak\Documents\GitHub\iGemGumaGameProject\ImageFlipHorizontal\bin\Debug\ImageFlipHorizontal.pdb
+C:\Users\miyak\Documents\GitHub\iGemGumaGameProject\ImageFlipHorizontal\obj\Debug\ImageFlipHorizontal.csprojAssemblyReference.cache
+C:\Users\miyak\Documents\GitHub\iGemGumaGameProject\ImageFlipHorizontal\obj\Debug\ImageFlipHorizontal.FormMain.resources
+C:\Users\miyak\Documents\GitHub\iGemGumaGameProject\ImageFlipHorizontal\obj\Debug\ImageFlipHorizontal.Properties.Resources.resources
+C:\Users\miyak\Documents\GitHub\iGemGumaGameProject\ImageFlipHorizontal\obj\Debug\ImageFlipHorizontal.csproj.GenerateResource.cache
+C:\Users\miyak\Documents\GitHub\iGemGumaGameProject\ImageFlipHorizontal\obj\Debug\ImageFlipHorizontal.csproj.CoreCompileInputs.cache
+C:\Users\miyak\Documents\GitHub\iGemGumaGameProject\ImageFlipHorizontal\obj\Debug\ImageFlipHorizontal.exe
+C:\Users\miyak\Documents\GitHub\iGemGumaGameProject\ImageFlipHorizontal\obj\Debug\ImageFlipHorizontal.pdb

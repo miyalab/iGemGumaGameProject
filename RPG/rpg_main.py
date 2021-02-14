@@ -17,7 +17,7 @@ from pygame.locals import *
 # メインプログラム
 def main():
     # debug mode select
-    DEBUG_MODE: int = 0
+    DEBUG_MODE: int = 1
 
     # pygame and window init
     pygame.init()
@@ -28,9 +28,7 @@ def main():
     tmr: int = 0
     
     if DEBUG_MODE == 1:
-        print('Debug battle')
-        while True:
-            tmr = tmr + 1
+        ibattle.battle_main()
         
     elif DEBUG_MODE == 2:
         print('Debug map')
@@ -45,7 +43,6 @@ def main():
                 pygame.quit()
                 sys.exit()
 
-        
 
         txt = font.render(str(tmr), True, idef.COLOR_WHITE)
         
