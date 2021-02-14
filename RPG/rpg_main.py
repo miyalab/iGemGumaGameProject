@@ -45,7 +45,6 @@ def main():
                 pygame.quit()
                 sys.exit()
 
-        
 
         txt = font.render(str(tmr), True, idef.COLOR_WHITE)
         

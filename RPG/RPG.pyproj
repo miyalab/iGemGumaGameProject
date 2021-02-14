@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="img\" />
+    <Folder Include="img\battle\effect\" />
     <Folder Include="img\map\" />
     <Folder Include="img\battle\enemy\" />
     <Folder Include="img\battle\" />
@@ -50,6 +51,8 @@
     <Folder Include="sound\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="img\battle\background\btlbg0.png" />
+    <Content Include="img\battle\effect\effect_attack.png" />
     <Content Include="img\battle\enemy\enemy2.png" />
     <Content Include="img\battle\enemy\enemy3.png" />
     <Content Include="img\battle\enemy\enemy4.png" />
