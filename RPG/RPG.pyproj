@@ -50,6 +50,9 @@
     <Folder Include="sound\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="img\battle\enemy\enemy2.png" />
+    <Content Include="img\battle\enemy\enemy3.png" />
+    <Content Include="img\battle\enemy\enemy4.png" />
     <Content Include="img\map\01.PNG" />
     <Content Include="img\map\02.PNG" />
     <Content Include="img\map\03.PNG" />
