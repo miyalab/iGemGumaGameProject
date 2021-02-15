@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ImageResolutionConverter
+namespace ImageFlipHorizontal
 {
     public partial class FormMain : Form
     {
@@ -45,17 +45,17 @@ namespace ImageResolutionConverter
         {
             // ドロップファイルのパスリスト
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            
+
             textBoxLog.Clear();
             convertFileList.Clear();
             textBoxLog.AppendText("ドロップファイル");
-            foreach(string file in files)
+            foreach (string file in files)
             {
                 textBoxLog.AppendText(file + Environment.NewLine);
 
                 // 拡張子チェック
                 string[] ext = file.Split('.');
-                foreach(string check in imgExt)
+                foreach (string check in imgExt)
                 {
                     if (ext[ext.Count() - 1] == check)
                     {
@@ -63,7 +63,7 @@ namespace ImageResolutionConverter
                         break;
                     }
                 }
-                
+
             }
         }
 
@@ -101,18 +101,16 @@ namespace ImageResolutionConverter
         /// <param name="e"></param>
         private void buttonConverter_Click(object sender, EventArgs e)
         {
-            int ConvertWidth = (int)numericUpDownResHorizontal.Value;
-            int ConvertHeight = (int)numericUpDownResVertical.Value;
-
             textBoxLog.AppendText("変換ファイル" + Environment.NewLine);
-            foreach(string file in convertFileList)
+            foreach (string file in convertFileList)
             {
                 textBoxLog.AppendText(file + Environment.NewLine);
 
-                // 解像度を指定して読み込み
-                Bitmap bmp = new Bitmap(Image.FromFile(file), new Size(ConvertWidth, ConvertHeight));
-                bmp.Save(file + ".resize.png", System.Drawing.Imaging.ImageFormat.Png);
-                
+                // 反転処理
+                Bitmap bmp = new Bitmap(Image.FromFile(file));
+                bmp.RotateFlip(RotateFlipType.RotateNoneFlipX);
+                bmp.Save(file + ".flip.png", System.Drawing.Imaging.ImageFormat.Png);
+
             }
         }
     }
