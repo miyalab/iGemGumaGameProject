@@ -4,149 +4,271 @@ File Name    : rpg_battle.py
 Description  : バトルプログラムファイル
 '''
 
+#----------------------------
 # import
+#----------------------------
 import rpg_define as idef
+import const
 import pygame
+import pygame.locals
 import sys
 import random
-from pygame.locals import *
+from typing import List
 
-commandFontSize : int = 30
-messageFontSize : int = 25
+#----------------------------
+# constant value
+#----------------------------
+TEXT_MARGIN: int = 5
 
-text_margin : int = 5
+COMMAND_FONT_SIZE: int = 20
+MESSAGE_FONT_SIZE: int = 20
 
-imgBtlBG = pygame.image.load("img/battle/background/btlbg0.png")
-imgEffect = pygame.image.load("img/battle/effect/effect_attack.png")
-imgEnemy = pygame.image.load("img/battle/enemy/enemy4.png")
-emy_num = 0
-emy_x = idef.WINDOW_WIDTH/2-imgEnemy.get_width()/2
-emy_y = idef.WINDOW_HEIGHT/2-imgEnemy.get_height()
-emy_step = 0
-emy_blink = 0
-dmg_eff = 0
-COMMAND = ["[A]ttack", "[P]otion", "[B]laze gem", "[R]un"]
-message = [""]*10
+#----------------------------
+# global value
+#----------------------------
+fontFile = "ipaexg.ttf"
+textboxImg = pygame.image.load("img/textbox.100.png")
+commandboxImg = pygame.image.load("img/textbox.150.png")
 
-# バトル開始用
-def init_battle():
-    global imgEnemy, emy_num, emy_x, emy_y
-    emy_num = emy_num + 1
-    if emy_num == 5:
-        emy_num = 1
-    imgEnemy = pygame.image.load("img/battle/enemy/enemy4.png")
-    emy_x = idef.WINDOW_WIDTH/2-imgEnemy.get_width()/2
-    emy_y = idef.WINDOW_HEIGHT/2-imgEnemy.get_height()
+playerImg = pygame.image.load("img/battle/e_coli100.png")
 
+backgroundImg = pygame.image.load("img/battle/background/btlbg0.png")
 
-# バトル画面描画
-def draw_battle(bg, fnt):
-    global emy_blink, dmg_eff
+enemyA: idef.enemy
+enemyImg = pygame.image.load("img/battle/enemy/enemy1.png")
+enemyNum: int = 0
+enemyPosX: int = 0
+enemyPosY: int = 0
+enemyStep: int = 0
+enemyBlink: int = 0
+
+damageEffect: int = 0
+effectImg = pygame.image.load("img/battle/effect/effect_attack.png")
+
+messageText = [""]*3
+
+#--------------------------------------------------
+# enemy info read function
+#--------------------------------------------------
+def EnemyRead(_enemy: int) -> idef.enemy:
+    enemyData: idef.enemy = idef.enemy()
+    if _enemy == 1:
+        enemyData.Num = 1
+        enemyData.ImgPath = "img/battle/enemy/enemy1.png"
+        enemyData.Name = "first boss"
+        enemyData.MaxHP = 100
+        enemyData.HP = 100
+        enemyData.MaxMP = 100
+        enemyData.MP = 100
+        enemyData.LV = 1
+        enemyData.ATK = 100
+        enemyData.DEF = 100
+        enemyData.INT = 100
+        enemyData.AGI = 100
+        enemyData.LUK = 100
+        enemyData.EXP = 1000
+
+    elif _enemy == 2:
+        enemyData.Num = 2
+        enemyData.ImgPath = "img/battle/enemy/enemy2.png"
+        enemyData.Name = "secound boss"
+        enemyData.MaxHP = 100
+        enemyData.HP = 100
+        enemyData.MaxMP = 100
+        enemyData.MP = 100
+        enemyData.LV = 1
+        enemyData.ATK = 100
+        enemyData.DEF = 100
+        enemyData.INT = 100
+        enemyData.AGI = 100
+        enemyData.LUK = 100
+        enemyData.EXP = 1000
+
+    elif _enemy == 3:
+        enemyData.Num = 3
+        enemyData.ImgPath = "img/battle/enemy/enemy3.png"
+        enemyData.Name = "third boss"
+        enemyData.MaxHP = 100
+        enemyData.HP = 100
+        enemyData.MaxMP = 100
+        enemyData.MP = 100
+        enemyData.LV = 1
+        enemyData.ATK = 100
+        enemyData.DEF = 100
+        enemyData.INT = 100
+        enemyData.AGI = 100
+        enemyData.LUK = 100
+        enemyData.EXP = 1000
+
+    else:
+        enemyData.ImgPath = "img/battle/enemy/enemy4.png"
+        enemyData.Num = 4
+        enemyData.Name = "last boss"
+        enemyData.MaxHP = 100
+        enemyData.HP = 100
+        enemyData.MaxMP = 100
+        enemyData.MP = 100
+        enemyData.LV = 1
+        enemyData.ATK = 100
+        enemyData.DEF = 100
+        enemyData.INT = 100
+        enemyData.AGI = 100
+        enemyData.LUK = 100
+        enemyData.EXP = 1000
+
+    return enemyData
+
+#--------------------------------------------------
+# battle initialize function
+#--------------------------------------------------
+def BattleInit(emy:int):
+    global enemyA, enemyImg
+    enemyA = EnemyRead(emy)
+    enemyImg = pygame.image.load(enemyA.ImgPath)
+
+#--------------------------------------------------
+# battle screen draw function
+#--------------------------------------------------
+def BattleDraw(bg, fnt):
+    global enemyBlink, damageEffect
+    
     bx = 0
     by = 0
-    if dmg_eff > 0:
-        dmg_eff = dmg_eff - 1
-        bx = random.randint(-20, 20)
-        by = random.randint(-10, 10)
-    bg.blit(imgBtlBG, [bx, by])
-    if emy_blink%2 == 0:
-        bg.blit(imgEnemy, [emy_x, emy_y + emy_step])
-    if emy_blink > 0:
-        emy_blink = emy_blink - 1
-    for i in range(10):
-        draw_text(bg, message[i], 450, 50+i*30, fnt, idef.COLOR_WHITE)
 
-# コマンド描画
-def battle_command(bg, fnt):
-    for i in range(4):
-        draw_text(bg, COMMAND[i], 20, 120+30*i, fnt, idef.COLOR_WHITE)
+    # damage effect process
+    if damageEffect > 0:
+        damageEffect = damageEffect - 1
+        bx = random.randint(-20,20)
+        by = random.randint(-10,10)
+    bg.blit(backgroundImg, [bx,by])
 
-# メッセージ初期化
-def init_message():
-    for i in range(10):
-        message[i] = ""
+    # enemy atack scene
+    if enemyBlink % 2 == 0:
+        bg.blit(enemyImg, [enemyPosX, enemyPosY - enemyStep])
 
-# メッセージセット
-def set_message(msg):
+    if enemyBlink > 0:
+        enemyBlink = enemyBlink - 1
+
+#--------------------------------------------------
+# battle command draw function
+#--------------------------------------------------
+def BattleCommand(user: idef.player, bg, fnt):
+    # command box show
+    bg.blit(commandboxImg,[0,idef.WINDOW_HEIGHT - commandboxImg.get_height()])
+
+    # player image show
+    bg.blit(playerImg, [25,idef.WINDOW_HEIGHT - commandboxImg.get_height() + 25])
+
+    # HP MP show
+    TextDraw(bg, "HP：" + str(user.HP) + "/" + str(user.MaxHP), playerImg.get_width() + 50, idef.WINDOW_HEIGHT - commandboxImg.get_height() + 25, fnt, idef.COLOR_WHITE)
+    TextDraw(bg, "MP：" + str(user.MP) + "/" + str(user.MaxMP), playerImg.get_width() + 50, idef.WINDOW_HEIGHT - commandboxImg.get_height() + 50, fnt, idef.COLOR_WHITE)
+
+    # command show
+    for i in range(len(user.Command)):
+        TextDraw(bg, user.Command[i], idef.WINDOW_WIDTH/2, idef.WINDOW_HEIGHT - commandboxImg.get_height() + 18 + i*30, fnt, idef.COLOR_WHITE)
+
+#--------------------------------------------------
+# message initialize function
+#--------------------------------------------------
+def MessageInit():
     for i in range(10):
-        if message[i] == "":
-            message[i] = msg
+        messageText[i] = ""
+
+#--------------------------------------------------
+# message set function
+#--------------------------------------------------
+def MessageSet(msg: str):
+    # すべてのメッセージが埋まっていない場合は後ろに挿入
+    for i in range(len(messageText)):
+        if messageText[i] == "":
+            messageText[i] = msg
             return
-    for i in range(9):
-        message[i] = message[i+1]
-    message[9] = msg
 
-# テキスト描画
-def draw_text(bg, txt, x, y, fnt, col):
+    # メッセージが埋まっている場合には1つずつずらす
+    for i in range(len(messageText) - 1):
+        messageText[i]= messageText[i+1]
+
+    messageText[len(messageText) - 1] = msg
+
+#--------------------------------------------------
+# message draw function
+#--------------------------------------------------
+def MessageDraw(bg, fnt):
+    # messagebox show
+    bg.blit(textboxImg,[0,idef.WINDOW_HEIGHT - textboxImg.get_height()])
+
+    # message show
+    for i in range(len(messageText)):
+        TextDraw(bg, messageText[i], 20, idef.WINDOW_HEIGHT - textboxImg.get_height() + 10 + i*30, fnt, idef.COLOR_WHITE)
+
+#--------------------------------------------------
+# text draw function
+#--------------------------------------------------
+def TextDraw(bg, txt, x, y, fnt, col):
     sur = fnt.render(txt, True, idef.COLOR_BLACK)
     bg.blit(sur, [x+1, y+2])
     sur = fnt.render(txt, True, col)
     bg.blit(sur, [x, y])
+    
+#--------------------------------------------------
+# battle main function
+#--------------------------------------------------
+def BattleMain(scr, clk, user: idef.player, emyNum: int):
+    # enable change global value 
+    global enemyA, enemyImg
+    global enemyPosX, enemyPosY
+    
+    # local value
+    timer: int = 0
+    scene: int = 0
 
-# バトル処理
-def battle_main():
-    global emy_step, emy_blink, dmg_eff
-    idx = 10
-    tmr = 0
+    # font set
+    commandFont = pygame.font.Font("ipaexg.ttf", COMMAND_FONT_SIZE)
+    messageFont = pygame.font.Font("ipaexg.ttf", MESSAGE_FONT_SIZE)
 
-    pygame.init()
-    pygame.display.set_caption("ターン制の処理")
-    screen = pygame.display.set_mode(idef.WINDOW_SIZE)
-    clock = pygame.time.Clock()
-    command_font = pygame.font.Font(None, commandFontSize)
-    message_font = pygame.font.Font(None, messageFontSize)
-    #emy_num = 3
-    init_battle()
-    init_message()
+    # read enemy data
+    enemyA = EnemyRead(emyNum)
+    enemyImg = pygame.image.load(enemyA.ImgPath)
+    enemyPosX = idef.WINDOW_WIDTH/2 - enemyImg.get_width()/2
+    enemyPosY = idef.WINDOW_HEIGHT/2 - enemyImg.get_height()
 
-    while True:
+    while scene >= 0:
+        # event skip
         for event in pygame.event.get():
-            if event.type == QUIT:
+            if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
 
-        draw_battle(screen, message_font)
-        tmr = tmr + 1
+        # game state update
+        BattleDraw(scr, messageFont)
         key = pygame.key.get_pressed()
+        timer = timer + 1
 
-        if idx == 10: # 戦闘開始
-            if tmr == 1: set_message("Encounter!")
-            if tmr == 6:
-                idx = 11
-                tmr = 0
+        # battle start
+        if scene == 0:
+            MessageSet(enemyA.Name + "があらわれた．");
+            scene = 1
 
-        elif idx == 11: # プレイヤー入力待ち
-            if tmr == 1: set_message("Your turn.")
-            battle_command(screen, command_font)
+        elif scene == 1:
+            # Messagebox show
+            MessageDraw(scr, messageFont)
 
-            # key入力分岐
-            if key[K_a] == 1 or key[K_SPACE] == 1:
-                idx = 12
-                tmr = 0
+            # wait space input
+            if key[pygame.locals.K_SPACE] == 1:
+                # user input state scene
+                scene = 11
 
-        elif idx == 12: # プレイヤーの攻撃
-            if tmr == 1: set_message("You attack!")
-            if 2 <= tmr and tmr <= 4:
-                screen.blit(imgEffect, [400-tmr*60, -100+tmr*60])
-            if tmr == 5:
-                emy_blink = 5
-                set_message("***pts of damage!")
-            if tmr == 16:
-                idx = 13
-                tmr = 0
+        # user input state
+        elif scene == 11:
+            # command show
+            BattleCommand(user, scr, commandFont)
 
-        elif idx == 13: # 敵のターン、敵の攻撃
-            if tmr == 1: set_message("Enemy turn.")
-            if tmr == 5:
-                set_message("Enemy attack!")
-                emy_step = 30
-            if tmr == 9:
-                set_message("***pts of damage!")
-                dmg_eff = 5
-                emy_step = 0
-            if tmr == 20:
-                idx = 11
-                tmr = 0
+            if(key[pygame.locals.K_a] == 1):
+                scene = -1
 
         pygame.display.update()
-        clock.tick(10)
+        clk.tick(10)
+        
+#--------------------------------------------------
+# end of file
+#--------------------------------------------------

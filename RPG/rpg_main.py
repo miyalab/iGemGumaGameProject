@@ -18,7 +18,7 @@ from pygame.locals import *
 def main():
     # debug mode select
     DEBUG_MODE: int = 1
-
+    
     # pygame and window init
     pygame.init()
     pygame.display.set_caption(idef.WINDOW_NAME);
@@ -28,14 +28,19 @@ def main():
     tmr: int = 0
     
     if DEBUG_MODE == 1:
-        ibattle.battle_main()
+        user = idef.player()
+        user.Command.append("攻撃")
+        user.Command.append("プラスミド1")
+        user.Command.append("プラスミド2")
+        user.Command.append("プラスミド3")
+        
+        ibattle.BattleMain(screen, clock, user, 4)
         
     elif DEBUG_MODE == 2:
         print('Debug map')
         while True:
            tmr = tmr + 1
 
-    
     while True:
         tmr = tmr + 1
         for event in pygame.event.get():
@@ -43,12 +48,11 @@ def main():
                 pygame.quit()
                 sys.exit()
 
-
         txt = font.render(str(tmr), True, idef.COLOR_WHITE)
         
         screen.fill(idef.COLOR_BLACK)
         screen.blit(txt, [idef.WINDOW_WIDTH/2,idef.WINDOW_HEIGHT/2])
-
+        
         pygame.display.update()
         clock.tick(10)
 
