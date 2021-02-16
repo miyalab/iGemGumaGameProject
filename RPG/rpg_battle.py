@@ -263,6 +263,7 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
             MessageInit()
             scene = 12
 
+        # wait player input
         elif scene == 12:
             # command show
             BattleCommand(user, scr, commandFont)
@@ -293,7 +294,7 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
                 scene = 24
                 timer = 0
 
-        # [1] 攻撃
+        # [1] 攻撃エフェクト
         elif scene == 21:
             MessageDraw(scr, messageFont)
             if 2 <= timer and timer <= 4:
@@ -310,7 +311,7 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
                 scene = 31
                 timer = 0
 
-        # [2] コマンド
+        # [2] コマンドエフェクト
         elif scene == 22:
             MessageDraw(scr, messageFont)
             if 2 <= timer and timer <= 4:
@@ -327,7 +328,7 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
                 scene = 31
                 timer = 0
 
-        # [3] コマンド
+        # [3] コマンドエフェクト
         elif scene == 23:
             MessageDraw(scr, messageFont)
             if 2 <= timer and timer <= 4:
@@ -344,7 +345,7 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
                 scene = 31
                 timer = 0
 
-        # [4] コマンド
+        # [4] コマンドエフェクト
         elif scene == 24:
             MessageDraw(scr, messageFont)
             if 2 <= timer and timer <= 4:
