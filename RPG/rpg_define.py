@@ -48,7 +48,7 @@ class player():
     AGI: int = 10
     LUK: int = 10
     EXP: int = 10
-    Command = []
+    Command = ["攻撃"]
 
 # enemyクラス
 class enemy():

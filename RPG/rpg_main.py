@@ -29,11 +29,10 @@ def main():
     
     if DEBUG_MODE == 1:
         user = idef.player()
-        user.Command.append("攻撃")
+        user.Name = "みずき"
         user.Command.append("プラスミド1")
         user.Command.append("プラスミド2")
         user.Command.append("プラスミド3")
-        
         ibattle.BattleMain(screen, clock, user, 4)
         
     elif DEBUG_MODE == 2:
