@@ -57,7 +57,7 @@ def StaffrollMain(bg, clk):
     roll.append("PROGRAMMER")
     roll.append("    Koshiro Miyauchi")
     roll.append("    Mizuki Kita")
-    roll.append("    Madoka Nakai")
+    roll.append("    Madoka Nagai")
     roll.append("")
     roll.append("SOUND")
     roll.append("    Tomo Kanzaki")
@@ -124,9 +124,11 @@ def StaffrollMain(bg, clk):
             if posY < -30 or posY > idef.WINDOW_HEIGHT:
                 continue
             idef.TextDraw(bg, roll[i], 50, posY, font, idef.COLOR_WHITE)
-        timer = timer + 5
+        
+        timer = timer + 3
         if timer > (len(roll)+8)*30:
             timer = (len(roll)+8)*30
+        
         pygame.display.update()
         clk.tick(20)
         

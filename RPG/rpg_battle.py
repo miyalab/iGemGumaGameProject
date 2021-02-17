@@ -7,12 +7,11 @@ Description  : バトルプログラムファイル
 #----------------------------
 # import
 #----------------------------
-import rpg_define as idef
-import const
 import pygame
 import pygame.locals
 import sys
 import random
+import rpg_define as idef
 
 #----------------------------
 # constant value
@@ -105,14 +104,14 @@ def EnemyRead(_enemy: int) -> idef.enemy:
     else:
         enemyData.ImgPath = "img/battle/enemy/enemy4.png"
         enemyData.Num = 4
-        enemyData.Name = "last boss"
+        enemyData.Name = "みずき"
         enemyData.MaxHP = 100
         enemyData.HP = 100
         enemyData.MaxMP = 100
         enemyData.MP = 100
         enemyData.LV = 1
         enemyData.ATK = 20
-        enemyData.DEF = -20
+        enemyData.DEF = -10000
         enemyData.INT = 10
         enemyData.AGI = 10
         enemyData.LUK = 10
@@ -222,6 +221,9 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
     commandFont = pygame.font.Font(idef.FONT_FILE_PATH, COMMAND_FONT_SIZE)
     messageFont = pygame.font.Font(idef.FONT_FILE_PATH, MESSAGE_FONT_SIZE)
 
+    # key input setup
+    pygame.key.set_repeat()
+
     # read enemy data
     enemyA = EnemyRead(emyNum)
     enemyImg = pygame.image.load(enemyA.ImgPath)
@@ -269,6 +271,7 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
                 MessageSet(str(user.Name) + "の攻撃")
                 damage = user.ATK - enemyA.DEF + random.randint(0, 5)
                 if damage < 0: damage = 0
+                if damage > 9999: damage = 9999
                 scene = 21
                 timer = 0
             elif(key[pygame.locals.K_2] == 1 and len(user.Command)>=2):
@@ -385,7 +388,7 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
         # エネミーを撃破
         elif scene == 51:
             MessageDraw(scr, messageFont)
-            MessageSet(enemyA.Name + "を撃破した．")
+            MessageSet(user.Name + "は" + enemyA.Name + "を撃破した．")
             scene = 52
 
         # エネミー撃破後のキー入力待ち
