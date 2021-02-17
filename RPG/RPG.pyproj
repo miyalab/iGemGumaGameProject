@@ -25,6 +25,9 @@
     <Compile Include="const.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="rpg_staffroll.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="rpg_battle.py">
       <SubType>Code</SubType>
     </Compile>
@@ -48,6 +51,8 @@
     <Folder Include="img\battle\" />
     <Folder Include="img\battle\background\" />
     <Folder Include="img\player\" />
+    <Folder Include="img\player\front\" />
+    <Folder Include="img\player\side\" />
     <Folder Include="sound\" />
   </ItemGroup>
   <ItemGroup>
@@ -67,10 +72,19 @@
     <Content Include="img\map\07.PNG" />
     <Content Include="img\map\08.PNG" />
     <Content Include="img\map\09.PNG" />
+    <Content Include="img\player\front\C-13.PNG" />
+    <Content Include="img\player\front\C-2.PNG" />
+    <Content Include="img\player\front\C-4.PNG" />
+    <Content Include="img\player\side\Cs-3.PNG" />
+    <Content Include="img\player\side\Cs-2.PNG" />
+    <Content Include="img\player\side\Cs-1.PNG" />
+    <Content Include="img\player\side\Cs-4.PNG" />
     <Content Include="img\textbox.100.png" />
     <Content Include="img\textbox.150.png" />
     <Content Include="img\textbox.200.png" />
     <Content Include="ipaexg.ttf" />
+    <Content Include="sound\ashioto.ogg" />
+    <Content Include="sound\op2.ogg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
