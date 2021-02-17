@@ -4,20 +4,25 @@ File Name    : rpg_main.py
 Description  : メインファイル
 '''
 
+#----------------------------
 # import
+#----------------------------
 import os
 import rpg_define as idef
 import rpg_battle as ibattle
 import rpg_map as imap
+import rpg_staffroll as istaff
 import sys
 import pygame 
 import random
 from pygame.locals import *
 
-# メインプログラム
+#----------------------------
+# main program
+#----------------------------
 def main():
     # debug mode select
-    DEBUG_MODE: int = 1
+    DEBUG_MODE: int = 3
     
     # pygame and window init
     pygame.init()
@@ -39,6 +44,10 @@ def main():
         print('Debug map')
         while True:
            tmr = tmr + 1
+
+    elif DEBUG_MODE == 3:
+        print("staff roll check")
+        istaff.StaffrollMain(screen, clock)
 
     while True:
         tmr = tmr + 1

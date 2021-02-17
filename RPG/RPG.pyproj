@@ -25,6 +25,9 @@
     <Compile Include="const.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="rpg_staffroll.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="rpg_battle.py">
       <SubType>Code</SubType>
     </Compile>

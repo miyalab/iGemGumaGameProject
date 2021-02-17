@@ -4,27 +4,37 @@ File Name    : rpg_define.py
 Description  : 定数定義ファイル
 '''
 
+#----------------------------
 # import
+#----------------------------
 import const
 import pygame 
 
-# ウインドウ関連
-WINDOW_WIDTH: tuple = 640
-WINDOW_HEIGHT: tuple = 480
+#----------------------------
+# window
+#----------------------------
+WINDOW_WIDTH = 640
+WINDOW_HEIGHT = 480
 WINDOW_SIZE: tuple = (WINDOW_WIDTH,WINDOW_HEIGHT)
 WINDOW_NAME: str = 'iGEM RPG GAME'
 
-# 色定義
+#----------------------------
+# color
+#----------------------------
 COLOR_BLACK: tuple = (0,0,0)
 COLOR_WHITE: tuple = (255,255,255)
 COLOR_RED: tuple = (255,0,0)
 COLOR_GREEN: tuple = (0,255,0)
 COLOR_BLUE: tuple = (0,0,255)
 
-# 画像ファイルパス
+#----------------------------
+# file path
+#----------------------------
+FONT_FILE_PATH = "ipaexg.ttf"
 
-
-# 進行イベント定義
+#----------------------------
+# event define 
+#----------------------------
 EVENT_OPENING: int = 1
 
 class GameSetting():
@@ -34,7 +44,9 @@ class GameSetting():
         screen = pygame.display.set_mode(idef.WINDOW_SIZE)
         clock = pygame.time.Clock()
 
-# playerクラス
+#----------------------------
+# player class
+#----------------------------
 class player():
     Name: str = "name"
     HP: int = 100
@@ -50,7 +62,9 @@ class player():
     EXP: int = 10
     Command = ["攻撃"]
 
-# enemyクラス
+#----------------------------
+# enemy class
+#----------------------------
 class enemy():
     def __init__(self):
         Num: int = 0
@@ -68,6 +82,12 @@ class enemy():
         LUK: int = 0
         EXP: int = 0
 
+#--------------------------------------------------
+# text draw function
+#--------------------------------------------------
+def TextDraw(bg, txt, x, y, fnt, col):
+    sur = fnt.render(txt, True, col)
+    bg.blit(sur, [x, y])
 
 #----------------------------------------------------------------------
 # end of file

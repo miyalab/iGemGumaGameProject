@@ -25,14 +25,18 @@ MESSAGE_FONT_SIZE: int = 20
 #----------------------------
 # global value
 #----------------------------
-fontFile = "ipaexg.ttf"
+# text data
 textboxImg = pygame.image.load("img/textbox.100.png")
 commandboxImg = pygame.image.load("img/textbox.150.png")
+messageText = [""]*3
 
+# player data
 playerImg = pygame.image.load("img/battle/e_coli100.png")
 
+# background image data
 backgroundImg = pygame.image.load("img/battle/background/btlbg0.png")
 
+# enemy data
 enemyA: idef.enemy
 enemyImg = pygame.image.load("img/battle/enemy/enemy1.png")
 enemyNum: int = 0
@@ -41,10 +45,9 @@ enemyPosY: int = 0
 enemyStep: int = 0
 enemyBlink: int = 0
 
+# attack effect data
 damageEffect: int = 0
 effectImg = pygame.image.load("img/battle/effect/effect_attack.png")
-
-messageText = [""]*3
 
 #--------------------------------------------------
 # enemy info read function
@@ -159,13 +162,13 @@ def BattleCommand(user: idef.player, bg, fnt):
     bg.blit(playerImg, [25,idef.WINDOW_HEIGHT - commandboxImg.get_height() + 25])
 
     # Name and HP, MP show
-    TextDraw(bg, user.Name, playerImg.get_width() + 50, idef.WINDOW_HEIGHT - commandboxImg.get_height() + 25, fnt, idef.COLOR_WHITE)
-    TextDraw(bg, "HP：" + str(user.HP) + "/" + str(user.MaxHP), playerImg.get_width() + 50, idef.WINDOW_HEIGHT - commandboxImg.get_height() + 50, fnt, idef.COLOR_WHITE)
-    TextDraw(bg, "MP：" + str(user.MP) + "/" + str(user.MaxMP), playerImg.get_width() + 50, idef.WINDOW_HEIGHT - commandboxImg.get_height() + 75, fnt, idef.COLOR_WHITE)
+    idef.TextDraw(bg, user.Name, playerImg.get_width() + 50, idef.WINDOW_HEIGHT - commandboxImg.get_height() + 25, fnt, idef.COLOR_WHITE)
+    idef.TextDraw(bg, "HP：" + str(user.HP) + "/" + str(user.MaxHP), playerImg.get_width() + 50, idef.WINDOW_HEIGHT - commandboxImg.get_height() + 50, fnt, idef.COLOR_WHITE)
+    idef.TextDraw(bg, "MP：" + str(user.MP) + "/" + str(user.MaxMP), playerImg.get_width() + 50, idef.WINDOW_HEIGHT - commandboxImg.get_height() + 75, fnt, idef.COLOR_WHITE)
 
     # command show
     for i in range(len(user.Command)):
-        TextDraw(bg, "[" + str(i+1) + "] " + user.Command[i], idef.WINDOW_WIDTH/2 + 50, idef.WINDOW_HEIGHT - commandboxImg.get_height() + 18 + i*30, fnt, idef.COLOR_WHITE)
+        idef.TextDraw(bg, "[" + str(i+1) + "] " + user.Command[i], idef.WINDOW_WIDTH/2 + 50, idef.WINDOW_HEIGHT - commandboxImg.get_height() + 18 + i*30, fnt, idef.COLOR_WHITE)
 
 #--------------------------------------------------
 # message initialize function
@@ -199,14 +202,7 @@ def MessageDraw(bg, fnt):
 
     # message show
     for i in range(len(messageText)):
-        TextDraw(bg, messageText[i], 20, idef.WINDOW_HEIGHT - textboxImg.get_height() + 10 + i*30, fnt, idef.COLOR_WHITE)
-
-#--------------------------------------------------
-# text draw function
-#--------------------------------------------------
-def TextDraw(bg, txt, x, y, fnt, col):
-    sur = fnt.render(txt, True, col)
-    bg.blit(sur, [x, y])
+        idef.TextDraw(bg, messageText[i], 20, idef.WINDOW_HEIGHT - textboxImg.get_height() + 10 + i*30, fnt, idef.COLOR_WHITE)
     
 #--------------------------------------------------
 # battle main function
@@ -223,8 +219,8 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
     damage: int = 0
 
     # font set
-    commandFont = pygame.font.Font("ipaexg.ttf", COMMAND_FONT_SIZE)
-    messageFont = pygame.font.Font("ipaexg.ttf", MESSAGE_FONT_SIZE)
+    commandFont = pygame.font.Font(idef.FONT_FILE_PATH, COMMAND_FONT_SIZE)
+    messageFont = pygame.font.Font(idef.FONT_FILE_PATH, MESSAGE_FONT_SIZE)
 
     # read enemy data
     enemyA = EnemyRead(emyNum)
