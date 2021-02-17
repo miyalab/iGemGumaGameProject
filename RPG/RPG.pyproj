@@ -42,12 +42,35 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="img\" />
+    <Folder Include="img\battle\effect\" />
     <Folder Include="img\map\" />
     <Folder Include="img\battle\enemy\" />
     <Folder Include="img\battle\" />
     <Folder Include="img\battle\background\" />
     <Folder Include="img\player\" />
     <Folder Include="sound\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="img\battle\background\btlbg0.png" />
+    <Content Include="img\battle\effect\effect_attack.png" />
+    <Content Include="img\battle\enemy\enemy1.png" />
+    <Content Include="img\battle\enemy\enemy2.png" />
+    <Content Include="img\battle\enemy\enemy3.png" />
+    <Content Include="img\battle\enemy\enemy4.png" />
+    <Content Include="img\battle\e_coli100.png" />
+    <Content Include="img\map\01.PNG" />
+    <Content Include="img\map\02.PNG" />
+    <Content Include="img\map\03.PNG" />
+    <Content Include="img\map\04.PNG" />
+    <Content Include="img\map\05.PNG" />
+    <Content Include="img\map\06.PNG" />
+    <Content Include="img\map\07.PNG" />
+    <Content Include="img\map\08.PNG" />
+    <Content Include="img\map\09.PNG" />
+    <Content Include="img\textbox.100.png" />
+    <Content Include="img\textbox.150.png" />
+    <Content Include="img\textbox.200.png" />
+    <Content Include="ipaexg.ttf" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
