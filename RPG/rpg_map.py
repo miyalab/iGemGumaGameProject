@@ -160,8 +160,24 @@ def MapLoad(_map: int):
         ret.append([1,1,1,1,1,1,1,1])
         ret.append([1,1,1,1,1,1,1,1])
         ret.append([1,1,1,1,1,1,1,1])
+        ret.append([1,1,1,1,1,1,1,1])
+        ret.append([1,1,1,1,1,1,1,1])
+        ret.append([1,1,1,1,1,1,1,1])
+        ret.append([1,1,1,1,1,1,1,1])
+        ret.append([1,1,1,1,1,1,1,1])
+        ret.append([1,1,1,1,1,1,1,1])
 
     elif _map == 1:
+        ret.append([0,0,0,0,0,0,0,0])
+        ret.append([0,0,0,0,0,0,0,0])
+        ret.append([0,0,0,0,0,0,0,0])
+        ret.append([0,0,0,0,0,0,0,0])
+        ret.append([0,0,0,0,0,0,0,0])
+        ret.append([0,0,0,0,0,0,0,0])
+        ret.append([0,0,0,0,0,0,0,0])
+        ret.append([0,0,0,0,0,0,0,0])
+
+    elif _map == 2:
         ret.append([0,0,0,0,0,0,0,0])
         ret.append([0,0,0,0,0,0,0,0])
         ret.append([0,0,0,0,0,0,0,0])
