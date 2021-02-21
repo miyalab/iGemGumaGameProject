@@ -93,7 +93,6 @@ mapImg = [pygame.image.load("img/map/clear.PNG"),
           pygame.image.load("img/map/t53.PNG")]
 overMapImg = [pygame.image.load("img/map/clear.PNG"),
               pygame.image.load("img/map/a01.PNG"),
-              pygame.image.load("img/map/a01.PNG"),
               pygame.image.load("img/map/a02.PNG"),
               pygame.image.load("img/map/a03.PNG"),
               pygame.image.load("img/map/a04.PNG"),
@@ -134,7 +133,7 @@ def MapDraw(bg, _x: int, _y: int):
            continue
 
         for i in range(11):
-            if x + i < 0 or x + i >= len(nowMap[y+j]) - 1:
+            if x + i < 0 or x + i >= len(nowMap[y+j]):
                continue
             
             #print(str(len(nowMap[y+j])) + "," + str(len(nowMap)) + "," + str(x+i) + "," + str(y+j) + "," + str(nowMap[y+j][x+i]))
@@ -152,8 +151,8 @@ def MapLoad(_map: int):
 
     # map 
     if _map == 0:
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
+        ret.append([101,302,3,4,5,6,7,8])
+        ret.append([9,10,11,12,13,14,15,16])
         ret.append([1,1,1,1,1,1,1,1])
         ret.append([1,1,1,1,1,1,1,1])
         ret.append([1,1,1,1,1,1,1,1])
@@ -259,6 +258,8 @@ def MapMain(bg, clk):
                 CharDraw(bg, DIR_L)
                 print(str(posX) + ", " + str(posY))
                 soundWalk.play()
+            else:
+                pygame.event.clear()
         
         # 右キー入力
         if key[pygame.locals.K_RIGHT] == 1:
@@ -268,6 +269,8 @@ def MapMain(bg, clk):
                 CharDraw(bg, DIR_R)
                 print(str(posX) + ", " + str(posY))
                 soundWalk.play()
+            else:
+                pygame.event.clear()
 
         # 上キー入力
         if key[pygame.locals.K_UP] == 1:
@@ -277,6 +280,8 @@ def MapMain(bg, clk):
                 CharDraw(bg, DIR_U)
                 print(str(posX) + ", " + str(posY))
                 soundWalk.play()
+            else:
+                pygame.event.clear()
 
         # 下キー入力
         if key[pygame.locals.K_DOWN] == 1:
@@ -286,6 +291,8 @@ def MapMain(bg, clk):
                 CharDraw(bg, DIR_D)
                 print(str(posX) + ", " + str(posY))
                 soundWalk.play()
+            else:
+                pygame.event.clear()
         
         MapDraw(bg, posX, posY)
         bg.blit(charImg,[idef.WINDOW_WIDTH/2 -32, idef.WINDOW_HEIGHT/2 -32])
