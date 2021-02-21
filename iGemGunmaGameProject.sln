@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageResolutionConverter", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageFlipHorizontal", "ImageFlipHorizontal\ImageFlipHorizontal.csproj", "{36A7FC3B-6E2C-4221-8440-E348185B22C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageSplit", "ImageSplit\ImageSplit.csproj", "{FEA53AB8-FAEF-4F33-92F1-9BBF70E3B174}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{36A7FC3B-6E2C-4221-8440-E348185B22C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36A7FC3B-6E2C-4221-8440-E348185B22C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36A7FC3B-6E2C-4221-8440-E348185B22C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEA53AB8-FAEF-4F33-92F1-9BBF70E3B174}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEA53AB8-FAEF-4F33-92F1-9BBF70E3B174}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEA53AB8-FAEF-4F33-92F1-9BBF70E3B174}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEA53AB8-FAEF-4F33-92F1-9BBF70E3B174}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
