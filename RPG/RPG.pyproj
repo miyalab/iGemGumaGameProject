@@ -82,6 +82,7 @@
     <Content Include="img\map\a07.PNG" />
     <Content Include="img\map\a08.PNG" />
     <Content Include="img\map\a09.PNG" />
+    <Content Include="img\map\clear.PNG" />
     <Content Include="img\map\t01.PNG" />
     <Content Include="img\map\t02.PNG" />
     <Content Include="img\map\t03.PNG" />

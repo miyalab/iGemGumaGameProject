@@ -37,7 +37,7 @@ sideImg = [pygame.image.load("img/player/side/Cs-1.PNG"),
            pygame.image.load("img/player/side/Cs-4.PNG"),
            pygame.image.load("img/player/side/Cs-3.PNG"),
            pygame.image.load("img/player/side/Cs-2.PNG")]
-mapImg = [None,
+mapImg = [pygame.image.load("img/map/clear.PNG"),
           pygame.image.load("img/map/t01.PNG"),
           pygame.image.load("img/map/t02.PNG"),
           pygame.image.load("img/map/t03.PNG"),
@@ -91,7 +91,8 @@ mapImg = [None,
           pygame.image.load("img/map/t51.PNG"),
           pygame.image.load("img/map/t52.PNG"),
           pygame.image.load("img/map/t53.PNG")]
-overMapImg = [None,
+overMapImg = [pygame.image.load("img/map/clear.PNG"),
+              pygame.image.load("img/map/a01.PNG"),
               pygame.image.load("img/map/a01.PNG"),
               pygame.image.load("img/map/a02.PNG"),
               pygame.image.load("img/map/a03.PNG"),
@@ -119,21 +120,39 @@ posY: int = 0
 
 dir: int = 0
 
-def MapDraw(bg, x: int, y: int):
+#--------------------------------------------------
+# Map Draw function
+#--------------------------------------------------
+def MapDraw(bg, _x: int, _y: int):
+    x = _x - 6
+    y = _y - 5
+    selectIndex: int = 0
+
     bg.fill(idef.COLOR_WHITE)
-    for i in range(11):
-        for j in range(len(nowMap[i])):
+    for j in range(9):
+        if y + j < 0 or y + j >= len(nowMap) :
+           continue
+
+        for i in range(11):
+            if x + i < 0 or x + i >= len(nowMap[y+j]) - 1:
+               continue
             
-            
+            #print(str(len(nowMap[y+j])) + "," + str(len(nowMap)) + "," + str(x+i) + "," + str(y+j) + "," + str(nowMap[y+j][x+i]))
+            selectIndex = nowMap[y+j][x+i]
+            bg.blit(mapImg[selectIndex % 100], [64 * i - 32, 64 * j - 32])
+            selectIndex = int(selectIndex / 100)
+            bg.blit(overMapImg[selectIndex % 100], [64 * i - 32, 64 * j - 32])
 
 #--------------------------------------------------
 # Map Data Load function
 #--------------------------------------------------
 def MapLoad(_map: int):
     ret = [[]]
-    
+    ret.clear()
+
     # map 
     if _map == 0:
+        ret.append([1,1,1,1,1,1,1,1])
         ret.append([1,1,1,1,1,1,1,1])
         ret.append([1,1,1,1,1,1,1,1])
         ret.append([1,1,1,1,1,1,1,1])
@@ -205,6 +224,7 @@ def CharDraw(bg, _dir: int):
 def MapMain(bg, clk):
     # enable change global value
     global posX, posY
+    global nowMap
 
     # local value
     timer: int = 0
@@ -215,6 +235,9 @@ def MapMain(bg, clk):
     
     # key input setup
     pygame.key.set_repeat(1,10000000)
+
+    nowMap = MapLoad(0)
+    #print(nowMap)
 
     while True:
         # event skip
@@ -264,6 +287,7 @@ def MapMain(bg, clk):
                 print(str(posX) + ", " + str(posY))
                 soundWalk.play()
         
+        MapDraw(bg, posX, posY)
         bg.blit(charImg,[idef.WINDOW_WIDTH/2 -32, idef.WINDOW_HEIGHT/2 -32])
         pygame.display.update()
         clk.tick(20)
