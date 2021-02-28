@@ -90,7 +90,8 @@ mapImg = [pygame.image.load("img/map/clear.PNG"),
           pygame.image.load("img/map/t50.PNG"),
           pygame.image.load("img/map/t51.PNG"),
           pygame.image.load("img/map/t52.PNG"),
-          pygame.image.load("img/map/t53.PNG")]
+          pygame.image.load("img/map/t53.PNG"),
+          pygame.image.load("img/map/t54.PNG"),]
 overMapImg = [pygame.image.load("img/map/clear.PNG"),
               pygame.image.load("img/map/a01.PNG"),
               pygame.image.load("img/map/a02.PNG"),
@@ -110,7 +111,19 @@ overMapImg = [pygame.image.load("img/map/clear.PNG"),
               pygame.image.load("img/map/a16.PNG"),
               pygame.image.load("img/map/a17.PNG"),
               pygame.image.load("img/map/a18.PNG"),
-              pygame.image.load("img/map/a19.PNG")]
+              pygame.image.load("img/map/a19.PNG"),
+              pygame.image.load("img/map/a20.PNG"),
+              pygame.image.load("img/map/a21.PNG"),
+              pygame.image.load("img/map/a22.PNG"),
+              pygame.image.load("img/map/a23.PNG"),
+              pygame.image.load("img/map/a24.PNG"),
+              pygame.image.load("img/map/a25.PNG"),
+              pygame.image.load("img/map/a26.PNG"),
+              pygame.image.load("img/map/a27.PNG"),
+              pygame.image.load("img/map/a28.PNG"),
+              pygame.image.load("img/map/a29.PNG")]
+
+
 
 nowMap = [[]]
 
@@ -151,21 +164,17 @@ def MapLoad(_map: int):
 
     # map 
     if _map == 0:
-        ret.append([101,302,3,4,5,6,7,8])
-        ret.append([9,10,11,12,13,14,15,16])
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
+        ret.append([1230,30,1130,30,1230,0,0,0,30,1130,30,1330,430,30,0])
+        ret.append([1554,1554,54,1554,1554,0,0,0,54,54,54,54,54,54,0])
+        ret.append([54,54,54,54,54,0,0,0,2154,1854,1754,54,10154,54,0])
+        ret.append([54,20254,54,54,54,0,0,0,54,2954,2054,54,54,30354,0])
+        ret.append([54,1754,54,54,54,0,0,0,54,1754,1854,54,54,54,0,0,0,0,30,30,30,30,30])
+        ret.append([54,54,54,54,54,0,0,0,54,2954,2954,2154,54,54,0,0,0,0,54,1754,54,1754,1454])
+        ret.append([0,0,0,54,0,0,0,0,0,0,54,0,0,0,0,0,0,0,54,1754,54,1754,54,])
+        ret.append([54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54])
+        ret.append([54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,1754,1754,54])
+        ret.append([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54,1854,54,1754,54])
+        ret.append([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54,1754,54,1754,54])
 
     elif _map == 1:
         ret.append([0,0,0,0,0,0,0,0])
