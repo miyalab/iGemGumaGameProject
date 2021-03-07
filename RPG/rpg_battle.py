@@ -19,7 +19,12 @@ import rpg_define as idef
 TEXT_MARGIN: int = 5
 
 COMMAND_FONT_SIZE: int = 20
-MESSAGE_FONT_SIZE: int = 20
+MESSAGE_FONT_SIZE: int = 20   
+
+#定数は全部大文字で書く文化がある！→大文字だからアンダーバーつかう
+#全角スペースはエラーになる！！！！！！！気をつけて！！！！
+
+#変数の名前も順序がある、画像名前番号→ポジションが先とか自分のお気に入り順番にする、人と開発するときは合わせる。宮内君はenemy先に書くと予測変換で出てくるし揃って綺麗！
 
 #----------------------------
 # global value
@@ -131,7 +136,7 @@ def BattleInit(emy:int):
 # battle screen draw function
 #--------------------------------------------------
 def BattleDraw(bg, fnt):
-    global enemyBlink, damageEffect
+    global enemyBlink, damageEffect      #関数は大文字にして、変数は小文字にしてる。宮内流。アンダーバーは打つのめんどいから使わない
     
     bx = 0
     by = 0
