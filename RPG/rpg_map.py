@@ -90,7 +90,14 @@ mapImg = [pygame.image.load("img/map/clear.PNG"),
           pygame.image.load("img/map/t50.PNG"),
           pygame.image.load("img/map/t51.PNG"),
           pygame.image.load("img/map/t52.PNG"),
-          pygame.image.load("img/map/t53.PNG")]
+          pygame.image.load("img/map/t53.PNG"),
+          pygame.image.load("img/map/t54.PNG"),
+          pygame.image.load("img/map/t55.PNG"),
+          pygame.image.load("img/map/t56.PNG"),
+          pygame.image.load("img/map/t57.PNG"),
+          pygame.image.load("img/map/t58.PNG"),
+          pygame.image.load("img/map/t59.PNG"),
+          pygame.image.load("img/map/t60.PNG")]
 overMapImg = [pygame.image.load("img/map/clear.PNG"),
               pygame.image.load("img/map/a01.PNG"),
               pygame.image.load("img/map/a02.PNG"),
@@ -110,8 +117,52 @@ overMapImg = [pygame.image.load("img/map/clear.PNG"),
               pygame.image.load("img/map/a16.PNG"),
               pygame.image.load("img/map/a17.PNG"),
               pygame.image.load("img/map/a18.PNG"),
-              pygame.image.load("img/map/a19.PNG")]
-
+              pygame.image.load("img/map/a19.PNG"),
+              pygame.image.load("img/map/a20.PNG"),
+              pygame.image.load("img/map/a21.PNG"),
+              pygame.image.load("img/map/a22.PNG"),
+              pygame.image.load("img/map/a23.PNG"),
+              pygame.image.load("img/map/a24.PNG"),
+              pygame.image.load("img/map/a25.PNG"),
+              pygame.image.load("img/map/a26.PNG"),
+              pygame.image.load("img/map/a27.PNG"),
+              pygame.image.load("img/map/a28.PNG"),
+              pygame.image.load("img/map/a29.PNG"),
+              pygame.image.load("img/map/a30.PNG"),
+              pygame.image.load("img/map/a31.PNG"),
+              pygame.image.load("img/map/a32.PNG"),
+              pygame.image.load("img/map/a33.PNG"),
+              pygame.image.load("img/map/a34.PNG"),
+              pygame.image.load("img/map/a35.PNG"),
+              pygame.image.load("img/map/a36.PNG"),
+              pygame.image.load("img/map/a37.PNG"),
+              pygame.image.load("img/map/a38.PNG"),
+              pygame.image.load("img/map/a39.PNG"),
+              pygame.image.load("img/map/a40.PNG"),
+              pygame.image.load("img/map/a41.PNG"),
+              pygame.image.load("img/map/a42.PNG"),
+              pygame.image.load("img/map/a43.PNG"),
+              pygame.image.load("img/map/a44.PNG"),
+              pygame.image.load("img/map/a45.PNG"),
+              pygame.image.load("img/map/a46.PNG"),
+              pygame.image.load("img/map/a47.PNG"),
+              pygame.image.load("img/map/a48.PNG"),
+              pygame.image.load("img/map/a49.PNG"),
+              pygame.image.load("img/map/a50.PNG"),
+              pygame.image.load("img/map/a51.PNG"),
+              pygame.image.load("img/map/a52.PNG"),
+              pygame.image.load("img/map/a53.PNG"),
+              pygame.image.load("img/map/a54.PNG"),
+              pygame.image.load("img/map/a55.PNG"),
+              pygame.image.load("img/map/a56.PNG"),
+              pygame.image.load("img/map/a57.PNG"),
+              pygame.image.load("img/map/a58.PNG"),
+              pygame.image.load("img/map/a59.PNG"),
+              pygame.image.load("img/map/a60.PNG"),
+              pygame.image.load("img/map/a61.PNG"),
+              pygame.image.load("img/map/a62.PNG"),
+              pygame.image.load("img/map/a63.PNG"),
+              pygame.image.load("img/map/a64.PNG")]
 nowMap = [[]]
 
 posX: int = 0
@@ -151,31 +202,32 @@ def MapLoad(_map: int):
 
     # map 
     if _map == 0:
-        ret.append([137,237,337,37,37,37,37,37])
-        ret.append([37,37,37,37,37,37,37,37])
-        ret.append([37,37,37,37,37,37,37,37])
-        ret.append([37,37,37,37,37,37,37,37])
-        ret.append([37,37,37,37,37,37,37,37])
-        ret.append([37,37,37,37,37,37,37,37])
-        ret.append([37,37,37,37,37,37,37,37])
-        ret.append([37,37,37,37,37,37,37,37])
-        ret.append([37,37,37,37,37,37,37,37])
-        ret.append([37,37,37,37,37,37,37,37])
-        ret.append([37,37,37,37,37,37,37,37])
-        ret.append([37,37,37,37,37,37,37,37])
-        ret.append([37,37,37,37,37,37,37,37])
-        ret.append([37,37,37,37,37,37,37,37])
-        ret.append([37,37,37,37,37,37,37,37])
-        ret.append([37,37,37,37,37,37,37,37])
-        ret.append([37,37,37,37,37,37,37,37])
-        ret.append([37,37,37,37,37,37,37,37])
-        ret.append([37,37,37,37,37,37,37,37])
+        ret.append([1230,30,1130,2430,1230,0,0,0,4730,1130,4230,1330,430,30,0])
+        ret.append([54,54,54,54,54,0,0,0,54,54,54,54,54,54,0])
+        ret.append([54,54,54,54,54,0,0,0,2154,1854,1754,54,10154,54,0])
+        ret.append([54,20254,54,54,54,0,0,0,54,2954,2054,54,54,30354,0])
+        ret.append([54,1754,54,54,54,0,0,0,54,1754,1854,54,54,54,0,0,0,0,30,4730,30,30,30,30])
+        ret.append([54,54,54,54,54,0,0,0,54,2954,2954,2154,54,54,0,0,0,0,54,5801754,54,1754,54,1454])
+        ret.append([0,0,0,54,0,0,0,0,0,0,54,0,0,0,0,0,0,0,54,1754,54,1754,54,54])
+        ret.append([54,54,54,54,54,54,54,54,4854,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54])
+        ret.append([54,54,54,54,54,54,54,54,54,54,54,3254,4654,54,54,54,54,54,4554,1754,54,1754,54,54])
+        ret.append([0,0,0,0,0,0,0,0,0,0,6436,6336,0,0,0,0,0,0,54,1854,54,1754,54,54])
+        ret.append([0,0,0,0,0,0,0,0,0,0,36,3636,0,0,0,0,0,0,54,1754,54,1754,54,54])
+        ret.append([0,0,0,0,0,0,0,0,0,0,60,59,0,0,0,0,0,0,0,0,0,0,0,0])
 
     elif _map == 1:
-        ret.append([0,0,0,0,0,0,0,0])
-        ret.append([0,0,0,0,0,0,0,0])
-        ret.append([0,0,0,0,0,0,0,0])
-        ret.append([0,0,0,0,0,0,0,0])
+        ret.append([0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,2,3])
+        ret.append([1,2,2,2,2,2,2,2,2,2,3,0,0,0,4,5,5,5,5,5,5,5,6])
+        ret.append([4,5,5,5,5,5,5,5,5,5,6,0,0,0,4,5,5,5,5,5,5,5,6])
+        ret.append([7,8,8,8,8,8,8,8,8,8,9,0,0,0,7,8,8,8,8,8,8,8,9])
+        ret.append([31,31,31,31,31,31,31,31,31,31,31,44,39,43,16,17,16,17,16,17,19])
+        ret.append([31,31,31,31,31,31,31,31,31,31,31,44,39,43,18,16,16,16,16,16,19])
+        ret.append([31,31,31,31,31,31,31,31,31,31,31,44,39,43,18,17,16,17,16,17,19])
+        ret.append([30,30,30,30,30,30,30,30,30,30,30,44,39,43,18,16,16,16,16,16,19])
+        ret.append([38,38,38,38,38,38,38,38,38,38,38,44,39,43,18,16,16,20,16,16,19])
+        ret.append([47,47,47,47,47,47,47,47,47,47,47,44,39,43,47,47,47,47,47,47,47])
+        ret.append([39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39])
+        ret.append([39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39])
         ret.append([0,0,0,0,0,0,0,0])
         ret.append([0,0,0,0,0,0,0,0])
         ret.append([0,0,0,0,0,0,0,0])
@@ -238,6 +290,19 @@ def CharDraw(bg, _dir: int):
         charImg = frontImg[5-dir+30]
 
 #--------------------------------------------------
+# Move check function
+#--------------------------------------------------
+def MoveCheck(x: int, y: int):
+    if y < 0 or len(nowMap) <= y:
+        return 1
+    elif x < 0 or len(nowMap[y]) <= x:
+        return 1
+    elif int(nowMap[y][x] / 10000) == 0:
+       return 0
+    else:
+       return 1
+
+#--------------------------------------------------
 # Map Main function
 #--------------------------------------------------
 def MapMain(bg, clk):
@@ -285,36 +350,40 @@ def MapMain(bg, clk):
         
         # 左キー入力
         if KEY == 3:
-            if pygame.mixer.get_busy() == False:
+            #if pygame.mixer.get_busy() == False:
                 #print("left")
-                posX = posX - 1
+                if MoveCheck(posX - 1, posY) == 0:
+                    posX = posX - 1
                 CharDraw(bg, DIR_L)
                 print(str(posX) + ", " + str(posY))
                 soundWalk.play()
         
         # 右キー入力
         if KEY == 4:
-            if pygame.mixer.get_busy() == False:
+            #if pygame.mixer.get_busy() == False:
                 #print("right")
-                posX = posX + 1
+                if MoveCheck(posX + 1, posY) == 0:
+                    posX = posX + 1
                 CharDraw(bg, DIR_R)
                 print(str(posX) + ", " + str(posY))
                 soundWalk.play()
 
         # 上キー入力
         if KEY == 1:
-            if pygame.mixer.get_busy() == False:
+            #if pygame.mixer.get_busy() == False:
                 #print("up")
-                posY = posY - 1
+                if MoveCheck(posX, posY - 1) == 0:
+                    posY = posY - 1
                 CharDraw(bg, DIR_U)
                 print(str(posX) + ", " + str(posY))
                 soundWalk.play()
 
         # 下キー入力
         if KEY == 2:
-            if pygame.mixer.get_busy() == False:
+            #if pygame.mixer.get_busy() == False:
                 #print("down")
-                posY = posY + 1
+                if MoveCheck(posX, posY + 1) == 0:
+                    posY = posY + 1
                 CharDraw(bg, DIR_D)
                 print(str(posX) + ", " + str(posY))
                 soundWalk.play()

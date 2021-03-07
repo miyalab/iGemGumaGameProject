@@ -86,16 +86,6 @@ namespace ImageResolutionConverter
         }
 
         /// <summary>
-        /// 「開く」ボタンクリック時処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void buttonFileOpen_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        /// <summary>
         /// 「変換」ボタンクリック時処理
         /// </summary>
         /// <param name="sender"></param>
@@ -129,6 +119,12 @@ namespace ImageResolutionConverter
                 bmp.Save(dir + "Converter\\" + split[split.Length - 1], System.Drawing.Imaging.ImageFormat.Png);
                 
             }
+        }
+
+        private void buttonFileClear_Click(object sender, EventArgs e)
+        {
+            convertFileList.Clear();
+            textBoxLog.Clear();
         }
     }
 }
