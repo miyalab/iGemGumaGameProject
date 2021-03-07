@@ -326,7 +326,7 @@ def MapMain(bg, clk):
     # key input setup
     pygame.key.set_repeat(1,1)
 
-    nowMap = MapLoad(0)
+    nowMap = MapLoad(1)
     
     while True:
         KEY = 0
