@@ -15,6 +15,8 @@ import rpg_define as idef
 #----------------------------
 # constant value
 #----------------------------
+MAP_IMG_ITEM: int = 1000
+
 DIR_L: int = -1
 DIR_R: int = -2
 DIR_U: int = 1
@@ -163,9 +165,6 @@ overMapImg = [pygame.image.load("img/map/clear.PNG"),
               pygame.image.load("img/map/a62.PNG"),
               pygame.image.load("img/map/a63.PNG"),
               pygame.image.load("img/map/a64.PNG")]
-
-
-
 nowMap = [[]]
 
 posX: int = 0
@@ -176,25 +175,29 @@ dir: int = 0
 #--------------------------------------------------
 # Map Draw function
 #--------------------------------------------------
-def MapDraw(bg, _x: int, _y: int):
-    x = _x - 6
-    y = _y - 5
+def MapDraw(bg, x: int, y: int):
+    x = x - 10
+    y = y - 7
     selectIndex: int = 0
 
-    bg.fill(idef.COLOR_WHITE)
-    for j in range(9):
-        if y + j < 0 or y + j >= len(nowMap) :
+    # map draw
+    bg.fill(idef.COLOR_BLACK)
+    for j in range(15):
+        if y + j < 0 or y + j >= len(nowMap):
            continue
 
-        for i in range(11):
+        for i in range(21):
             if x + i < 0 or x + i >= len(nowMap[y+j]):
                continue
             
             #print(str(len(nowMap[y+j])) + "," + str(len(nowMap)) + "," + str(x+i) + "," + str(y+j) + "," + str(nowMap[y+j][x+i]))
             selectIndex = nowMap[y+j][x+i]
-            bg.blit(mapImg[selectIndex % 100], [64 * i - 32, 64 * j - 32])
-            selectIndex = int(selectIndex / 100)
-            bg.blit(overMapImg[selectIndex % 100], [64 * i - 32, 64 * j - 32])
+            bg.blit(mapImg[selectIndex % MAP_IMG_ITEM], [32 * i - 16, 32 * j])
+            selectIndex = int(selectIndex / MAP_IMG_ITEM)
+            bg.blit(overMapImg[selectIndex % MAP_IMG_ITEM], [32 * i - 16, 32 * j])
+
+    # character draw
+    bg.blit(charImg,[idef.WINDOW_WIDTH/2 - 16, idef.WINDOW_HEIGHT/2 - 16])
 
 #--------------------------------------------------
 # Map Data Load function
@@ -205,17 +208,17 @@ def MapLoad(_map: int):
 
     # map 
     if _map == 0:
-        ret.append([1230,30,1130,2430,1230,0,0,0,4730,1130,4230,1330,430,30,0])
+        ret.append([12030,30,11030,24030,12030,0,0,0,47030,11030,42030,13030,4030,30,0])
         ret.append([54,54,54,54,54,0,0,0,54,54,54,54,54,54,0])
-        ret.append([54,54,54,54,54,0,0,0,2154,1854,1754,54,10154,54,0])
-        ret.append([54,20254,54,54,54,0,0,0,54,2954,2054,54,54,30354,0])
-        ret.append([54,1754,54,54,54,0,0,0,54,1754,1854,54,54,54,0,0,0,0,30,4730,30,30,30,30])
-        ret.append([54,54,54,54,54,0,0,0,54,2954,2954,2154,54,54,0,0,0,0,54,5801754,54,1754,54,1454])
-        ret.append([0,0,0,54,0,0,0,0,0,0,54,0,0,0,0,0,0,0,54,1754,54,1754,54,54])
-        ret.append([54,54,54,54,54,54,54,54,4854,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54])
-        ret.append([54,54,54,54,54,54,54,54,54,54,54,3254,4654,54,54,54,54,54,4554,1754,54,1754,54,54])
-        ret.append([0,0,0,0,0,0,0,0,0,0,6436,6336,0,0,0,0,0,0,54,1854,54,1754,54,54])
-        ret.append([0,0,0,0,0,0,0,0,0,0,36,3636,0,0,0,0,0,0,54,1754,54,1754,54,54])
+        ret.append([54,54,54,54,54,0,0,0,21054,18054,17054,54,1001054,54,0])
+        ret.append([54,2002054,54,54,54,0,0,0,54,29054,20054,54,54,3003054,0])
+        ret.append([54,17054,54,54,54,0,0,0,54,17054,18054,54,54,54,0,0,0,0,30,47030,30,30,30,30])
+        ret.append([54,54,54,54,54,0,0,0,54,29054,29054,21054,54,54,0,0,0,0,54,17054,54,17054,54,14054])
+        ret.append([0,0,0,54,0,0,0,0,0,0,54,0,0,0,0,0,0,0,54,17054,54,17054,54,54])
+        ret.append([54,54,54,54,54,54,54,54,48054,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54])
+        ret.append([54,54,54,54,54,54,54,54,54,54,54,32054,46054,54,54,54,54,54,45054,17054,54,17054,54,54])
+        ret.append([0,0,0,0,0,0,0,0,0,0,64036,63036,0,0,0,0,0,0,54,18054,54,17054,54,54])
+        ret.append([0,0,0,0,0,0,0,0,0,0,36,36036,0,0,0,0,0,0,54,17054,54,17054,54,54])
         ret.append([0,0,0,0,0,0,0,0,0,0,60,59,0,0,0,0,0,0,0,0,0,0,0,0])
 
     elif _map == 1:
@@ -293,6 +296,19 @@ def CharDraw(bg, _dir: int):
         charImg = frontImg[5-dir+30]
 
 #--------------------------------------------------
+# Move check function
+#--------------------------------------------------
+def MoveCheck(x: int, y: int):
+    if y < 0 or len(nowMap) <= y:
+        return 1
+    elif x < 0 or len(nowMap[y]) <= x:
+        return 1
+    elif int(nowMap[y][x] / (MAP_IMG_ITEM*MAP_IMG_ITEM)) == 0:
+       return 0
+    else:
+       return 1
+
+#--------------------------------------------------
 # Map Main function
 #--------------------------------------------------
 def MapMain(bg, clk):
@@ -308,69 +324,80 @@ def MapMain(bg, clk):
     font = pygame.font.Font(idef.FONT_FILE_PATH, 20)
     
     # key input setup
-    pygame.key.set_repeat(1,10000000)
+    pygame.key.set_repeat(1,1)
 
     nowMap = MapLoad(0)
-    #print(nowMap)
-
+    
     while True:
-        # event skip
+        KEY = 0
+
+        # event process
         for event in pygame.event.get():
+            # program exit
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
 
+            # key down event
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.locals.K_UP:
+                    KEY = 1
+                elif event.key == pygame.locals.K_DOWN:
+                    KEY = 2
+                elif event.key == pygame.locals.K_LEFT:
+                    KEY = 3
+                elif event.key == pygame.locals.K_RIGHT:
+                    KEY = 4
+                
+                # 連射後のご入力防止
+                pygame.event.clear()
+
         # game state update
-        key = pygame.key.get_pressed()
+        # key = pygame.key.get_pressed()
         timer = timer + 1
         bg.fill(idef.COLOR_WHITE)
         
-        # 左キー入力
-        if key[pygame.locals.K_LEFT] == 1:
-            if pygame.mixer.get_busy() == False:
-                #print("left")
-                posX = posX - 1
-                CharDraw(bg, DIR_L)
-                print(str(posX) + ", " + str(posY))
-                soundWalk.play()
-            else:
-                pygame.event.clear()
-        
-        # 右キー入力
-        if key[pygame.locals.K_RIGHT] == 1:
-            if pygame.mixer.get_busy() == False:
-                #print("right")
-                posX = posX + 1
-                CharDraw(bg, DIR_R)
-                print(str(posX) + ", " + str(posY))
-                soundWalk.play()
-            else:
-                pygame.event.clear()
-
         # 上キー入力
-        if key[pygame.locals.K_UP] == 1:
-            if pygame.mixer.get_busy() == False:
+        if KEY == 1:
+            #if pygame.mixer.get_busy() == False:
                 #print("up")
-                posY = posY - 1
+                if MoveCheck(posX, posY - 1) == 0:
+                    posY = posY - 1
                 CharDraw(bg, DIR_U)
                 print(str(posX) + ", " + str(posY))
                 soundWalk.play()
-            else:
-                pygame.event.clear()
 
         # 下キー入力
-        if key[pygame.locals.K_DOWN] == 1:
-            if pygame.mixer.get_busy() == False:
+        if KEY == 2:
+          #if pygame.mixer.get_busy() == False:
                 #print("down")
-                posY = posY + 1
+                if MoveCheck(posX, posY + 1) == 0:
+                    posY = posY + 1
                 CharDraw(bg, DIR_D)
                 print(str(posX) + ", " + str(posY))
                 soundWalk.play()
-            else:
-                pygame.event.clear()
+
+        # 左キー入力
+        if KEY == 3:
+            #if pygame.mixer.get_busy() == False:
+                #print("left")
+                if MoveCheck(posX - 1, posY) == 0:
+                    posX = posX - 1
+                CharDraw(bg, DIR_L)
+                print(str(posX) + ", " + str(posY))
+                soundWalk.play()
+        
+        # 右キー入力
+        if KEY == 4:
+            #if pygame.mixer.get_busy() == False:
+                #print("right")
+                if MoveCheck(posX + 1, posY) == 0:
+                    posX = posX + 1
+                CharDraw(bg, DIR_R)
+                print(str(posX) + ", " + str(posY))
+                soundWalk.play()
         
         MapDraw(bg, posX, posY)
-        bg.blit(charImg,[idef.WINDOW_WIDTH/2 -32, idef.WINDOW_HEIGHT/2 -32])
         pygame.display.update()
         clk.tick(20)
 

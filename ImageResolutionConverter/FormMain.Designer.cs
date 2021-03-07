@@ -33,7 +33,7 @@ namespace ImageResolutionConverter
             this.numericUpDownResVertical = new System.Windows.Forms.NumericUpDown();
             this.labelTimes = new System.Windows.Forms.Label();
             this.labelRes = new System.Windows.Forms.Label();
-            this.buttonFileOpen = new System.Windows.Forms.Button();
+            this.buttonFileClear = new System.Windows.Forms.Button();
             this.buttonConverter = new System.Windows.Forms.Button();
             this.textBoxLog = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownResHorizontal)).BeginInit();
@@ -53,7 +53,7 @@ namespace ImageResolutionConverter
             this.numericUpDownResHorizontal.TabIndex = 0;
             this.numericUpDownResHorizontal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numericUpDownResHorizontal.Value = new decimal(new int[] {
-            64,
+            32,
             0,
             0,
             0});
@@ -71,7 +71,7 @@ namespace ImageResolutionConverter
             this.numericUpDownResVertical.TabIndex = 1;
             this.numericUpDownResVertical.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numericUpDownResVertical.Value = new decimal(new int[] {
-            64,
+            32,
             0,
             0,
             0});
@@ -95,15 +95,15 @@ namespace ImageResolutionConverter
             this.labelRes.TabIndex = 3;
             this.labelRes.Text = "解像度";
             // 
-            // buttonFileOpen
+            // buttonFileClear
             // 
-            this.buttonFileOpen.Location = new System.Drawing.Point(313, 12);
-            this.buttonFileOpen.Name = "buttonFileOpen";
-            this.buttonFileOpen.Size = new System.Drawing.Size(75, 23);
-            this.buttonFileOpen.TabIndex = 4;
-            this.buttonFileOpen.Text = "開く";
-            this.buttonFileOpen.UseVisualStyleBackColor = true;
-            this.buttonFileOpen.Click += new System.EventHandler(this.buttonFileOpen_Click);
+            this.buttonFileClear.Location = new System.Drawing.Point(313, 12);
+            this.buttonFileClear.Name = "buttonFileClear";
+            this.buttonFileClear.Size = new System.Drawing.Size(75, 23);
+            this.buttonFileClear.TabIndex = 4;
+            this.buttonFileClear.Text = "クリア";
+            this.buttonFileClear.UseVisualStyleBackColor = true;
+            this.buttonFileClear.Click += new System.EventHandler(this.buttonFileClear_Click);
             // 
             // buttonConverter
             // 
@@ -132,7 +132,7 @@ namespace ImageResolutionConverter
             this.ClientSize = new System.Drawing.Size(480, 450);
             this.Controls.Add(this.textBoxLog);
             this.Controls.Add(this.buttonConverter);
-            this.Controls.Add(this.buttonFileOpen);
+            this.Controls.Add(this.buttonFileClear);
             this.Controls.Add(this.labelRes);
             this.Controls.Add(this.labelTimes);
             this.Controls.Add(this.numericUpDownResVertical);
@@ -155,7 +155,7 @@ namespace ImageResolutionConverter
         private System.Windows.Forms.NumericUpDown numericUpDownResVertical;
         private System.Windows.Forms.Label labelTimes;
         private System.Windows.Forms.Label labelRes;
-        private System.Windows.Forms.Button buttonFileOpen;
+        private System.Windows.Forms.Button buttonFileClear;
         private System.Windows.Forms.Button buttonConverter;
         private System.Windows.Forms.TextBox textBoxLog;
     }
