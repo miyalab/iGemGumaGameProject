@@ -122,25 +122,25 @@ dir: int = 0
 #--------------------------------------------------
 # Map Draw function
 #--------------------------------------------------
-def MapDraw(bg, _x: int, _y: int):
-    x = _x - 6
-    y = _y - 5
+def MapDraw(bg, x: int, y: int):
+    x = x - 10
+    y = y - 7
     selectIndex: int = 0
 
-    bg.fill(idef.COLOR_WHITE)
-    for j in range(9):
-        if y + j < 0 or y + j >= len(nowMap) :
+    bg.fill(idef.COLOR_BLACK)
+    for j in range(15):
+        if y + j < 0 or y + j >= len(nowMap):
            continue
 
-        for i in range(11):
+        for i in range(21):
             if x + i < 0 or x + i >= len(nowMap[y+j]):
                continue
             
             #print(str(len(nowMap[y+j])) + "," + str(len(nowMap)) + "," + str(x+i) + "," + str(y+j) + "," + str(nowMap[y+j][x+i]))
             selectIndex = nowMap[y+j][x+i]
-            bg.blit(mapImg[selectIndex % 100], [64 * i - 32, 64 * j - 32])
+            bg.blit(mapImg[selectIndex % 100], [32 * i - 16, 32 * j])
             selectIndex = int(selectIndex / 100)
-            bg.blit(overMapImg[selectIndex % 100], [64 * i - 32, 64 * j - 32])
+            bg.blit(overMapImg[selectIndex % 100], [32 * i - 16, 32 * j])
 
 #--------------------------------------------------
 # Map Data Load function
@@ -151,21 +151,25 @@ def MapLoad(_map: int):
 
     # map 
     if _map == 0:
-        ret.append([101,302,3,4,5,6,7,8])
-        ret.append([9,10,11,12,13,14,15,16])
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
-        ret.append([1,1,1,1,1,1,1,1])
+        ret.append([137,237,337,37,37,37,37,37])
+        ret.append([37,37,37,37,37,37,37,37])
+        ret.append([37,37,37,37,37,37,37,37])
+        ret.append([37,37,37,37,37,37,37,37])
+        ret.append([37,37,37,37,37,37,37,37])
+        ret.append([37,37,37,37,37,37,37,37])
+        ret.append([37,37,37,37,37,37,37,37])
+        ret.append([37,37,37,37,37,37,37,37])
+        ret.append([37,37,37,37,37,37,37,37])
+        ret.append([37,37,37,37,37,37,37,37])
+        ret.append([37,37,37,37,37,37,37,37])
+        ret.append([37,37,37,37,37,37,37,37])
+        ret.append([37,37,37,37,37,37,37,37])
+        ret.append([37,37,37,37,37,37,37,37])
+        ret.append([37,37,37,37,37,37,37,37])
+        ret.append([37,37,37,37,37,37,37,37])
+        ret.append([37,37,37,37,37,37,37,37])
+        ret.append([37,37,37,37,37,37,37,37])
+        ret.append([37,37,37,37,37,37,37,37])
 
     elif _map == 1:
         ret.append([0,0,0,0,0,0,0,0])
@@ -249,69 +253,74 @@ def MapMain(bg, clk):
     font = pygame.font.Font(idef.FONT_FILE_PATH, 20)
     
     # key input setup
-    pygame.key.set_repeat(1,10000000)
+    pygame.key.set_repeat(1,1)
 
     nowMap = MapLoad(0)
     #print(nowMap)
-
+    
     while True:
+        KEY = 0
         # event skip
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
 
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.locals.K_UP:
+                    KEY = 1
+                elif event.key == pygame.locals.K_DOWN:
+                    KEY = 2
+                elif event.key == pygame.locals.K_LEFT:
+                    KEY = 3
+                elif event.key == pygame.locals.K_RIGHT:
+                    KEY = 4
+
+                pygame.event.clear()
+
         # game state update
-        key = pygame.key.get_pressed()
+        # key = pygame.key.get_pressed()
         timer = timer + 1
         bg.fill(idef.COLOR_WHITE)
         
         # 左キー入力
-        if key[pygame.locals.K_LEFT] == 1:
+        if KEY == 3:
             if pygame.mixer.get_busy() == False:
                 #print("left")
                 posX = posX - 1
                 CharDraw(bg, DIR_L)
                 print(str(posX) + ", " + str(posY))
                 soundWalk.play()
-            else:
-                pygame.event.clear()
         
         # 右キー入力
-        if key[pygame.locals.K_RIGHT] == 1:
+        if KEY == 4:
             if pygame.mixer.get_busy() == False:
                 #print("right")
                 posX = posX + 1
                 CharDraw(bg, DIR_R)
                 print(str(posX) + ", " + str(posY))
                 soundWalk.play()
-            else:
-                pygame.event.clear()
 
         # 上キー入力
-        if key[pygame.locals.K_UP] == 1:
+        if KEY == 1:
             if pygame.mixer.get_busy() == False:
                 #print("up")
                 posY = posY - 1
                 CharDraw(bg, DIR_U)
                 print(str(posX) + ", " + str(posY))
                 soundWalk.play()
-            else:
-                pygame.event.clear()
 
         # 下キー入力
-        if key[pygame.locals.K_DOWN] == 1:
+        if KEY == 2:
             if pygame.mixer.get_busy() == False:
                 #print("down")
                 posY = posY + 1
                 CharDraw(bg, DIR_D)
                 print(str(posX) + ", " + str(posY))
                 soundWalk.play()
-            else:
-                pygame.event.clear()
         
         MapDraw(bg, posX, posY)
-        bg.blit(charImg,[idef.WINDOW_WIDTH/2 -32, idef.WINDOW_HEIGHT/2 -32])
+        bg.blit(charImg,[idef.WINDOW_WIDTH/2 - 16, idef.WINDOW_HEIGHT/2 - 16])
         pygame.display.update()
         clk.tick(20)
 
