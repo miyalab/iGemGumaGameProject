@@ -99,7 +99,52 @@ mapImg = [pygame.image.load("img/map/clear.PNG"),
           pygame.image.load("img/map/t57.PNG"),
           pygame.image.load("img/map/t58.PNG"),
           pygame.image.load("img/map/t59.PNG"),
-          pygame.image.load("img/map/t60.PNG")]
+          pygame.image.load("img/map/t60.PNG"),
+          pygame.image.load("img/map/t61.PNG"),
+          pygame.image.load("img/map/t62.PNG"),
+          pygame.image.load("img/map/t63.PNG"),
+          pygame.image.load("img/map/t64.PNG"),
+          pygame.image.load("img/map/t65.PNG"),
+          pygame.image.load("img/map/t66.PNG"),
+          pygame.image.load("img/map/t67.PNG"),
+          pygame.image.load("img/map/t68.PNG"),
+          pygame.image.load("img/map/t69.PNG"),
+          pygame.image.load("img/map/t70.PNG"),
+          pygame.image.load("img/map/t71.PNG"),
+          pygame.image.load("img/map/t72.PNG"),
+          pygame.image.load("img/map/t73.PNG"),
+          pygame.image.load("img/map/t74.PNG"),
+          pygame.image.load("img/map/t75.PNG"),
+          pygame.image.load("img/map/t76.PNG"),
+          pygame.image.load("img/map/t77.PNG"),
+          pygame.image.load("img/map/t78.PNG"),
+          pygame.image.load("img/map/t79.PNG"),
+          pygame.image.load("img/map/t80.PNG"),
+          pygame.image.load("img/map/t81.PNG"),
+          pygame.image.load("img/map/t82.PNG"),
+          pygame.image.load("img/map/t83.PNG"),
+          pygame.image.load("img/map/t84.PNG"),
+          pygame.image.load("img/map/t85.PNG"),
+          pygame.image.load("img/map/t86.PNG"),
+          pygame.image.load("img/map/t87.PNG"),
+          pygame.image.load("img/map/t88.PNG"),
+          pygame.image.load("img/map/t89.PNG"),
+          pygame.image.load("img/map/t90.PNG"),
+          pygame.image.load("img/map/t91.PNG"),
+          pygame.image.load("img/map/t92.PNG"),
+          pygame.image.load("img/map/t93.PNG"),
+          pygame.image.load("img/map/t94.PNG"),
+          pygame.image.load("img/map/t95.PNG"),
+          pygame.image.load("img/map/t96.PNG"),
+          pygame.image.load("img/map/t97.PNG"),
+          pygame.image.load("img/map/t98.PNG"),
+          pygame.image.load("img/map/t99.PNG"),
+          pygame.image.load("img/map/t100.PNG"),
+          pygame.image.load("img/map/t101.PNG"),
+          pygame.image.load("img/map/t102.PNG"),
+          pygame.image.load("img/map/t103.PNG"),
+          pygame.image.load("img/map/t104.PNG")]
+
 overMapImg = [pygame.image.load("img/map/clear.PNG"),
               pygame.image.load("img/map/a01.PNG"),
               pygame.image.load("img/map/a02.PNG"),
@@ -164,7 +209,134 @@ overMapImg = [pygame.image.load("img/map/clear.PNG"),
               pygame.image.load("img/map/a61.PNG"),
               pygame.image.load("img/map/a62.PNG"),
               pygame.image.load("img/map/a63.PNG"),
-              pygame.image.load("img/map/a64.PNG")]
+              pygame.image.load("img/map/a64.PNG"),
+              pygame.image.load("img/map/a65.PNG"),
+              pygame.image.load("img/map/a66.PNG"),
+              pygame.image.load("img/map/a67.PNG"),
+              pygame.image.load("img/map/a68.PNG"),
+              pygame.image.load("img/map/a69.PNG"),
+              pygame.image.load("img/map/a70.PNG"),
+              pygame.image.load("img/map/a71.PNG"),
+              pygame.image.load("img/map/a72.PNG"),
+              pygame.image.load("img/map/a73.PNG"),
+              pygame.image.load("img/map/a74.PNG"),
+              pygame.image.load("img/map/a75.PNG"),
+              pygame.image.load("img/map/a76.PNG"),
+              pygame.image.load("img/map/a77.PNG"),
+              pygame.image.load("img/map/a78.PNG"),
+              pygame.image.load("img/map/a79.PNG"),
+              pygame.image.load("img/map/a80.PNG"),
+              pygame.image.load("img/map/a81.PNG"),
+              pygame.image.load("img/map/a82.PNG"),
+              pygame.image.load("img/map/a83.PNG"),
+              pygame.image.load("img/map/a84.PNG"),
+              pygame.image.load("img/map/a85.PNG"),
+              pygame.image.load("img/map/a86.PNG"),
+              pygame.image.load("img/map/a87.PNG"),
+              pygame.image.load("img/map/a88.PNG"),
+              pygame.image.load("img/map/a89.PNG"),
+              pygame.image.load("img/map/a90.PNG"),
+              pygame.image.load("img/map/a91.PNG"),
+              pygame.image.load("img/map/a92.PNG"),
+              pygame.image.load("img/map/a93.PNG"),
+              pygame.image.load("img/map/a94.PNG"),
+              pygame.image.load("img/map/a95.PNG"),
+              pygame.image.load("img/map/a96.PNG"),
+              pygame.image.load("img/map/a97.PNG"),
+              pygame.image.load("img/map/a98.PNG"),
+              pygame.image.load("img/map/a99.PNG"),
+              pygame.image.load("img/map/a100.PNG"),
+              pygame.image.load("img/map/a101.PNG"),
+              pygame.image.load("img/map/a102.PNG"),
+              pygame.image.load("img/map/a103.PNG"),
+              pygame.image.load("img/map/a104.PNG"),
+              pygame.image.load("img/map/a105.PNG"),
+              pygame.image.load("img/map/a106.PNG"),
+              pygame.image.load("img/map/a107.PNG"),
+              pygame.image.load("img/map/a108.PNG"),
+              pygame.image.load("img/map/a109.PNG"),
+              pygame.image.load("img/map/a110.PNG"),
+              pygame.image.load("img/map/a111.PNG"),
+              pygame.image.load("img/map/a112.PNG"),
+              pygame.image.load("img/map/a113.PNG"),
+              pygame.image.load("img/map/a114.PNG"),
+              pygame.image.load("img/map/a115.PNG"),
+              pygame.image.load("img/map/a116.PNG"),
+              pygame.image.load("img/map/a117.PNG"),
+              pygame.image.load("img/map/a118.PNG"),
+              pygame.image.load("img/map/a119.PNG"),
+              pygame.image.load("img/map/a120.PNG"),
+              pygame.image.load("img/map/a121.PNG"),
+              pygame.image.load("img/map/a122.PNG"),
+              pygame.image.load("img/map/a123.PNG"),
+              pygame.image.load("img/map/a124.PNG"),
+              pygame.image.load("img/map/a125.PNG"),
+              pygame.image.load("img/map/a126.PNG"),
+              pygame.image.load("img/map/a127.PNG"),
+              pygame.image.load("img/map/a128.PNG"),
+              pygame.image.load("img/map/a129.PNG"),
+              pygame.image.load("img/map/a130.PNG"),
+              pygame.image.load("img/map/a131.PNG"),
+              pygame.image.load("img/map/a132.PNG"),
+              pygame.image.load("img/map/a133.PNG"),
+              pygame.image.load("img/map/a134.PNG"),
+              pygame.image.load("img/map/a135.PNG"),
+              pygame.image.load("img/map/a136.PNG"),
+              pygame.image.load("img/map/a137.PNG"),
+              pygame.image.load("img/map/a138.PNG"),
+              pygame.image.load("img/map/a139.PNG"),
+              pygame.image.load("img/map/a140.PNG"),
+              pygame.image.load("img/map/a141.PNG"),
+              pygame.image.load("img/map/a142.PNG"),
+              pygame.image.load("img/map/a143.PNG"),
+              pygame.image.load("img/map/a144.PNG"),
+              pygame.image.load("img/map/a145.PNG"),
+              pygame.image.load("img/map/a146.PNG"),
+              pygame.image.load("img/map/a147.PNG"),
+              pygame.image.load("img/map/a148.PNG"),
+              pygame.image.load("img/map/a149.PNG"),
+              pygame.image.load("img/map/a150.PNG"),
+              pygame.image.load("img/map/a151.PNG"),
+              pygame.image.load("img/map/a152.PNG"),
+              pygame.image.load("img/map/a153.PNG"),
+              pygame.image.load("img/map/a154.PNG"),
+              pygame.image.load("img/map/a155.PNG"),
+              pygame.image.load("img/map/a156.PNG"),
+              pygame.image.load("img/map/a157.PNG"),
+              pygame.image.load("img/map/a158.PNG"),
+              pygame.image.load("img/map/a159.PNG"),
+              pygame.image.load("img/map/a160.PNG"),
+              pygame.image.load("img/map/a161.PNG"),
+              pygame.image.load("img/map/a162.PNG"),
+              pygame.image.load("img/map/a163.PNG"),
+              pygame.image.load("img/map/a164.PNG"),
+              pygame.image.load("img/map/a165.PNG"),
+              pygame.image.load("img/map/a166.PNG"),
+              pygame.image.load("img/map/a167.PNG"),
+              pygame.image.load("img/map/a168.PNG"),
+              pygame.image.load("img/map/a169.PNG"),
+              pygame.image.load("img/map/a170.PNG"),
+              pygame.image.load("img/map/a171.PNG"),
+              pygame.image.load("img/map/a172.PNG"),
+              pygame.image.load("img/map/a173.PNG"),
+              pygame.image.load("img/map/a174.PNG"),
+              pygame.image.load("img/map/a175.PNG"),
+              pygame.image.load("img/map/a176.PNG"),
+              pygame.image.load("img/map/a177.PNG"),
+              pygame.image.load("img/map/a178.PNG"),
+              pygame.image.load("img/map/a179.PNG"),
+              pygame.image.load("img/map/a180.PNG"),
+              pygame.image.load("img/map/a181.PNG"),
+              pygame.image.load("img/map/a182.PNG"),
+              pygame.image.load("img/map/a183.PNG"),
+              pygame.image.load("img/map/a184.PNG"),
+              pygame.image.load("img/map/a185.PNG"),
+              pygame.image.load("img/map/a186.PNG"),
+              pygame.image.load("img/map/a187.PNG"),
+              pygame.image.load("img/map/a188.PNG"),
+              pygame.image.load("img/map/a189.PNG"),
+              pygame.image.load("img/map/a190.PNG"),
+              pygame.image.load("img/map/a191.PNG")]
 nowMap = [[]]
 
 posX: int = 0
@@ -208,7 +380,7 @@ def MapLoad(_map: int):
 
     # map 
     if _map == 0:
-        ret.append([12030,30,11030,24030,12030,0,0,0,47030,11030,42030,13030,4030,30,0])
+        ret.append([30,30,11030,24030,12030,0,0,0,47030,11030,42030,13030,4030,30,0])
         ret.append([54,54,54,54,54,0,0,0,54,54,54,54,54,54,0])
         ret.append([54,54,54,54,54,0,0,0,21054,18054,17054,54,1001054,54,0])
         ret.append([54,2002054,54,54,54,0,0,0,54,29054,20054,54,54,3003054,0])
@@ -230,24 +402,58 @@ def MapLoad(_map: int):
         ret.append([31,31,31,31,31,31,31,31,31,31,31,44,39,43,18,16,16,16,16,16,19])
         ret.append([31,31,31,31,31,31,31,31,31,31,31,44,39,43,18,17,16,17,16,17,19])
         ret.append([30,30,30,30,30,30,30,30,30,30,30,44,39,43,18,16,16,16,16,16,19])
-        ret.append([38,38,38,38,38,38,38,38,38,38,38,44,39,43,18,16,16,20,16,16,19])
-        ret.append([47,47,47,47,47,47,47,47,47,47,47,44,39,43,47,47,47,47,47,47,47])
+        ret.append([38,38,38,38,38,38,38,38,38,38,38,39,39,39,18,16,16,20,16,16,19])
+        ret.append([39,39,39,39,39,39,39,39,39,39,39,39,39,39,47,47,47,47,47,47,47])
         ret.append([39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39])
         ret.append([39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39])
-        ret.append([0,0,0,0,0,0,0,0])
-        ret.append([0,0,0,0,0,0,0,0])
-        ret.append([0,0,0,0,0,0,0,0])
-        ret.append([0,0,0,0,0,0,0,0])
+        ret.append([38,38,38,38,38,38,38,38,38,38,38])
+        ret.append([38,38,38,38,38,0,0,0,0])
+        ret.append([38,38,38,38,38,0,0,0,0])
+        ret.append([38,38,38,38,38,0,0,0,0,0,0,0,0])
 
     elif _map == 2:
-        ret.append([0,0,0,0,0,0,0,0])
-        ret.append([0,0,0,0,0,0,0,0])
-        ret.append([0,0,0,0,0,0,0,0])
-        ret.append([0,0,0,0,0,0,0,0])
-        ret.append([0,0,0,0,0,0,0,0])
-        ret.append([0,0,0,0,0,0,0,0])
-        ret.append([0,0,0,0,0,0,0,0])
-        ret.append([0,0,0,0,0,0,0,0])
+        ret.append([100,100,100,60,59,0,0,0,0])
+        ret.append([100,100,100,100,100,100,100])
+        ret.append([100,100,100,100,100,100,100])
+        ret.append([100,100,100,100,100,100,100])
+        ret.append([100,100,100,100,100,100,100])
+       
+    elif _map == 3:
+        ret.append([30,30,30,30,30,30,0,0,0,0,0,0,0,0,0,0])
+        ret.append([100,100,100,100,100,100,0,0,0,0,0,0,0,0,0,0])
+        ret.append([100,100,100,100,100,100,0,0,0,0,100,100,0,0,0,0])
+        ret.append([100,100,100,100,100,100,67,72,72,69,100,100,0,0,0,0])
+        ret.append([100,100,100,100,100,100,71,75,75,74,100,100,0,0,0,0])
+        ret.append([100,100,100,100,100,100,71,75,75,74,100,100,0,0,0,0])
+        ret.append([100,100,100,100,100,100,71,75,75,74,100,100,0,0,0,0])
+        ret.append([100,100,100,100,100,100,71,75,75,74,100,100,0,0,0,0])
+        ret.append([100,100,100,100,100,100,68,73,73,70,100,100,0,0,0,0])
+        ret.append([100,100,100,100,100,100,30,30,30,30,100,100,30,30,30,30])
+        ret.append([0,67,72,69,100,100,100,100,100,100,100,100,100,100,100,100])
+        ret.append([0,71,75,74,30,30,30,30,30,100,100,100,100,100,100,100])
+        ret.append([0,71,75,74,100,100,100,100,100,100,100,100,100,100,100,100])
+        ret.append([0,71,75,74,100,100,100,100,100,100,100,100,100,100,100,100])
+        ret.append([0,71,75,74,100,100,100,100,100,100,100,100,100,100,100,100])
+        ret.append([0,68,73,70,21,21,21,21,21,0,100,100,0,0,0,0])
+
+    elif _map == 4:
+        ret.append([66,66,66,66,66,66,101,102,66,66,66,66,66,66])
+        ret.append([100,100,100,100,100,100,100,100,100,100,100,100,100,100])
+        ret.append([100,100,100,100,100,100,100,100,100,100,100,100,100,100])
+        ret.append([0,0,0,0,100,100,100,100,100,100])
+        ret.append([0,0,0,0,100,100,100,100,100,100])
+        ret.append([0,0,0,0,100,100,100,100,100,100])
+        ret.append([0,0,0,0,100,100,100,100,100,100])
+        ret.append([0,0,0,0,0,0,100,100,0,0,0])
+        ret.append([0,0,0,0,0,0,100,100,0,0,0])
+        
+
+    elif _map == 5:
+        ret.append([21,101,102,21,30,30,103,30,104,30])
+        ret.append([100,100,100,100,100,100,100,100,100,100])
+        ret.append([100,100,100,100,100,100,100,100,100,100])
+        ret.append([100,100,100,100,100,100,100,100,100,100])
+        ret.append([100,100,100,100,100,100,100,100,100,100])
 
     return ret
 
@@ -326,7 +532,7 @@ def MapMain(bg, clk):
     # key input setup
     pygame.key.set_repeat(1,1)
 
-    nowMap = MapLoad(1)
+    nowMap = MapLoad(5)
     
     while True:
         KEY = 0
