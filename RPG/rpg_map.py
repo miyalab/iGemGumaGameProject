@@ -365,7 +365,7 @@ def MapMain(bg, clk):
                     posY = posY - 1
                 CharDraw(bg, DIR_U)
                 print(str(posX) + ", " + str(posY))
-                soundWalk.play()
+                #soundWalk.play()
 
         # 下キー入力
         if KEY == 2:
@@ -375,7 +375,7 @@ def MapMain(bg, clk):
                     posY = posY + 1
                 CharDraw(bg, DIR_D)
                 print(str(posX) + ", " + str(posY))
-                soundWalk.play()
+                #soundWalk.play()
 
         # 左キー入力
         if KEY == 3:
@@ -385,7 +385,7 @@ def MapMain(bg, clk):
                     posX = posX - 1
                 CharDraw(bg, DIR_L)
                 print(str(posX) + ", " + str(posY))
-                soundWalk.play()
+                #soundWalk.play()
         
         # 右キー入力
         if KEY == 4:
@@ -395,7 +395,7 @@ def MapMain(bg, clk):
                     posX = posX + 1
                 CharDraw(bg, DIR_R)
                 print(str(posX) + ", " + str(posY))
-                soundWalk.play()
+                #soundWalk.play()
         
         MapDraw(bg, posX, posY)
         pygame.display.update()
