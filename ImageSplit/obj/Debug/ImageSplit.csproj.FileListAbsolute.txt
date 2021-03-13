@@ -1,0 +1,10 @@
+C:\Users\miyak\Documents\GitHub\iGemGumaGameProject\ImageSplit\bin\Debug\ImageSplit.exe.config
+C:\Users\miyak\Documents\GitHub\iGemGumaGameProject\ImageSplit\bin\Debug\ImageSplit.exe
+C:\Users\miyak\Documents\GitHub\iGemGumaGameProject\ImageSplit\bin\Debug\ImageSplit.pdb
+C:\Users\miyak\Documents\GitHub\iGemGumaGameProject\ImageSplit\obj\Debug\ImageSplit.csprojAssemblyReference.cache
+C:\Users\miyak\Documents\GitHub\iGemGumaGameProject\ImageSplit\obj\Debug\ImageSplit.FormMain.resources
+C:\Users\miyak\Documents\GitHub\iGemGumaGameProject\ImageSplit\obj\Debug\ImageSplit.Properties.Resources.resources
+C:\Users\miyak\Documents\GitHub\iGemGumaGameProject\ImageSplit\obj\Debug\ImageSplit.csproj.GenerateResource.cache
+C:\Users\miyak\Documents\GitHub\iGemGumaGameProject\ImageSplit\obj\Debug\ImageSplit.csproj.CoreCompileInputs.cache
+C:\Users\miyak\Documents\GitHub\iGemGumaGameProject\ImageSplit\obj\Debug\ImageSplit.exe
+C:\Users\miyak\Documents\GitHub\iGemGumaGameProject\ImageSplit\obj\Debug\ImageSplit.pdb

@@ -4,23 +4,32 @@ File Name    : rpg_main.py
 Description  : メインファイル
 '''
 
+#----------------------------
 # import
+#----------------------------
 import os
-import rpg_define as idef
-import rpg_battle as ibattle
-import rpg_map as imap
 import sys
-import pygame 
+import pygame
+import pygame.locals
 import random
-from pygame.locals import *
 
-# メインプログラム
+#----------------------------
+# main program
+#----------------------------
 def main():
     # debug mode select
-    DEBUG_MODE: int = 1
+    DEBUG_MODE: int = 2
     
-    # pygame and window init
+    # pygame init
     pygame.init()
+
+    # game system import
+    import rpg_define as idef
+    import rpg_battle as ibattle
+    import rpg_map as imap
+    import rpg_staffroll as istaff
+
+    # window init
     pygame.display.set_caption(idef.WINDOW_NAME);
     screen = pygame.display.set_mode(idef.WINDOW_SIZE)
     clock = pygame.time.Clock()
@@ -28,17 +37,21 @@ def main():
     tmr: int = 0
     
     if DEBUG_MODE == 1:
+        print("debug battle")
         user = idef.player()
-        user.Name = "みずき"
+        user.Name = "まどか"
         user.Command.append("プラスミド1")
         user.Command.append("プラスミド2")
         user.Command.append("プラスミド3")
         ibattle.BattleMain(screen, clock, user, 4)
         
     elif DEBUG_MODE == 2:
-        print('Debug map')
-        while True:
-           tmr = tmr + 1
+        print('debug map')
+        imap.MapMain(screen, clock)
+
+    elif DEBUG_MODE == 3:
+        print("staff roll check")
+        istaff.StaffrollMain(screen, clock)
 
     while True:
         tmr = tmr + 1
