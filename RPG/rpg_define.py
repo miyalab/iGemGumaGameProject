@@ -37,13 +37,13 @@ class GameSetting():
 # playerクラス
 class player():
     Name: str = "name"
-    HP: int = 100
-    MaxHP: int = 100
+    HP: int = 1000
+    MaxHP: int = 1000
     MP: int = 100
     MaxMP: int = 100
     LV: int = 10
-    ATK: int = 10
-    DEF: int = 10
+    ATK: int = 300
+    DEF: int = 200
     INT: int = 10
     AGI: int = 10
     LUK: int = 10

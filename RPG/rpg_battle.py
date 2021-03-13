@@ -54,14 +54,14 @@ def EnemyRead(_enemy: int) -> idef.enemy:
     if _enemy == 1:
         enemyData.Num = 1
         enemyData.ImgPath = "img/battle/enemy/enemy1.png"
-        enemyData.Name = "first boss"
+        enemyData.Name = "O157"
         enemyData.MaxHP = 100
         enemyData.HP = 100
         enemyData.MaxMP = 100
         enemyData.MP = 100
         enemyData.LV = 1
-        enemyData.ATK = 100
-        enemyData.DEF = 100
+        enemyData.ATK = 30
+        enemyData.DEF = 20
         enemyData.INT = 100
         enemyData.AGI = 100
         enemyData.LUK = 100
@@ -70,14 +70,14 @@ def EnemyRead(_enemy: int) -> idef.enemy:
     elif _enemy == 2:
         enemyData.Num = 2
         enemyData.ImgPath = "img/battle/enemy/enemy2.png"
-        enemyData.Name = "secound boss"
+        enemyData.Name = "ユーグレナ"
         enemyData.MaxHP = 100
         enemyData.HP = 100
         enemyData.MaxMP = 100
         enemyData.MP = 100
         enemyData.LV = 1
-        enemyData.ATK = 100
-        enemyData.DEF = 100
+        enemyData.ATK = 50
+        enemyData.DEF = 40
         enemyData.INT = 100
         enemyData.AGI = 100
         enemyData.LUK = 100
@@ -86,14 +86,30 @@ def EnemyRead(_enemy: int) -> idef.enemy:
     elif _enemy == 3:
         enemyData.Num = 3
         enemyData.ImgPath = "img/battle/enemy/enemy3.png"
-        enemyData.Name = "third boss"
+        enemyData.Name = "好熱菌"
+        enemyData.MaxHP = 100
+        enemyData.HP = 100
+        enemyData.MaxMP = 100
+        enemyData.MP = 100
+        enemyData.LV = 1
+        enemyData.ATK = 80
+        enemyData.DEF = 70
+        enemyData.INT = 100
+        enemyData.AGI = 100
+        enemyData.LUK = 100
+        enemyData.EXP = 1000
+
+    elif _enemy == 4:
+        enemyData.Num = 4
+        enemyData.ImgPath = "img/battle/enemy/enemy3.png"
+        enemyData.Name = "粘菌"
         enemyData.MaxHP = 100
         enemyData.HP = 100
         enemyData.MaxMP = 100
         enemyData.MP = 100
         enemyData.LV = 1
         enemyData.ATK = 100
-        enemyData.DEF = 100
+        enemyData.DEF = 90
         enemyData.INT = 100
         enemyData.AGI = 100
         enemyData.LUK = 100
@@ -101,19 +117,19 @@ def EnemyRead(_enemy: int) -> idef.enemy:
 
     else:
         enemyData.ImgPath = "img/battle/enemy/enemy4.png"
-        enemyData.Num = 4
-        enemyData.Name = "last boss"
+        enemyData.Num = 5
+        enemyData.Name = "完全体・O157"
         enemyData.MaxHP = 100
         enemyData.HP = 100
         enemyData.MaxMP = 100
         enemyData.MP = 100
         enemyData.LV = 1
-        enemyData.ATK = 20
-        enemyData.DEF = -20
+        enemyData.ATK = 500
+        enemyData.DEF = 200
         enemyData.INT = 10
         enemyData.AGI = 10
         enemyData.LUK = 10
-        enemyData.EXP = 1000
+        enemyData.EXP = 10000
 
     return enemyData
 
@@ -392,7 +408,7 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
             scene = 52
 
         # エネミー撃破後のキー入力待ち
-        elif scene ==52:
+        elif scene == 52:
             MessageDraw(scr, messageFont)
 
         # プレイヤー敗北
