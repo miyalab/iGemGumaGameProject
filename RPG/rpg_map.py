@@ -15,6 +15,13 @@ import rpg_define as idef
 #----------------------------
 # constant value
 #----------------------------
+KEY_MOVE: int = 0x0f
+KEY_UP: int = 0x01
+KEY_DOWN: int = 0x02
+KEY_LEFT: int = 0x04
+KEY_RIGHT: int = 0x08
+KEY_SELECT: int = 0x10 
+
 MAP_IMG_ITEM: int = 1000
 
 DIR_L: int = -1
@@ -24,7 +31,6 @@ DIR_D: int = 2
 
 soundWalk = pygame.mixer.Sound("sound/ashioto.ogg")
 bgmMAP = pygame.mixer.music.load("sound/op2.ogg")
-
 charImg = pygame.image.load("img/player/front/C-13.PNG")
 
 frontImg = [pygame.image.load("img/player/front/C-13.PNG"),
@@ -370,11 +376,12 @@ overMapImg = [pygame.image.load("img/map/clear.PNG"),
               pygame.image.load("img/map/a211.PNG"),
               pygame.image.load("img/map/a212.PNG"),
               pygame.image.load("img/map/a213.PNG")]
-nowMap = [[]]
+
+mapNum = -1
+mapNow = [[]]
 
 posX: int = 0
 posY: int = 0
-
 dir: int = 0
 
 #--------------------------------------------------
@@ -388,15 +395,14 @@ def MapDraw(bg, x: int, y: int):
     # map draw
     bg.fill(idef.COLOR_BLACK)
     for j in range(15):
-        if y + j < 0 or y + j >= len(nowMap):
+        if y + j < 0 or y + j >= len(mapNow):
            continue
 
         for i in range(21):
-            if x + i < 0 or x + i >= len(nowMap[y+j]):
+            if x + i < 0 or x + i >= len(mapNow[y+j]):
                continue
-            
-            #print(str(len(nowMap[y+j])) + "," + str(len(nowMap)) + "," + str(x+i) + "," + str(y+j) + "," + str(nowMap[y+j][x+i]))
-            selectIndex = nowMap[y+j][x+i]
+
+            selectIndex = mapNow[y+j][x+i]
             bg.blit(mapImg[selectIndex % MAP_IMG_ITEM], [32 * i - 16, 32 * j])
             selectIndex = int(selectIndex / MAP_IMG_ITEM)
             bg.blit(overMapImg[selectIndex % MAP_IMG_ITEM], [32 * i - 16, 32 * j])
@@ -411,7 +417,7 @@ def MapLoad(_map: int):
     ret = [[]]
     ret.clear()
 
-     #1,2,3は人
+         #1,2,3は人
         #4は図書館の看板　　「このさき　かいそうちゅう　とおれません」　と　かいてある。
         #5　「じっけんきぐ　は　たいせつに　あつかおう」とかいてある。
         #6　「オートクレーブ」　と　かいてある……。もう　あっちへ　いこう。
@@ -466,7 +472,6 @@ def MapLoad(_map: int):
         ret.append([38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,9022038,38,9022038,38,38,38,38,38,38,38,38,38,38,38])
         ret.append([38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38])
 
-
     elif _map == 2:
         ret.append([9154100,9156100,9000000,0,0,0,0,0])   
         ret.append([155100,157100,9000000,9000000,0,0,0,0])
@@ -515,9 +520,8 @@ def MapLoad(_map: int):
         ret.append([101100,100,100,100,100,100,100,100,159100,160100])
         ret.append([100,100,100,100,100,100,100,100,100,100])
 
-       
-
     return ret
+
 
 #--------------------------------------------------
 # player direction image read function
@@ -567,11 +571,11 @@ def CharDraw(bg, _dir: int):
 # Move check function
 #--------------------------------------------------
 def MoveCheck(x: int, y: int):
-    if y < 0 or len(nowMap) <= y:
+    if y < 0 or len(mapNow) <= y:
         return 1
-    elif x < 0 or len(nowMap[y]) <= x:
+    elif x < 0 or len(mapNow[y]) <= x:
         return 1
-    elif int(nowMap[y][x] / (MAP_IMG_ITEM*MAP_IMG_ITEM)) == 0:
+    elif int(mapNow[y][x] / (MAP_IMG_ITEM*MAP_IMG_ITEM)) == 0:
        return 0
     else:
        return 1
@@ -582,11 +586,14 @@ def MoveCheck(x: int, y: int):
 def MapMain(bg, clk):
     # enable change global value
     global posX, posY
-    global nowMap
+    global mapNow
+    global mapNum
 
     # local value
     timer: int = 0
     scene: int = 0
+    keySelectFlag: int = 0
+    key: int = 0
 
     # font set
     font = pygame.font.Font(idef.FONT_FILE_PATH, 20)
@@ -594,12 +601,11 @@ def MapMain(bg, clk):
     # key input setup
     pygame.key.set_repeat(1,1)
 
-    #posX = 10
-    #posY = 11
-    nowMap = MapLoad(1)
+    mapNum = 1
+    mapNow = MapLoad(mapNum)
     
     while True:
-        KEY = 0
+        key = 0
 
         # event process
         for event in pygame.event.get():
@@ -611,14 +617,17 @@ def MapMain(bg, clk):
             # key down event
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.locals.K_UP:
-                    KEY = 1
+                    key = key | KEY_UP
                 elif event.key == pygame.locals.K_DOWN:
-                    KEY = 2
+                    key = key | KEY_DOWN
                 elif event.key == pygame.locals.K_LEFT:
-                    KEY = 3
+                    key = key | KEY_LEFT
                 elif event.key == pygame.locals.K_RIGHT:
-                    KEY = 4
+                    key = key | KEY_RIGHT
                 
+                if event.key == pygame.locals.K_SPACE:
+                    key = key | KEY_SELECT
+
                 # 連射後のご入力防止
                 pygame.event.clear()
 
@@ -628,48 +637,65 @@ def MapMain(bg, clk):
         bg.fill(idef.COLOR_WHITE)
         
         # 上キー入力
-        if KEY == 1:
+        if key & KEY_UP == KEY_UP:
             #if pygame.mixer.get_busy() == False:
                 #print("up")
                 if MoveCheck(posX, posY - 1) == 0:
                     posY = posY - 1
                 CharDraw(bg, DIR_U)
-                print(str(posX) + ", " + str(posY))
                 #soundWalk.play()
 
         # 下キー入力
-        if KEY == 2:
+        if key & KEY_DOWN == KEY_DOWN:
           #if pygame.mixer.get_busy() == False:
                 #print("down")
                 if MoveCheck(posX, posY + 1) == 0:
                     posY = posY + 1
                 CharDraw(bg, DIR_D)
-                print(str(posX) + ", " + str(posY))
                 #soundWalk.play()
 
         # 左キー入力
-        if KEY == 3:
+        if key & KEY_LEFT == KEY_LEFT:
             #if pygame.mixer.get_busy() == False:
                 #print("left")
                 if MoveCheck(posX - 1, posY) == 0:
                     posX = posX - 1
                 CharDraw(bg, DIR_L)
-                print(str(posX) + ", " + str(posY))
                 #soundWalk.play()
         
         # 右キー入力
-        if KEY == 4:
+        if key & KEY_RIGHT == KEY_RIGHT:
             #if pygame.mixer.get_busy() == False:
                 #print("right")
                 if MoveCheck(posX + 1, posY) == 0:
                     posX = posX + 1
                 CharDraw(bg, DIR_R)
-                print(str(posX) + ", " + str(posY))
                 #soundWalk.play()
         
+        # map移動実施
+        if key & KEY_MOVE > 0:
+            # 座標表示
+            print(str(posX) + ", " + str(posY))
+            
+            # 座標イベント（マップ移動など）
+            if mapNum == 1:
+                if posX == 22 and posY == 26:
+                    mapNum = 5
+                    posX = 2
+                    posY = 1
+                    mapNow = MapLoad(mapNum) 
+
+        # 決定キー入力
+        if key & KEY_SELECT == KEY_SELECT:
+            if keySelectFlag == 0:
+                keySelectFlag = 1
+                print("select push")
+        else:
+            keySelectFlag = 0
+
         MapDraw(bg, posX, posY)
         pygame.display.update()
-        clk.tick(20)
+        clk.tick(33)
 
 #----------------------------------------------------------------------
 # end of file
