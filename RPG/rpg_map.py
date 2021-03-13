@@ -592,6 +592,8 @@ def MapMain(bg, clk):
     # local value
     timer: int = 0
     scene: int = 0
+    walkTimer: int = 0
+    walkFlag: int = 0
     keySelectFlag: int = 0
     key: int = 0
 
@@ -632,58 +634,167 @@ def MapMain(bg, clk):
                 pygame.event.clear()
 
         # game state update
-        # key = pygame.key.get_pressed()
         timer = timer + 1
         bg.fill(idef.COLOR_WHITE)
-        
-        # 上キー入力
-        if key & KEY_UP == KEY_UP:
-            #if pygame.mixer.get_busy() == False:
-                #print("up")
+        time = pygame.time.get_ticks()
+
+        # map移動実施
+        if key & KEY_MOVE > 0 and walkFlag == 0:
+            walkFlag = 1
+            walkTimer = time
+
+            # 上キー入力
+            if key & KEY_UP == KEY_UP:
                 if MoveCheck(posX, posY - 1) == 0:
                     posY = posY - 1
                 CharDraw(bg, DIR_U)
-                #soundWalk.play()
 
-        # 下キー入力
-        if key & KEY_DOWN == KEY_DOWN:
-          #if pygame.mixer.get_busy() == False:
-                #print("down")
+            # 下キー入力
+            if key & KEY_DOWN == KEY_DOWN:
                 if MoveCheck(posX, posY + 1) == 0:
                     posY = posY + 1
                 CharDraw(bg, DIR_D)
-                #soundWalk.play()
 
-        # 左キー入力
-        if key & KEY_LEFT == KEY_LEFT:
-            #if pygame.mixer.get_busy() == False:
-                #print("left")
+            # 左キー入力
+            if key & KEY_LEFT == KEY_LEFT:
                 if MoveCheck(posX - 1, posY) == 0:
                     posX = posX - 1
                 CharDraw(bg, DIR_L)
-                #soundWalk.play()
         
-        # 右キー入力
-        if key & KEY_RIGHT == KEY_RIGHT:
-            #if pygame.mixer.get_busy() == False:
-                #print("right")
+            # 右キー入力
+            if key & KEY_RIGHT == KEY_RIGHT:
                 if MoveCheck(posX + 1, posY) == 0:
                     posX = posX + 1
                 CharDraw(bg, DIR_R)
-                #soundWalk.play()
-        
-        # map移動実施
-        if key & KEY_MOVE > 0:
+
             # 座標表示
             print(str(posX) + ", " + str(posY))
             
             # 座標イベント（マップ移動など）
+            if mapNum == 1:
+                if posX == 18 and posY == 7:
+                    mapNum = 2
+                    posX = 5
+                    posY = 5
+                    mapNow = MapLoad(mapNum) 
+                
+
+            if mapNum == 1:
+                if posX == 18 and posY == 8:
+                    mapNum = 2
+                    posX = 5
+                    posY = 5
+                    mapNow = MapLoad(mapNum) 
+
+
+            if mapNum == 2:
+                if posX == 5 and posY == 5:
+                    mapNum = 1
+                    posX = 17
+                    posY = 7
+                    mapNow = MapLoad(mapNum) 
+                
+
+            if mapNum == 2:
+                if posX == 5 and posY == 5:
+                    mapNum = 1
+                    posX = 17
+                    posY = 8
+                    mapNow = MapLoad(mapNum) 
+
+
+
+                     #図書館
+            if mapNum == 1:
+                if posX == 31 and posY == 14:
+                    mapNum = 3
+                    posX = 10
+                    posY = 17
+                    mapNow = MapLoad(mapNum) 
+                
+
+            if mapNum == 1:
+                if posX == 32 and posY == 14:
+                    mapNum = 3
+                    posX = 11
+                    posY = 17
+                    mapNow = MapLoad(mapNum) 
+
+
+                    
+            if mapNum == 3:
+                if posX == 11 and posY == 18:
+                    mapNum = 1
+                    posX = 32
+                    posY = 15
+                    mapNow = MapLoad(mapNum) 
+                
+            if mapNum == 3:
+                if posX == 10 and posY == 18:
+                    mapNum = 1
+                    posX = 31
+                    posY = 15
+                    mapNow = MapLoad(mapNum) 
+
+
+                    #2号館
+
+            if mapNum == 1:
+                if posX == 35 and posY == 26:
+                    mapNum = 4
+                    posX = 7
+                    posY = 8
+                    mapNow = MapLoad(mapNum) 
+
+
+            if mapNum == 4:
+                if posX == 7 and posY == 9:
+                    mapNum = 1
+                    posX = 35
+                    posY = 27
+                    mapNow = MapLoad(mapNum) 
+
+            if mapNum == 4:
+                if posX == 6 and posY == 9:
+                    mapNum = 1
+                    posX = 35
+                    posY = 27
+                    mapNow = MapLoad(mapNum) 
+
+                    #総研棟
+
             if mapNum == 1:
                 if posX == 22 and posY == 26:
                     mapNum = 5
                     posX = 2
                     posY = 1
                     mapNow = MapLoad(mapNum) 
+
+
+            if mapNum == 5:
+                if posX == 2 and posY == 0:
+                    mapNum = 1
+                    posX = 22
+                    posY = 27
+                    mapNow = MapLoad(mapNum) 
+            
+            if mapNum == 5:
+                if posX == 1 and posY == 0:
+                    mapNum = 1
+                    posX = 22
+                    posY = 27
+                    mapNow = MapLoad(mapNum) 
+
+
+
+        elif walkFlag == 1:
+            # 移動速度調整
+            if time - walkTimer >= 50:
+                walkFlag = 0
+
+        else:
+            walkFlag = 0
+            walkTimer = time
 
         # 決定キー入力
         if key & KEY_SELECT == KEY_SELECT:
