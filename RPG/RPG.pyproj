@@ -294,7 +294,16 @@
     <Content Include="img\map\t104.PNG" />
     <Content Include="img\map\t105.PNG" />
     <Content Include="img\map\t106.PNG" />
+    <Content Include="img\map\t107.png" />
+    <Content Include="img\map\t108.png" />
+    <Content Include="img\map\t109.png" />
     <Content Include="img\map\t11.PNG" />
+    <Content Include="img\map\t110.png" />
+    <Content Include="img\map\t111.png" />
+    <Content Include="img\map\t112.png" />
+    <Content Include="img\map\t113.png" />
+    <Content Include="img\map\t114.png" />
+    <Content Include="img\map\t115.png" />
     <Content Include="img\map\t12.PNG" />
     <Content Include="img\map\t13.PNG" />
     <Content Include="img\map\t14.PNG" />
