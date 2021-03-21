@@ -43,7 +43,7 @@ def main():
         user.Command.append("プラスミド1")
         user.Command.append("プラスミド2")
         user.Command.append("プラスミド3")
-        ibattle.BattleMain(screen, clock, user, 3)
+        ibattle.BattleMain(screen, clock, user, 1)
         
     elif DEBUG_MODE == 2:
         print('debug map')

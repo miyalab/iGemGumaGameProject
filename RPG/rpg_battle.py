@@ -32,9 +32,6 @@ messageText = [""]*3
 # player data
 playerImg = pygame.image.load("img/battle/e_coli100.png")
 
-# background image data
-backgroundImg = pygame.image.load("img/battle/background/btlbg0.png")
-
 # enemy data
 enemyA: idef.enemy
 enemyImg = pygame.image.load("img/battle/enemy/enemy1.png")
@@ -43,6 +40,7 @@ enemyPosX: int = 0
 enemyPosY: int = 0
 enemyStep: int = 0
 enemyBlink: int = 0
+
 
 # attack effect data
 damageEffect: int = 0
@@ -56,7 +54,7 @@ def EnemyRead(_enemy: int) -> idef.enemy:
     if _enemy == 1:
         enemyData.Num = 1
         enemyData.ImgPath = "img/battle/enemy/enemy1.png"
-        enemyData.Name = "first boss"
+        enemyData.Name = "O157"
         enemyData.MaxHP = 100
         enemyData.HP = 100
         enemyData.MaxMP = 100
@@ -69,10 +67,14 @@ def EnemyRead(_enemy: int) -> idef.enemy:
         enemyData.LUK = 100
         enemyData.EXP = 1000
 
+        # background image data
+        backgroundImg = pygame.image.load("img/battle/background/rouka.png")
+
+
     elif _enemy == 2:
         enemyData.Num = 2
         enemyData.ImgPath = "img/battle/enemy/enemy2.png"
-        enemyData.Name = "secound boss"
+        enemyData.Name = "ユーグレナ"
         enemyData.MaxHP = 200
         enemyData.HP = 200
         enemyData.MaxMP = 100
@@ -88,7 +90,7 @@ def EnemyRead(_enemy: int) -> idef.enemy:
     elif _enemy == 3:
         enemyData.Num = 3
         enemyData.ImgPath = "img/battle/enemy/enemy2.png"
-        enemyData.Name = "third boss"
+        enemyData.Name = "好熱菌"
         enemyData.MaxHP = 10000
         enemyData.HP = 10000
         enemyData.MaxMP = 100
@@ -104,7 +106,7 @@ def EnemyRead(_enemy: int) -> idef.enemy:
     elif _enemy == 4:
         enemyData.Num = 4
         enemyData.ImgPath = "img/battle/enemy/enemy3.png"
-        enemyData.Name = "boss"
+        enemyData.Name = "粘菌"
         enemyData.MaxHP = 50000
         enemyData.HP = 50000
         enemyData.MaxMP = 100
@@ -120,7 +122,7 @@ def EnemyRead(_enemy: int) -> idef.enemy:
     else:
         enemyData.ImgPath = "img/battle/enemy/enemy4.png"
         enemyData.Num = 5
-        enemyData.Name = "みずき"
+        enemyData.Name = "完全体・O157"
         enemyData.MaxHP = 100000
         enemyData.HP = 100000
         enemyData.MaxMP = 100
