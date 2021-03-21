@@ -30,19 +30,14 @@ COLOR_BLUE: tuple = (0,0,255)
 #----------------------------
 # file path
 #----------------------------
-FONT_FILE_PATH = "ipaexg.ttf"
+FONT_FILE_PATH: str = "ipaexg.ttf"
+COMMAND_FONT_SIZE: int = 20
+MESSAGE_FONT_SIZE: int = 20
 
 #----------------------------
 # event define 
 #----------------------------
 EVENT_OPENING: int = 1
-
-class GameSetting():
-    def __init__(self):
-        pygame.init()
-        pygame.display.set_caption(idef.WINDOW_NAME);
-        screen = pygame.display.set_mode(idef.WINDOW_SIZE)
-        clock = pygame.time.Clock()
 
 #----------------------------
 # player class
@@ -82,12 +77,49 @@ class enemy():
         LUK: int = 0
         EXP: int = 0
 
+textboxImg = pygame.image.load("img/textbox.100.png")
+messageText = [""]*3
+
 #--------------------------------------------------
 # text draw function
 #--------------------------------------------------
 def TextDraw(bg, txt, x, y, fnt, col):
     sur = fnt.render(txt, True, col)
     bg.blit(sur, [x, y])
+
+#--------------------------------------------------
+# message initialize function
+#--------------------------------------------------
+def MessageInit():
+    for i in range(len(messageText)):
+        messageText[i] = ""
+
+#--------------------------------------------------
+# message set function
+#--------------------------------------------------
+def MessageSet(msg: str):
+    # すべてのメッセージが埋まっていない場合は後ろに挿入
+    for i in range(len(messageText)):
+        if messageText[i] == "":
+            messageText[i] = msg
+            return
+
+    # メッセージが埋まっている場合には1つずつずらす
+    for i in range(len(messageText) - 1):
+        messageText[i]= messageText[i+1]
+
+    messageText[len(messageText) - 1] = msg
+
+#--------------------------------------------------
+# message draw function
+#--------------------------------------------------
+def MessageDraw(bg, fnt):
+    # messagebox show
+    bg.blit(textboxImg,[0, WINDOW_HEIGHT - textboxImg.get_height()])
+
+    # message show
+    for i in range(len(messageText)):
+        TextDraw(bg, messageText[i], 20, WINDOW_HEIGHT - textboxImg.get_height() + 10 + i*30, fnt, COLOR_WHITE)
 
 #----------------------------------------------------------------------
 # end of file
