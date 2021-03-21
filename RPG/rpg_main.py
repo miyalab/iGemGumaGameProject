@@ -36,14 +36,14 @@ def main():
     font = pygame.font.Font(None,80)
     tmr: int = 0
     
-    if DEBUG_MODE == 1:
+    if DEBUG_MODE == 2:
         print("debug battle")
         user = idef.player()
         user.Name = "まどか"
         user.Command.append("プラスミド1")
         user.Command.append("プラスミド2")
         user.Command.append("プラスミド3")
-        ibattle.BattleMain(screen, clock, user, 4)
+        ibattle.BattleMain(screen, clock, user, 5)
         
     elif DEBUG_MODE == 2:
         print('debug map')

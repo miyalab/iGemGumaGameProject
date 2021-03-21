@@ -44,13 +44,13 @@ EVENT_OPENING: int = 1
 #----------------------------
 class player():
     Name: str = "name"
-    HP: int = 100
-    MaxHP: int = 100
+    HP: int = 500
+    MaxHP: int = 500
     MP: int = 100
     MaxMP: int = 100
     LV: int = 10
-    ATK: int = 10
-    DEF: int = 10
+    ATK: int = 150
+    DEF: int = 50
     INT: int = 10
     AGI: int = 10
     LUK: int = 10
