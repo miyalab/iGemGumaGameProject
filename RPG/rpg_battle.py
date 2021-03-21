@@ -62,8 +62,8 @@ def EnemyRead(_enemy: int) -> idef.enemy:
         enemyData.MaxMP = 100
         enemyData.MP = 100
         enemyData.LV = 1
-        enemyData.ATK = 100
-        enemyData.DEF = 100
+        enemyData.ATK = 130
+        enemyData.DEF = 70
         enemyData.INT = 100
         enemyData.AGI = 100
         enemyData.LUK = 100
@@ -73,8 +73,24 @@ def EnemyRead(_enemy: int) -> idef.enemy:
         enemyData.Num = 2
         enemyData.ImgPath = "img/battle/enemy/enemy2.png"
         enemyData.Name = "secound boss"
-        enemyData.MaxHP = 100
-        enemyData.HP = 100
+        enemyData.MaxHP = 200
+        enemyData.HP = 200
+        enemyData.MaxMP = 100
+        enemyData.MP = 100
+        enemyData.LV = 1
+        enemyData.ATK = 120
+        enemyData.DEF = 100
+        enemyData.INT = 100
+        enemyData.AGI = 100
+        enemyData.LUK = 100
+        enemyData.EXP = 1000
+
+    elif _enemy == 3:
+        enemyData.Num = 3
+        enemyData.ImgPath = "img/battle/enemy/enemy2.png"
+        enemyData.Name = "third boss"
+        enemyData.MaxHP = 10000
+        enemyData.HP = 10000
         enemyData.MaxMP = 100
         enemyData.MP = 100
         enemyData.LV = 1
@@ -85,12 +101,12 @@ def EnemyRead(_enemy: int) -> idef.enemy:
         enemyData.LUK = 100
         enemyData.EXP = 1000
 
-    elif _enemy == 3:
-        enemyData.Num = 3
+    elif _enemy == 4:
+        enemyData.Num = 4
         enemyData.ImgPath = "img/battle/enemy/enemy3.png"
-        enemyData.Name = "third boss"
-        enemyData.MaxHP = 100
-        enemyData.HP = 100
+        enemyData.Name = "boss"
+        enemyData.MaxHP = 50000
+        enemyData.HP = 50000
         enemyData.MaxMP = 100
         enemyData.MP = 100
         enemyData.LV = 1
@@ -103,15 +119,15 @@ def EnemyRead(_enemy: int) -> idef.enemy:
 
     else:
         enemyData.ImgPath = "img/battle/enemy/enemy4.png"
-        enemyData.Num = 4
+        enemyData.Num = 5
         enemyData.Name = "みずき"
-        enemyData.MaxHP = 100
-        enemyData.HP = 100
+        enemyData.MaxHP = 100000
+        enemyData.HP = 100000
         enemyData.MaxMP = 100
         enemyData.MP = 100
         enemyData.LV = 1
-        enemyData.ATK = 20
-        enemyData.DEF = -10000
+        enemyData.ATK = 200
+        enemyData.DEF = 1000
         enemyData.INT = 10
         enemyData.AGI = 10
         enemyData.LUK = 10
@@ -269,26 +285,26 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
             # wait command secelt
             if(key[pygame.locals.K_1] == 1):
                 MessageSet(str(user.Name) + "の攻撃")
-                damage = user.ATK - enemyA.DEF + random.randint(0, 5)
+                damage = user.ATK - enemyA.DEF + random.randint(0, 30)
                 if damage < 0: damage = 0
                 if damage > 9999: damage = 9999
                 scene = 21
                 timer = 0
             elif(key[pygame.locals.K_2] == 1 and len(user.Command)>=2):
                 MessageSet(str(user.Name) + "の" + user.Command[1] + "による攻撃")
-                damage = user.ATK - enemyA.DEF + random.randint(0, 5)
+                damage = user.ATK - enemyA.DEF + random.randint(0, 50)
                 if damage < 0: damage = 0
                 scene = 22
                 timer = 0
             elif(key[pygame.locals.K_3] == 1 and len(user.Command)>=3):
                 MessageSet(str(user.Name) + "の" + user.Command[2] + "による攻撃")
-                damage = user.ATK - enemyA.DEF + random.randint(0, 5)
+                damage = user.ATK - enemyA.DEF + random.randint(0, 100)
                 if damage < 0: damage = 0
                 scene = 23
                 timer = 0
             elif(key[pygame.locals.K_4] == 1 and len(user.Command)>=4):
                 MessageSet(str(user.Name) + "の" + user.Command[3] + "による攻撃")
-                damage = user.ATK - enemyA.DEF + random.randint(0, 5)
+                damage = user.ATK - enemyA.DEF + random.randint(0, 150)
                 if damage < 0: damage = 0
                 scene = 24
                 timer = 0
@@ -349,7 +365,7 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
             MessageDraw(scr, messageFont)
             if 2 <= timer and timer <= 4:
                 scr.blit(effectImg, [400-timer*60, -100+timer*60])
-
+                
             if timer == 5:
                 enemyBlink = 5
                 MessageSet(enemyA.Name + "は" + str(damage) + "のダメージ")

@@ -49,13 +49,13 @@ class GameSetting():
 #----------------------------
 class player():
     Name: str = "name"
-    HP: int = 1000
-    MaxHP: int = 1000
+    HP: int = 500
+    MaxHP: int = 500
     MP: int = 100
     MaxMP: int = 100
     LV: int = 10
-    ATK: int = 300
-    DEF: int = 200
+    ATK: int = 150
+    DEF: int = 50
     INT: int = 10
     AGI: int = 10
     LUK: int = 10
@@ -70,13 +70,13 @@ class enemy():
         Num: int = 0
         ImgPath = "path"
         Name: str = "name"
-        HP: int = 0
-        MaxHP: int = 0
+        HP: int = 1000
+        MaxHP: int = 1000
         MP: int = 0
         MaxMP: int = 0
         LV: int = 0
-        ATK: int = 0
-        DEF: int = 0
+        ATK: int = 1000
+        DEF: int = 1000
         INT: int = 0
         AGI: int = 0
         LUK: int = 0

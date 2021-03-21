@@ -18,7 +18,7 @@ import random
 #----------------------------
 def main():
     # debug mode select
-    DEBUG_MODE: int = 2
+    DEBUG_MODE: int = 1
     
     # pygame init
     pygame.init()
@@ -43,7 +43,7 @@ def main():
         user.Command.append("プラスミド1")
         user.Command.append("プラスミド2")
         user.Command.append("プラスミド3")
-        ibattle.BattleMain(screen, clock, user, 4)
+        ibattle.BattleMain(screen, clock, user, 3)
         
     elif DEBUG_MODE == 2:
         print('debug map')

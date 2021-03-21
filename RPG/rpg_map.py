@@ -562,7 +562,7 @@ def MapMain(bg, clk):
 
     #posX = 10
     #posY = 11
-    nowMap = MapLoad(5)
+    nowMap = MapLoad(0)
     
     while True:
         KEY = 0
