@@ -870,7 +870,6 @@ def MapMain(bg, clk):
             idef.MessageSet("「このさき　かいそうちゅう　とおれません」");
             idef.MessageSet("　と　かいてある。")
             eventState = 401
-
         elif eventState == 401:
             idef.MessageDraw(bg,messageFont)
             if pushSelect == 1:
