@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -85,16 +86,6 @@ namespace ImageResolutionConverter
         }
 
         /// <summary>
-        /// 「開く」ボタンクリック時処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void buttonFileOpen_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        /// <summary>
         /// 「変換」ボタンクリック時処理
         /// </summary>
         /// <param name="sender"></param>
@@ -109,11 +100,31 @@ namespace ImageResolutionConverter
             {
                 textBoxLog.AppendText(file + Environment.NewLine);
 
+                string dir = "";
+                string[] split = file.Split('\\');
+                for (int i=0; i<split.Length - 1; i++)
+                {
+                    dir += split[i];
+                    dir += "\\";
+                }
+
+                // フォルダ作成
+                if (!Directory.Exists(dir + "Converter"))
+                {
+                    Directory.CreateDirectory(dir + "Converter");
+                }
+
                 // 解像度を指定して読み込み
                 Bitmap bmp = new Bitmap(Image.FromFile(file), new Size(ConvertWidth, ConvertHeight));
-                bmp.Save(file + ".resize.png", System.Drawing.Imaging.ImageFormat.Png);
+                bmp.Save(dir + "Converter\\" + split[split.Length - 1], System.Drawing.Imaging.ImageFormat.Png);
                 
             }
+        }
+
+        private void buttonFileClear_Click(object sender, EventArgs e)
+        {
+            convertFileList.Clear();
+            textBoxLog.Clear();
         }
     }
 }
