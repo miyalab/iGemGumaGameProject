@@ -59,7 +59,7 @@ class player():
     MP: int = 100
     MaxMP: int = 100
     LV: int = 10
-    ATK: int = 150
+    ATK: int = 1500
     DEF: int = 50
     INT: int = 10
     AGI: int = 10

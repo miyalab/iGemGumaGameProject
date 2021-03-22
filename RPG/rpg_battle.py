@@ -234,6 +234,7 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
 
         # battle start
         if scene == 0:
+            idef.MessageInit()
             idef.MessageSet(enemyA.Name + "があらわれた．");
             scene = 1
 
@@ -384,6 +385,8 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
         # エネミー撃破後のキー入力待ち
         elif scene ==52:
             idef.MessageDraw(scr, messageFont)
+            if key[pygame.locals.K_SPACE] == 1:
+                scene = -1
 
         # プレイヤー敗北
         elif scene == 101:
