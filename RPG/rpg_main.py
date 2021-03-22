@@ -36,7 +36,7 @@ def main():
     font = pygame.font.Font(None,80)
     tmr: int = 0
     
-    if DEBUG_MODE == 2:
+    if DEBUG_MODE == 1:
         print("debug battle")
         user = idef.player()
         user.Name = "まどか"
