@@ -57,6 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="img\battle\background\btlbg0.png" />
+    <Content Include="img\battle\background\kaidan.jpg" />
+    <Content Include="img\battle\background\nakaniwa.jpg" />
+    <Content Include="img\battle\background\okujo.jpg" />
+    <Content Include="img\battle\background\roka.jpg" />
+    <Content Include="img\battle\background\rouka.png" />
+    <Content Include="img\battle\background\toshokan.jpg" />
     <Content Include="img\battle\effect\effect_attack.png" />
     <Content Include="img\battle\enemy\enemy1.png" />
     <Content Include="img\battle\enemy\enemy2.png" />

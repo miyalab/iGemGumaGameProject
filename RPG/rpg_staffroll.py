@@ -131,7 +131,7 @@ def StaffrollMain(bg, clk):
             timer = (len(roll)+8)*30
         
         pygame.display.update()
-        clk.tick(20)
+        clk.tick(33)
         
 #--------------------------------------------------
 # end of file
