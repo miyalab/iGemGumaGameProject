@@ -28,6 +28,16 @@ COLOR_GREEN: tuple = (0,255,0)
 COLOR_BLUE: tuple = (0,0,255)
 
 #----------------------------
+# key
+#----------------------------
+KEY_MOVE: int = 0x0f
+KEY_UP: int = 0x01
+KEY_DOWN: int = 0x02
+KEY_LEFT: int = 0x04
+KEY_RIGHT: int = 0x08
+KEY_SELECT: int = 0x10 
+
+#----------------------------
 # file path
 #----------------------------
 FONT_FILE_PATH: str = "ipaexg.ttf"

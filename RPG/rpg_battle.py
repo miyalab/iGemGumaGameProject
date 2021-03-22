@@ -253,7 +253,7 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
 
         # wait player input
         elif scene == 12:
-                        # command show
+            # command show
             BattleCommand(user, scr, commandFont)
 
             # wait command secelt
