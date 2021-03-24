@@ -8,3 +8,13 @@ C:\Users\miyak\Documents\GitHub\iGemGumaGameProject\ImageOverlap\obj\Debug\Image
 C:\Users\miyak\Documents\GitHub\iGemGumaGameProject\ImageOverlap\obj\Debug\ImageOverlap.csproj.CoreCompileInputs.cache
 C:\Users\miyak\Documents\GitHub\iGemGumaGameProject\ImageOverlap\obj\Debug\ImageOverlap.exe
 C:\Users\miyak\Documents\GitHub\iGemGumaGameProject\ImageOverlap\obj\Debug\ImageOverlap.pdb
+C:\Users\みずき\Documents\GitHub\iGemGumaGameProject\ImageOverlap\bin\Debug\ImageOverlap.exe.config
+C:\Users\みずき\Documents\GitHub\iGemGumaGameProject\ImageOverlap\bin\Debug\ImageOverlap.exe
+C:\Users\みずき\Documents\GitHub\iGemGumaGameProject\ImageOverlap\bin\Debug\ImageOverlap.pdb
+C:\Users\みずき\Documents\GitHub\iGemGumaGameProject\ImageOverlap\obj\Debug\ImageOverlap.csprojAssemblyReference.cache
+C:\Users\みずき\Documents\GitHub\iGemGumaGameProject\ImageOverlap\obj\Debug\ImageOverlap.FormMain.resources
+C:\Users\みずき\Documents\GitHub\iGemGumaGameProject\ImageOverlap\obj\Debug\ImageOverlap.Properties.Resources.resources
+C:\Users\みずき\Documents\GitHub\iGemGumaGameProject\ImageOverlap\obj\Debug\ImageOverlap.csproj.GenerateResource.cache
+C:\Users\みずき\Documents\GitHub\iGemGumaGameProject\ImageOverlap\obj\Debug\ImageOverlap.csproj.CoreCompileInputs.cache
+C:\Users\みずき\Documents\GitHub\iGemGumaGameProject\ImageOverlap\obj\Debug\ImageOverlap.exe
+C:\Users\みずき\Documents\GitHub\iGemGumaGameProject\ImageOverlap\obj\Debug\ImageOverlap.pdb
