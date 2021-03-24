@@ -18,7 +18,7 @@ import random
 #----------------------------
 def main():
     # debug mode select
-    DEBUG_MODE: int = 1
+    DEBUG_MODE: int = 2
     
     # pygame init
     pygame.init()
@@ -43,7 +43,7 @@ def main():
         user.Command.append("プラスミド1")
         user.Command.append("プラスミド2")
         user.Command.append("プラスミド3")
-        ibattle.BattleMain(screen, clock, user, 1)
+        ibattle.BattleMain(screen, clock, user, 5)
         
     elif DEBUG_MODE == 2:
         print('debug map')
@@ -53,20 +53,33 @@ def main():
         print("staff roll check")
         istaff.StaffrollMain(screen, clock)
 
+    scene: int = 0
     while True:
-        tmr = tmr + 1
+        key = 0
+
+        # event process
         for event in pygame.event.get():
+            # program exit
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
 
-        txt = font.render(str(tmr), True, idef.COLOR_WHITE)
-        
-        screen.fill(idef.COLOR_BLACK)
-        screen.blit(txt, [idef.WINDOW_WIDTH/2,idef.WINDOW_HEIGHT/2])
-        
-        pygame.display.update()
-        clock.tick(10)
+            # key down event
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.locals.K_UP:
+                    key = key | KEY_UP
+                elif event.key == pygame.locals.K_DOWN:
+                    key = key | KEY_DOWN
+                elif event.key == pygame.locals.K_LEFT:
+                    key = key | KEY_LEFT
+                elif event.key == pygame.locals.K_RIGHT:
+                    key = key | KEY_RIGHT
+                
+                if event.key == pygame.locals.K_SPACE:
+                    key = key | KEY_SELECT
+
+                # 連射後のご入力防止
+                pygame.event.clear()
 
 
 # メインプログラム実行

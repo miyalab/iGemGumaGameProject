@@ -18,19 +18,18 @@ import rpg_define as idef
 #----------------------------
 TEXT_MARGIN: int = 5
 
-COMMAND_FONT_SIZE: int = 20
-MESSAGE_FONT_SIZE: int = 20
-
 #----------------------------
 # global value
 #----------------------------
 # text data
 textboxImg = pygame.image.load("img/textbox.100.png")
 commandboxImg = pygame.image.load("img/textbox.150.png")
-messageText = [""]*3
 
 # player data
 playerImg = pygame.image.load("img/battle/e_coli100.png")
+
+# background image data
+backgroundImg = pygame.image.load("img/battle/background/btlbg0.png")
 
 # enemy data
 enemyA: idef.enemy
@@ -41,7 +40,6 @@ enemyPosY: int = 0
 enemyStep: int = 0
 enemyBlink: int = 0
 
-
 # attack effect data
 damageEffect: int = 0
 effectImg = pygame.image.load("img/battle/effect/effect_attack.png")
@@ -50,6 +48,8 @@ effectImg = pygame.image.load("img/battle/effect/effect_attack.png")
 # enemy info read function
 #--------------------------------------------------
 def EnemyRead(_enemy: int) -> idef.enemy:
+    global backgroundImg
+
     enemyData: idef.enemy = idef.enemy()
     if _enemy == 1:
         enemyData.Num = 1
@@ -67,9 +67,7 @@ def EnemyRead(_enemy: int) -> idef.enemy:
         enemyData.LUK = 100
         enemyData.EXP = 1000
 
-        # background image data
         backgroundImg = pygame.image.load("img/battle/background/rouka.png")
-
 
     elif _enemy == 2:
         enemyData.Num = 2
@@ -87,12 +85,14 @@ def EnemyRead(_enemy: int) -> idef.enemy:
         enemyData.LUK = 100
         enemyData.EXP = 1000
 
+        backgroundImg = pygame.image.load("img/battle/background/toshokan.jpg")
+
     elif _enemy == 3:
         enemyData.Num = 3
         enemyData.ImgPath = "img/battle/enemy/enemy2.png"
         enemyData.Name = "好熱菌"
-        enemyData.MaxHP = 10000
-        enemyData.HP = 10000
+        enemyData.MaxHP = 1000
+        enemyData.HP = 1000
         enemyData.MaxMP = 100
         enemyData.MP = 100
         enemyData.LV = 1
@@ -102,13 +102,15 @@ def EnemyRead(_enemy: int) -> idef.enemy:
         enemyData.AGI = 100
         enemyData.LUK = 100
         enemyData.EXP = 1000
+
+        backgroundImg = pygame.image.load("img/battle/background/nakaniwa.jpg")
 
     elif _enemy == 4:
         enemyData.Num = 4
         enemyData.ImgPath = "img/battle/enemy/enemy3.png"
         enemyData.Name = "粘菌"
-        enemyData.MaxHP = 50000
-        enemyData.HP = 50000
+        enemyData.MaxHP = 5000
+        enemyData.HP = 5000
         enemyData.MaxMP = 100
         enemyData.MP = 100
         enemyData.LV = 1
@@ -119,12 +121,14 @@ def EnemyRead(_enemy: int) -> idef.enemy:
         enemyData.LUK = 100
         enemyData.EXP = 1000
 
+        backgroundImg = pygame.image.load("img/battle/background/kaidan.jpg")
+
     else:
         enemyData.ImgPath = "img/battle/enemy/enemy4.png"
         enemyData.Num = 5
         enemyData.Name = "完全体・O157"
-        enemyData.MaxHP = 100000
-        enemyData.HP = 100000
+        enemyData.MaxHP = 1000
+        enemyData.HP = 1000
         enemyData.MaxMP = 100
         enemyData.MP = 100
         enemyData.LV = 1
@@ -134,6 +138,8 @@ def EnemyRead(_enemy: int) -> idef.enemy:
         enemyData.AGI = 10
         enemyData.LUK = 10
         enemyData.EXP = 1000
+
+        backgroundImg = pygame.image.load("img/battle/background/okujo.jpg")
 
     return enemyData
 
@@ -188,40 +194,6 @@ def BattleCommand(user: idef.player, bg, fnt):
         idef.TextDraw(bg, "[" + str(i+1) + "] " + user.Command[i], idef.WINDOW_WIDTH/2 + 50, idef.WINDOW_HEIGHT - commandboxImg.get_height() + 18 + i*30, fnt, idef.COLOR_WHITE)
 
 #--------------------------------------------------
-# message initialize function
-#--------------------------------------------------
-def MessageInit():
-    for i in range(len(messageText)):
-        messageText[i] = ""
-
-#--------------------------------------------------
-# message set function
-#--------------------------------------------------
-def MessageSet(msg: str):
-    # すべてのメッセージが埋まっていない場合は後ろに挿入
-    for i in range(len(messageText)):
-        if messageText[i] == "":
-            messageText[i] = msg
-            return
-
-    # メッセージが埋まっている場合には1つずつずらす
-    for i in range(len(messageText) - 1):
-        messageText[i]= messageText[i+1]
-
-    messageText[len(messageText) - 1] = msg
-
-#--------------------------------------------------
-# message draw function
-#--------------------------------------------------
-def MessageDraw(bg, fnt):
-    # messagebox show
-    bg.blit(textboxImg,[0,idef.WINDOW_HEIGHT - textboxImg.get_height()])
-
-    # message show
-    for i in range(len(messageText)):
-        idef.TextDraw(bg, messageText[i], 20, idef.WINDOW_HEIGHT - textboxImg.get_height() + 10 + i*30, fnt, idef.COLOR_WHITE)
-    
-#--------------------------------------------------
 # battle main function
 #--------------------------------------------------
 def BattleMain(scr, clk, user: idef.player, emyNum: int):
@@ -236,8 +208,8 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
     damage: int = 0
 
     # font set
-    commandFont = pygame.font.Font(idef.FONT_FILE_PATH, COMMAND_FONT_SIZE)
-    messageFont = pygame.font.Font(idef.FONT_FILE_PATH, MESSAGE_FONT_SIZE)
+    commandFont = pygame.font.Font(idef.FONT_FILE_PATH, idef.COMMAND_FONT_SIZE)
+    messageFont = pygame.font.Font(idef.FONT_FILE_PATH, idef.MESSAGE_FONT_SIZE)
 
     # key input setup
     pygame.key.set_repeat()
@@ -262,12 +234,13 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
 
         # battle start
         if scene == 0:
-            MessageSet(enemyA.Name + "があらわれた．");
+            idef.MessageInit()
+            idef.MessageSet(enemyA.Name + "があらわれた．");
             scene = 1
 
         elif scene == 1:
             # Messagebox show
-            MessageDraw(scr, messageFont)
+            idef.MessageDraw(scr, messageFont)
 
             # wait space input
             if key[pygame.locals.K_SPACE] == 1:
@@ -276,7 +249,7 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
 
         # user input state
         elif scene == 11:
-            MessageInit()
+            idef.MessageInit()
             scene = 12
 
         # wait player input
@@ -286,26 +259,26 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
 
             # wait command secelt
             if(key[pygame.locals.K_1] == 1):
-                MessageSet(str(user.Name) + "の攻撃")
+                idef.MessageSet(str(user.Name) + "の攻撃")
                 damage = user.ATK - enemyA.DEF + random.randint(0, 30)
                 if damage < 0: damage = 0
                 if damage > 9999: damage = 9999
                 scene = 21
                 timer = 0
             elif(key[pygame.locals.K_2] == 1 and len(user.Command)>=2):
-                MessageSet(str(user.Name) + "の" + user.Command[1] + "による攻撃")
+                idef.MessageSet(str(user.Name) + "の" + user.Command[1] + "による攻撃")
                 damage = user.ATK - enemyA.DEF + random.randint(0, 50)
                 if damage < 0: damage = 0
                 scene = 22
                 timer = 0
             elif(key[pygame.locals.K_3] == 1 and len(user.Command)>=3):
-                MessageSet(str(user.Name) + "の" + user.Command[2] + "による攻撃")
+                idef.MessageSet(str(user.Name) + "の" + user.Command[2] + "による攻撃")
                 damage = user.ATK - enemyA.DEF + random.randint(0, 100)
                 if damage < 0: damage = 0
                 scene = 23
                 timer = 0
             elif(key[pygame.locals.K_4] == 1 and len(user.Command)>=4):
-                MessageSet(str(user.Name) + "の" + user.Command[3] + "による攻撃")
+                idef.MessageSet(str(user.Name) + "の" + user.Command[3] + "による攻撃")
                 damage = user.ATK - enemyA.DEF + random.randint(0, 150)
                 if damage < 0: damage = 0
                 scene = 24
@@ -313,13 +286,13 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
 
         # [1] 攻撃エフェクト
         elif scene == 21:
-            MessageDraw(scr, messageFont)
+            idef.MessageDraw(scr, messageFont)
             if 2 <= timer and timer <= 4:
                 scr.blit(effectImg, [400-timer*60, -100+timer*60])
 
             if timer == 5:
                 enemyBlink = 5
-                MessageSet(enemyA.Name + "は" + str(damage) + "のダメージ")
+                idef.MessageSet(enemyA.Name + "は" + str(damage) + "のダメージ")
                 enemyA.HP = enemyA.HP - damage
                 if(enemyA.HP <= 0):
                     scene = 51
@@ -330,13 +303,13 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
 
         # [2] コマンドエフェクト
         elif scene == 22:
-            MessageDraw(scr, messageFont)
+            idef.MessageDraw(scr, messageFont)
             if 2 <= timer and timer <= 4:
                 scr.blit(effectImg, [400-timer*60, -100+timer*60])
 
             if timer == 5:
                 enemyBlink = 5
-                MessageSet(enemyA.Name + "は" + str(damage) + "のダメージ")
+                idef.MessageSet(enemyA.Name + "は" + str(damage) + "のダメージ")
                 enemyA.HP = enemyA.HP - damage
                 if(enemyA.HP <= 0):
                     scene = 51
@@ -347,13 +320,13 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
 
         # [3] コマンドエフェクト
         elif scene == 23:
-            MessageDraw(scr, messageFont)
+            idef.MessageDraw(scr, messageFont)
             if 2 <= timer and timer <= 4:
                 scr.blit(effectImg, [400-timer*60, -100+timer*60])
 
             if timer == 5:
                 enemyBlink = 5
-                MessageSet(enemyA.Name + "は" + str(damage) + "のダメージ")
+                idef.MessageSet(enemyA.Name + "は" + str(damage) + "のダメージ")
                 enemyA.HP = enemyA.HP - damage
                 if(enemyA.HP <= 0):
                     scene = 51
@@ -364,13 +337,13 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
 
         # [4] コマンドエフェクト
         elif scene == 24:
-            MessageDraw(scr, messageFont)
+            idef.MessageDraw(scr, messageFont)
             if 2 <= timer and timer <= 4:
                 scr.blit(effectImg, [400-timer*60, -100+timer*60])
-                
+
             if timer == 5:
                 enemyBlink = 5
-                MessageSet(enemyA.Name + "は" + str(damage) + "のダメージ")
+                idef.MessageSet(enemyA.Name + "は" + str(damage) + "のダメージ")
                 enemyA.HP = enemyA.HP - damage
                 if(enemyA.HP <= 0):
                     scene = 51
@@ -381,19 +354,19 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
 
         # エネミーからの攻撃
         elif scene == 31:
-            MessageInit()
-            MessageSet(enemyA.Name + "からの攻撃")
+            idef.MessageInit()
+            idef.MessageSet(enemyA.Name + "からの攻撃")
             damage = enemyA.ATK - user.DEF + random.randint(0,5)
             if damage < 0: damage = 0
             scene = 32
 
         # エネミーから攻撃エフェクト
         elif scene == 32:
-            MessageDraw(scr, messageFont)
+            idef.MessageDraw(scr, messageFont)
             if timer == 5:
                 enemyStep = 30
             if timer == 9:
-                MessageSet(user.Name + "は" + str(damage) + "のダメージ")
+                idef.MessageSet(user.Name + "は" + str(damage) + "のダメージ")
                 user.HP = user.HP - damage
                 if(user.HP <= 0):
                     scene = 101
@@ -405,23 +378,28 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
 
         # エネミーを撃破
         elif scene == 51:
-            MessageDraw(scr, messageFont)
-            MessageSet(user.Name + "は" + enemyA.Name + "を撃破した．")
+            idef.MessageDraw(scr, messageFont)
+            idef.MessageSet(user.Name + "は" + enemyA.Name + "を撃破した．")
             scene = 52
 
         # エネミー撃破後のキー入力待ち
         elif scene ==52:
-            MessageDraw(scr, messageFont)
+            idef.MessageDraw(scr, messageFont)
+            if key[pygame.locals.K_SPACE] == 1:
+                # key input setup
+                pygame.key.set_repeat(1,1)
+                
+                scene = -1
 
         # プレイヤー敗北
         elif scene == 101:
-            MessageDraw(scr, messageFont)
-            MessageSet(user.Name + "は敗北した．")
+            idef.MessageDraw(scr, messageFont)
+            idef.MessageSet(user.Name + "は敗北した．")
             scene = 102
 
         # プレイヤー敗北後のキー入力待ち
         elif scene == 102:
-            MessageDraw(scr, messageFont)
+            idef.MessageDraw(scr, messageFont)
 
         pygame.display.update()
         clk.tick(10)

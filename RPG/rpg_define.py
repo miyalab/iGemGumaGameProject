@@ -28,21 +28,26 @@ COLOR_GREEN: tuple = (0,255,0)
 COLOR_BLUE: tuple = (0,0,255)
 
 #----------------------------
+# key
+#----------------------------
+KEY_MOVE: int = 0x0f
+KEY_UP: int = 0x01
+KEY_DOWN: int = 0x02
+KEY_LEFT: int = 0x04
+KEY_RIGHT: int = 0x08
+KEY_SELECT: int = 0x10 
+
+#----------------------------
 # file path
 #----------------------------
-FONT_FILE_PATH = "ipaexg.ttf"
+FONT_FILE_PATH: str = "ipaexg.ttf"
+COMMAND_FONT_SIZE: int = 20
+MESSAGE_FONT_SIZE: int = 20
 
 #----------------------------
 # event define 
 #----------------------------
 EVENT_OPENING: int = 1
-
-class GameSetting():
-    def __init__(self):
-        pygame.init()
-        pygame.display.set_caption(idef.WINDOW_NAME);
-        screen = pygame.display.set_mode(idef.WINDOW_SIZE)
-        clock = pygame.time.Clock()
 
 #----------------------------
 # player class
@@ -54,7 +59,7 @@ class player():
     MP: int = 100
     MaxMP: int = 100
     LV: int = 10
-    ATK: int = 150
+    ATK: int = 15000
     DEF: int = 50
     INT: int = 10
     AGI: int = 10
@@ -70,17 +75,20 @@ class enemy():
         Num: int = 0
         ImgPath = "path"
         Name: str = "name"
-        HP: int = 1000
-        MaxHP: int = 1000
+        HP: int = 0
+        MaxHP: int = 0
         MP: int = 0
         MaxMP: int = 0
         LV: int = 0
-        ATK: int = 1000
-        DEF: int = 1000
+        ATK: int = 0
+        DEF: int = 0
         INT: int = 0
         AGI: int = 0
         LUK: int = 0
         EXP: int = 0
+
+textboxImg = pygame.image.load("img/textbox.100.png")
+messageText = [""]*3
 
 #--------------------------------------------------
 # text draw function
@@ -88,6 +96,40 @@ class enemy():
 def TextDraw(bg, txt, x, y, fnt, col):
     sur = fnt.render(txt, True, col)
     bg.blit(sur, [x, y])
+
+#--------------------------------------------------
+# message initialize function
+#--------------------------------------------------
+def MessageInit():
+    for i in range(len(messageText)):
+        messageText[i] = ""
+
+#--------------------------------------------------
+# message set function
+#--------------------------------------------------
+def MessageSet(msg: str):
+    # すべてのメッセージが埋まっていない場合は後ろに挿入
+    for i in range(len(messageText)):
+        if messageText[i] == "":
+            messageText[i] = msg
+            return
+
+    # メッセージが埋まっている場合には1つずつずらす
+    for i in range(len(messageText) - 1):
+        messageText[i]= messageText[i+1]
+
+    messageText[len(messageText) - 1] = msg
+
+#--------------------------------------------------
+# message draw function
+#--------------------------------------------------
+def MessageDraw(bg, fnt):
+    # messagebox show
+    bg.blit(textboxImg,[0, WINDOW_HEIGHT - textboxImg.get_height()])
+
+    # message show
+    for i in range(len(messageText)):
+        TextDraw(bg, messageText[i], 20, WINDOW_HEIGHT - textboxImg.get_height() + 10 + i*30, fnt, COLOR_WHITE)
 
 #----------------------------------------------------------------------
 # end of file
