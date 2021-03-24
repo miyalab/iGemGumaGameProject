@@ -91,8 +91,8 @@ def EnemyRead(_enemy: int) -> idef.enemy:
         enemyData.Num = 3
         enemyData.ImgPath = "img/battle/enemy/enemy2.png"
         enemyData.Name = "好熱菌"
-        enemyData.MaxHP = 10000
-        enemyData.HP = 10000
+        enemyData.MaxHP = 1000
+        enemyData.HP = 1000
         enemyData.MaxMP = 100
         enemyData.MP = 100
         enemyData.LV = 1
@@ -109,8 +109,8 @@ def EnemyRead(_enemy: int) -> idef.enemy:
         enemyData.Num = 4
         enemyData.ImgPath = "img/battle/enemy/enemy3.png"
         enemyData.Name = "粘菌"
-        enemyData.MaxHP = 50000
-        enemyData.HP = 50000
+        enemyData.MaxHP = 5000
+        enemyData.HP = 5000
         enemyData.MaxMP = 100
         enemyData.MP = 100
         enemyData.LV = 1
@@ -127,8 +127,8 @@ def EnemyRead(_enemy: int) -> idef.enemy:
         enemyData.ImgPath = "img/battle/enemy/enemy4.png"
         enemyData.Num = 5
         enemyData.Name = "完全体・O157"
-        enemyData.MaxHP = 100000
-        enemyData.HP = 100000
+        enemyData.MaxHP = 1000
+        enemyData.HP = 1000
         enemyData.MaxMP = 100
         enemyData.MP = 100
         enemyData.LV = 1
@@ -386,6 +386,9 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
         elif scene ==52:
             idef.MessageDraw(scr, messageFont)
             if key[pygame.locals.K_SPACE] == 1:
+                # key input setup
+                pygame.key.set_repeat(1,1)
+                
                 scene = -1
 
         # プレイヤー敗北
