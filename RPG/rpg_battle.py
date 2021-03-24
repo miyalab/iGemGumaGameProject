@@ -386,6 +386,9 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
         elif scene ==52:
             idef.MessageDraw(scr, messageFont)
             if key[pygame.locals.K_SPACE] == 1:
+                # key input setup
+                pygame.key.set_repeat(1,1)
+                
                 scene = -1
 
         # プレイヤー敗北

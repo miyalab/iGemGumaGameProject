@@ -380,33 +380,6 @@ dirChar: int = 0
 charShowFlag: int = 0
 
 #--------------------------------------------------
-# Map Draw function
-#--------------------------------------------------
-def MapDraw(bg, x: int, y: int):
-    x = x - 10
-    y = y - 7
-    selectIndex: int = 0
-
-    # map draw
-    bg.fill(idef.COLOR_BLACK)
-    for j in range(15):
-        if y + j < 0 or y + j >= len(mapNow):
-           continue
-
-        for i in range(21):
-            if x + i < 0 or x + i >= len(mapNow[y+j]):
-               continue
-
-            selectIndex = mapNow[y+j][x+i]
-            bg.blit(mapImg[selectIndex % MAP_IMG_ITEM], [32 * i - 16, 32 * j])
-            selectIndex = int(selectIndex / MAP_IMG_ITEM)
-            bg.blit(overMapImg[selectIndex % MAP_IMG_ITEM], [32 * i - 16, 32 * j])
-
-    # character draw
-    if charShowFlag == 1:
-        bg.blit(charImg,[idef.WINDOW_WIDTH/2 - 16, idef.WINDOW_HEIGHT/2 - 16])
-
-#--------------------------------------------------
 # Map Data Load function
 #--------------------------------------------------
 def MapLoad(_map: int):
@@ -426,7 +399,7 @@ def MapLoad(_map: int):
         ret.append([9000030,9054030,9201030,9000030,90102030,9000000,9000000,9000000,9000030,9201030,9042030,9201030,9004030,9000030,9000000,9000000,9000000,9000000,9212030,9056030,90174030,9201030,9000030,5004030,9000030,9201030,9000030,9206030])
         ret.append([54,54,9073054,90112054,54,9000000,9000000,9000000,54,9072054,90210054,61054,54,54,9000000,9000000,9000000,9000000,213054,54,61054,54,2002054,54,54,54,6014054,9207054])
         ret.append([54,54,111054,113054,43054,9000000,9000000,9000000,54,111054,113054,54,1001054,54,9000000,9000000,9000000,9000000,54,9078054,9069054,54,9077054,9146054,54,9080054,7071054,54])
-        ret.append([54,90144054,90146054,54,54,9000000,9000000,9000000,54,54,29054,54,90144054,90146054,9000000,9000000,9000000,9000000,9045054,111054,113054,54,111054,147054,54,111054,113054,9204054])
+        ret.append([54,90144054,90146054,54,54,9000000,9000000,9000000,54,54,29054,54,90144054,90146054,9000000,9000000,9000000,9000000,9045054,111054,113054,9045054,111054,147054,54,111054,113054,9204054])
         ret.append([54,145054,147054,54,54,9000000,9000000,9000000,54,3003054,54,54,145054,147054,9000000,9000000,9000000,9000000,9041054,61054,43054,54,54,54,54,43054,54,205054])
         ret.append([54,29054,54,54,54,9000000,9000000,9000000,54,54,54,54,43054,54,9000000,9000000,000000,9000000,54,9073054,9208054,54,9144054,9146054,54,9077054,9211054,54])
         ret.append([9000000,9000000,9000000,54,9000000,9000000,9000000,9000000,9000000,9000000,54,9000000,9000000,9000000,9000000,9000000,9000000,9000000,54,111054,113054,54,145054,147054,54,111054,113054,9204054])
@@ -522,6 +495,33 @@ def MapLoad(_map: int):
     return ret
 
 #--------------------------------------------------
+# Map Draw function
+#--------------------------------------------------
+def MapDraw(bg, x: int, y: int):
+    x = x - 10
+    y = y - 7
+    selectIndex: int = 0
+
+    # map draw
+    bg.fill(idef.COLOR_BLACK)
+    for j in range(15):
+        if y + j < 0 or y + j >= len(mapNow):
+           continue
+
+        for i in range(21):
+            if x + i < 0 or x + i >= len(mapNow[y+j]):
+               continue
+
+            selectIndex = mapNow[y+j][x+i]
+            bg.blit(mapImg[selectIndex % MAP_IMG_ITEM], [32 * i - 16, 32 * j])
+            selectIndex = int(selectIndex / MAP_IMG_ITEM)
+            bg.blit(overMapImg[selectIndex % MAP_IMG_ITEM], [32 * i - 16, 32 * j])
+
+    # character draw
+    if charShowFlag == 1:
+        bg.blit(charImg,[idef.WINDOW_WIDTH/2 - 16, idef.WINDOW_HEIGHT/2 - 16])
+
+#--------------------------------------------------
 # player direction image read function
 #--------------------------------------------------
 def CharDraw(bg, _dir: int):
@@ -579,6 +579,17 @@ def MoveCheck(x: int, y: int):
     else:
        return 1
 
+def SubCharShow(bg, num: int, _x: int, _y: int):
+    x = 32 * _x - 16
+    y = 32 * _y
+    bg.blit(overMapImg[num],[x,y])
+
+def TileDraw(bg, num: int, _x: int, _y: int):
+    x = 32 * _x - 16
+    y = 32 * _y
+    bg.blit(mapImg[num],[x,y])
+
+
 #--------------------------------------------------
 # Map Main function
 #--------------------------------------------------
@@ -612,9 +623,18 @@ def MapMain(bg, clk):
     
     user = idef.player()
     user.Name = "mizuki"
-    #user.Command.append("プラスミド1")
-    #user.Command.append("プラスミド2")
-    #user.Command.append("プラスミド3")
+
+    #-----------------------------------------------------------
+    # story 
+    #  0 : 黒い画面
+    #  1 : 学生Aと博士の会話
+    #  2 : O157を倒すまで
+    #  3 : 黒い画面
+    #  4 : ユーグレナ撃破まで
+    #  5 : 好熱菌を撃破まで
+    #  6 : 粘菌撃破まで
+    #  7 : 完全体157倒すまで
+    #-----------------------------------------------------------
 
     while True:
         key = 0
@@ -692,20 +712,23 @@ def MapMain(bg, clk):
                 # 座標イベント（マップ移動など）
                 # ４号館2階
                 if mapNum == 0:
-                    if posX == 10 and posY == 12:
+                    if posX == 10 and posY == 12 and story >= 4:
                         mapNum = 2
                         posX = 2
                         posY = 2
                         mapNow = MapLoad(mapNum) 
                 
-                    if posX == 11 and posY == 12:
+                    elif posX == 11 and posY == 12 and story >= 4:
                         mapNum = 2
                         posX = 3
                         posY = 2
                         mapNow = MapLoad(mapNum)   
 
                 # 外
-                if mapNum == 1:
+                elif mapNum == 1:
+                    if 2 <= posX and posX <= 5 and 6 <= posY and posY <= 9 and story == 4:
+                        eventState = -1
+
                     if posX == 18 and posY == 7:
                         mapNum = 2
                         posX = 2
@@ -749,7 +772,7 @@ def MapMain(bg, clk):
                         mapNow = MapLoad(mapNum) 
 
                 # 4号館1階
-                if mapNum == 2:
+                elif mapNum == 2:
                     if posX == 2 and posY == 7:
                         mapNum = 1
                         posX = 17
@@ -775,7 +798,10 @@ def MapMain(bg, clk):
                         mapNow = MapLoad(mapNum) 
 
                 # 図書館
-                if mapNum == 3:
+                elif mapNum == 3:
+                    if posX == 6 and 11 <= posY and posY <= 12 and story == 6:
+                        eventState = -1
+
                     if posX == 11 and posY == 18:
                         mapNum = 1
                         posX = 32
@@ -789,7 +815,10 @@ def MapMain(bg, clk):
                         mapNow = MapLoad(mapNum) 
 
                 # 2号館
-                if mapNum == 4:
+                elif mapNum == 4:
+                    if 6 <= posX and posX <= 7 and posY == 7 and story == 5:
+                        eventState = -1
+
                     if posX == 7 and posY == 9:
                         mapNum = 1
                         posX = 35
@@ -803,7 +832,7 @@ def MapMain(bg, clk):
                         mapNow = MapLoad(mapNum) 
 
                 # 総合研究棟
-                if mapNum == 5:
+                elif mapNum == 5:
                     if posX == 2 and posY == 0:
                         mapNum = 1
                         posX = 22
@@ -1002,32 +1031,8 @@ def MapMain(bg, clk):
                         pushCount = 0
                         eventState = 0
                         story = 2
-
-        # 学生A map 0
-        elif eventState == 100:
-            if story == 2:
-                if pushCount == 0:
-                        pushSelect = 0
-                        pushCount = 1
-                        idef.MessageInit()
-                        idef.MessageSet("学生A「この声は……廊下からだ！」")
-                elif pushCount == 1:
-                    idef.MessageDraw(bg, messageFont)
-                    if pushSelect == 1:
-                        pushSelect = 0
-                        pushCount = 0
-                        eventState = 0
-                        story = 2
-
-        # 学生B map 0
-        elif eventState == 200:
-            if story == 2:
-                if pushCount == 0:
-                    pushSelect = 0
-                    pushCount = 1
-                    idef.MessageInit()
-                    idef.MessageSet("学生B「た、助けてくださ～い！」")
-                elif pushCount == 1:
+            elif story == 2:
+                if pushCount == 1:
                     idef.MessageDraw(bg, messageFont)
                     if pushSelect == 1:
                         pushSelect = 0
@@ -1055,7 +1060,498 @@ def MapMain(bg, clk):
                     idef.MessageInit()
                     idef.MessageSet("O157「くっそ～、覚えてろよ！」")
                 elif pushCount == 13:
+                    SubCharShow(bg, 1, 8, 10)
+                    SubCharShow(bg, 3, 9, 10)
                     idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 14
+                        idef.MessageInit()
+                        idef.MessageSet("教授「さっきの大腸菌が、アレを『処理』してくれたのか…？」")
+                elif pushCount == 14:
+                    SubCharShow(bg, 1, 8, 10)
+                    SubCharShow(bg, 3, 9, 10)
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 15
+                        idef.MessageInit()
+                        idef.MessageSet("学生A「Bさん、外でなにがあったんだい？」")
+                elif pushCount == 15:
+                    SubCharShow(bg, 1, 8, 10)
+                    SubCharShow(bg, 3, 9, 10)
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 16
+                        idef.MessageInit()
+                        idef.MessageSet("学生B「さっき大きな音がした後、")
+                        idef.MessageSet("　　　　おかしなサイズの菌が四号館から出てきたです。」")
+                elif pushCount == 16:
+                    SubCharShow(bg, 1, 8, 10)
+                    SubCharShow(bg, 3, 9, 10)
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 17
+                        idef.MessageInit()
+                        idef.MessageSet("教授「巨大な菌は他にもいるのか。")
+                        idef.MessageSet("　　　オートクレーブが使えないとなると……」")
+                elif pushCount == 17:
+                    SubCharShow(bg, 1, 8, 10)
+                    SubCharShow(bg, 3, 9, 10)
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 18
+                        idef.MessageInit()
+                        idef.MessageSet(user.Name + "「まかせて！」")
+                elif pushCount == 18:
+                    SubCharShow(bg, 1, 8, 10)
+                    SubCharShow(bg, 3, 9, 10)
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 19
+                        idef.MessageInit()
+                        idef.MessageSet("学生A「ありがとう！それじゃ、君に資料を渡そう。")
+                        idef.MessageSet("　　　　何か困ったことがあったら、僕にきくように。")
+                elif pushCount == 19:
+                    SubCharShow(bg, 1, 8, 10)
+                    SubCharShow(bg, 3, 9, 10)
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 20
+                        idef.MessageInit()
+                        idef.MessageSet(user.Name + "「わかった！」")
+                elif pushCount == 20:
+                    SubCharShow(bg, 1, 8, 10)
+                    SubCharShow(bg, 3, 9, 10)
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 0
+                        eventState = -1
+                        story = 3
+            elif story == 3:
+                bg.fill(idef.COLOR_BLACK)
+                if pushCount == 0:
+                    pushCount = pushCount + 1
+                    idef.MessageInit()
+                    idef.MessageSet("かくして、大腸菌の冒険が幕を開けた。");
+                    idef.MessageSet(user.Name + "は、無事キャンパスの平和を")
+                    idef.MessageSet("取り戻すことができるのだろうか？")
+                elif pushCount == 1:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushCount = 0
+                        pushSelect = 0
+                        eventState = 0
+                        posX = 11
+                        posY = 3
+                        dir = 0
+                        story = 4
+            elif story == 4:
+                if pushCount == 0:
+                    pushCount = 1
+                    idef.MessageInit()
+                    idef.MessageSet("？？？「誰？…なんだ、君も菌か。」")
+                    idef.MessageSet("　　　　最近、栄養素がどうとかいう理由で、")
+                    idef.MessageSet("　　　　人間に命を狙われているんだよ……」")
+                elif pushCount == 1:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 2
+                        idef.MessageInit()
+                        idef.MessageSet("ユーグレナ「ボクはユーグレナ。")
+                        idef.MessageSet("　　　　　　人間にはミドリムシって呼ばれてるよ。」")
+                        idef.MessageSet("　　　　　　今まで見向きもされなかったのに、")
+                elif pushCount == 2:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 3
+                        idef.MessageSet("　　　　　　いきなりチヤホヤされ出したと思ったら")
+                elif pushCount == 3:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 4
+                        idef.MessageSet("　　　　　　これさ！")
+                elif pushCount == 4:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 5
+                        idef.MessageSet("　　　　　　こんなところで死んでたまるか！")
+                elif pushCount == 5:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 6
+                        idef.MessageSet("　　　　　　人間に手を貸すなら、")
+                elif pushCount == 6:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 7
+                        idef.MessageSet("　　　　　　同じ菌だろうと容赦しないよ！")
+                elif pushCount == 7:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        ibattle.BattleMain(bg,clk,user, 2)
+                        pushCount = 8
+                        idef.MessageInit()
+                        idef.MessageSet("ユーグレナ「そうか、これもまた運命……")
+                elif pushCount == 8:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 9
+                        idef.MessageInit()
+                        idef.MessageSet("［学生証の破片1を拾った］")
+                        idef.MessageSet("《研究室に戻って、報告しよう》")
+                elif pushCount == 9:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 0
+                        story = 5
+                        eventState = 0
+            elif story == 5:
+                if pushCount == 0:
+                    pushCount = 1
+                    idef.MessageInit()
+                    idef.MessageSet("？？？「おいおい、邪魔しないでくれよ。」")
+                elif pushCount == 1:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 2
+                        idef.MessageInit()
+                        idef.MessageSet("好熱菌「おいらは好熱菌。")
+                        idef.MessageSet("　　　　とにかくあったか～～い場所が大好きなのさ！")
+                        idef.MessageSet("　　　　今ちょうどいい場所を見つけたところなんだ。")
+                elif pushCount == 2:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 3
+                        idef.MessageSet("　　　　でも……奪おうってんなら、")
+                elif pushCount == 3:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 4
+                        idef.MessageSet("　　　　話は別さ。かかってきな！")
+                elif pushCount == 4:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        ibattle.BattleMain(bg,clk,user, 3)
+                        pushCount = 8
+                        idef.MessageInit()
+                        idef.MessageSet("好熱菌「ぐう、熱さが足りない！」")
+                elif pushCount == 8:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 9
+                        idef.MessageInit()
+                        idef.MessageSet("［学生証の破片2を拾った］")
+                        idef.MessageSet("《研究室に戻って、報告しよう》")
+                elif pushCount == 9:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 0
+                        story = 6
+                        eventState = 0
+            elif story == 6:
+                if pushCount == 0:
+                    pushCount = 1
+                    idef.MessageInit()
+                    idef.MessageSet("？？？「あら？あなたは……大腸菌ね。」")
+                elif pushCount == 1:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 2
+                        idef.MessageInit()
+                        idef.MessageSet("粘菌「アタシは粘菌。")
+                        idef.MessageSet("　　　変形菌とも呼ばれているわ。")
+                        idef.MessageSet("　　　キノコやアメーバも私のお友達よ。")
+                elif pushCount == 2:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 3
+                        idef.MessageSet("　　　人間にも、私の美しさは伝わっているわ。")
+                elif pushCount == 3:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 4
+                        idef.MessageSet("　　　写真集だって何冊もあるのよ！")
+                elif pushCount == 4:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 5
+                        idef.MessageSet("　　　それなのに、")
+                elif pushCount == 5:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 6
+                        idef.MessageSet("　　　研究者達は“粘菌コンピュータ”の研究ばかり。")
+                elif pushCount == 6:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = -7
+                        idef.MessageSet("　　　ホント、嫌になっちゃうわ。")
+                elif pushCount == -7:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 7
+                        idef.MessageSet("　　　もう窮屈な思いはこりごりよ！」")
+                elif pushCount == 7:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        ibattle.BattleMain(bg,clk,user, 4)
+                        pushCount = 8
+                        idef.MessageInit()
+                        idef.MessageSet("粘菌「美しさだけではダメなのね……！」")
+                elif pushCount == 8:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 9
+                        idef.MessageInit()
+                        idef.MessageSet("［学生証の破片3を拾った］")
+                        idef.MessageSet("《研究室に戻って、報告しよう》")
+                elif pushCount == 9:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 0
+                        story = 7
+                        eventState = 0
+        
+
+        # 学生A map 0
+        elif eventState == 100:
+            if story == 2:
+                if pushCount == 0:
+                        pushSelect = 0
+                        pushCount = 1
+                        idef.MessageInit()
+                        idef.MessageSet("学生A「この声は……廊下からだ！」")
+                elif pushCount == 1:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 0
+                        eventState = 0
+            elif story == 4:
+                if pushCount == 0:
+                        pushSelect = 0
+                        pushCount = 1
+                        idef.MessageInit()
+                        idef.MessageSet("学生A「外から来たBさんなら、")
+                        idef.MessageSet("　　　逃げ出したサンプルについて、")
+                        idef.MessageSet("　　　何か分かるかもしれないね。」")
+                elif pushCount == 1:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 0
+                        eventState = 0
+            elif story == 5:
+                if pushCount == 0:
+                        pushSelect = 0
+                        pushCount = 1
+                        idef.MessageInit()
+                        idef.MessageSet("学生A「" + user.Name + "か．")
+                        idef.MessageSet("　　　Bさんが、")
+                        idef.MessageSet("　　　次の場所への手がかりを手に入れたみたいだよ。」")
+                elif pushCount == 1:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 0
+                        eventState = 0
+            elif story == 6:
+                if pushCount == 0:
+                        pushSelect = 0
+                        pushCount = 1
+                        idef.MessageInit()
+                        idef.MessageSet("学生A「さすが" + user.Name)
+                        idef.MessageSet("　　　仕事が早いね。")
+                        idef.MessageSet("　　　Bさんが君を探していたよ。」")
+                elif pushCount == 1:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 0
+                        eventState = 0
+            elif story == 7:
+                if pushCount == 0:
+                        pushSelect = 0
+                        pushCount = 1
+                        idef.MessageInit()
+                        idef.MessageSet("返事がない...")
+                        idef.MessageSet("生気を感じられない...")
+                elif pushCount == 1:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 0
+                        eventState = 0
+
+        # 学生B map 0
+        elif eventState == 200:
+            if story == 2:
+                if pushCount == 0:
+                    pushSelect = 0
+                    pushCount = 1
+                    eventState = -1
+                    idef.MessageInit()
+                    idef.MessageSet("学生B「た、助けてくださ～い！」")
+            elif story == 4:
+                if pushCount == 0:
+                        pushSelect = 0
+                        pushCount = 1
+                        idef.MessageInit()
+                        idef.MessageSet("学生B「私、先輩達が心配で心配で、")
+                        idef.MessageSet("　　　急いで研究室へ向かったです！")
+                        idef.MessageSet("　　　出会った菌？")
+                elif pushCount == 1:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 2
+                        idef.MessageSet("　　　お清めの塩を撒いて退治したです！")
+                elif pushCount == 2:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 3
+                        idef.MessageSet("　　　そういえば池の近くで、")
+                elif pushCount == 3:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 4
+                        idef.MessageSet("　　　何やら不審な影を発見したです！")
+                elif pushCount == 4:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 0
+                        eventState = 0   
+            elif story == 5:
+                if pushCount == 0:
+                        pushSelect = 0
+                        pushCount = 1
+                        idef.MessageInit()
+                        idef.MessageSet("学生B「機械科の学生さんが、")
+                        idef.MessageSet("　　　二号館で怪しい影を見たらしいです！")
+                        idef.MessageSet("　　　今日は休みなのに、なんで機械科がいるんでしょう？")
+                elif pushCount == 1:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 2
+                        idef.MessageSet("　　　不思議です～。」")
+                elif pushCount == 2:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 0
+                        eventState = 0
+            elif story == 6:
+                if pushCount == 0:
+                        pushSelect = 0
+                        pushCount = 1
+                        idef.MessageInit()
+                        idef.MessageSet("学生B「" + user.Name + "さん")
+                        idef.MessageSet("　　　図書館で不気味な音がするそうです！")
+                        idef.MessageSet("　　　怖いので調べてきてください～！")
+                elif pushCount == 1:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 0
+                        eventState = 0
+            elif story == 7:
+                if pushCount == 0:
+                        pushSelect = 0
+                        pushCount = 1
+                        idef.MessageInit()
+                        idef.MessageSet("学生B「よかった！" + user.Name + "さん")
+                        idef.MessageSet("　　　戻ったんですね！")
+                        idef.MessageSet("　　　聞いてください！")
+                elif pushCount == 1:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 2
+                        idef.MessageSet("　　　先輩達が、")
+                elif pushCount == 2:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 3
+                        idef.MessageSet("　　　謎の影に生気を吸われたんです！")
+                elif pushCount == 3:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 4
+                        idef.MessageSet("　　　お願いです、")
+                elif pushCount == 4:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 5
+                        idef.MessageSet("　　　先輩達を助けてください～！")
+                elif pushCount == 5:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 6
+                        idef.MessageSet("　　　集めた学生証を使えば、")
+                elif pushCount == 6:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 7
+                        idef.MessageSet("　　　総研棟に入れるです！")
+                elif pushCount == 7:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 8
+                        idef.MessageSet("　　　私は盛り塩のおかげで大丈夫だったです")
+                elif pushCount == 8:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 9
+                        idef.MessageSet("　　　早く先輩達を助けに行くです！")
+                elif pushCount == 9:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 0
+                        eventState = 0
 
         # 博士 map 0
         elif eventState == 300:
@@ -1064,14 +1560,79 @@ def MapMain(bg, clk):
                     pushSelect = 0
                     pushCount = 1
                     idef.MessageInit()
-                    idef.MessageSet("博士「今の声はなんだ」")
+                    idef.MessageSet("教授「今の声はなんだ」")
                 elif pushCount == 1:
                     idef.MessageDraw(bg, messageFont)
                     if pushSelect == 1:
                         pushSelect = 0
                         pushCount = 0
                         eventState = 0
-                        story = 2
+            elif story == 4:
+                if pushCount == 0:
+                        pushSelect = 0
+                        pushCount = 1
+                        idef.MessageInit()
+                        idef.MessageSet("教授「私の研究室では、")
+                        idef.MessageSet("　　　主に菌や微生物の研究をしている。")
+                        idef.MessageSet("　　　爆発で壊れた装置には、")
+                elif pushCount == 1:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 2
+                        idef.MessageSet("　　　『5種類のサンプル』が入っていたのだが…")
+                elif pushCount == 2:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 0
+                        eventState = 0  
+            elif story == 5:
+                if pushCount == 0:
+                        pushSelect = 0
+                        pushCount = 1
+                        idef.MessageInit()
+                        idef.MessageSet("教授「君のおかげで、")
+                        idef.MessageSet("　　　見つけていないサンプルはあと2つだ。")
+                        idef.MessageSet("　　　この調子で頼むぞ。")
+                elif pushCount == 1:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 2
+                        idef.MessageSet("　　　…新しいオートクレーブ装置が必要だな。")
+                elif pushCount == 2:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 0
+                        eventState = 0 
+            elif story == 6:
+                if pushCount == 0:
+                        pushSelect = 0
+                        pushCount = 1
+                        idef.MessageInit()
+                        idef.MessageSet("教授「ちょうど休みで人が居ないから、")
+                        idef.MessageSet("　　　大腸菌が出歩いていても問題ないな。")
+                elif pushCount == 1:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 0
+                        eventState = 0
+            elif story == 7:
+                if pushCount == 0:
+                        pushSelect = 0
+                        pushCount = 1
+                        idef.MessageInit()
+                        idef.MessageSet("返事がない...")
+                        idef.MessageSet("生気を感じられない...")
+                elif pushCount == 1:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 0
+                        eventState = 0
 
         # 看板 map 3
         elif eventState == 400:
