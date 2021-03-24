@@ -28,6 +28,16 @@ COLOR_GREEN: tuple = (0,255,0)
 COLOR_BLUE: tuple = (0,0,255)
 
 #----------------------------
+# key
+#----------------------------
+KEY_MOVE: int = 0x0f
+KEY_UP: int = 0x01
+KEY_DOWN: int = 0x02
+KEY_LEFT: int = 0x04
+KEY_RIGHT: int = 0x08
+KEY_SELECT: int = 0x10 
+
+#----------------------------
 # file path
 #----------------------------
 FONT_FILE_PATH: str = "ipaexg.ttf"
@@ -44,13 +54,13 @@ EVENT_OPENING: int = 1
 #----------------------------
 class player():
     Name: str = "name"
-    HP: int = 100
-    MaxHP: int = 100
+    HP: int = 500
+    MaxHP: int = 500
     MP: int = 100
     MaxMP: int = 100
     LV: int = 10
-    ATK: int = 10
-    DEF: int = 10
+    ATK: int = 15000
+    DEF: int = 50
     INT: int = 10
     AGI: int = 10
     LUK: int = 10
