@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>3b21c401-61d9-422b-b18c-0b57b68d157b</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>rpg_staffroll.py</StartupFile>
+    <StartupFile>rpg_main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
