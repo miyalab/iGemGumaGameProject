@@ -12,6 +12,7 @@ import pygame.locals
 import sys
 import rpg_define as idef
 import rpg_battle as ibattle
+import rpg_staffroll as iroll
 
 #----------------------------
 # constant value
@@ -610,7 +611,7 @@ def MapMain(bg, clk):
     pushSelect: int = 0
     pushCount: int = 0
     eventState: int = -1
-    story: int = 8
+    story: int = 0
 
     # font set
     messageFont = pygame.font.Font(idef.FONT_FILE_PATH, idef.MESSAGE_FONT_SIZE)
@@ -1551,14 +1552,6 @@ def MapMain(bg, clk):
                         pushCount = 15
                         idef.MessageInit()
                         idef.MessageSet(user.Name + "「話が違うよ！」")
-                elif pushCount == 14:
-                    idef.MessageDraw(bg, messageFont)
-                    SubCharShow(bg, 3, 12,8)
-                    if pushSelect == 1:
-                        pushSelect = 0
-                        pushCount = 15
-                        idef.MessageInit()
-                        idef.MessageSet(user.Name + "「話が違うよ！」")
                 elif pushCount == 15:
                     idef.MessageDraw(bg, messageFont)
                     SubCharShow(bg, 3, 12,8)
@@ -1584,7 +1577,7 @@ def MapMain(bg, clk):
                         idef.MessageInit()
                         idef.MessageSet("学生A「……。」")
                         idef.MessageSet("　　　いやー、大変な一日だったな。")
-                        idef.MessageSet("　　　教授、僕が装置を壊したこと忘れてるみたいだけど……まあいっか！")
+                        idef.MessageSet("　　　教授、僕が装置を壊したこと忘れてるみたいだけど……")
                     if timer >= 10:                
                         bg.fill(idef.COLOR_BLACK)
                 elif pushCount == 17:
@@ -1592,17 +1585,22 @@ def MapMain(bg, clk):
                     if pushSelect == 1:
                         pushSelect = 0
                         pushCount = 18
-                        idef.MessageInit()
-                        idef.MessageSet("　　　……まあいっか！」")
+                        idef.MessageSet("　　　まあいっか！」")
                 elif pushCount == 18:
                     idef.MessageDraw(bg, messageFont)
                     if pushSelect == 1:
                         pushSelect = 0
-                        pushCount = 18
+                        pushCount = 19
                         idef.MessageInit()
                         idef.MessageSet("かくして、キャンパスに再び平和が訪れた。")
                         idef.MessageSet("大腸菌が一匹うろついているけど…、")
                         idef.MessageSet("これも誤差の範囲内だね！")
+                elif pushCount == 19:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 19
+                        iroll.StaffrollMain(bg, clk)
 
         # 学生A map 0
         elif eventState == 100:
