@@ -610,8 +610,8 @@ def MapMain(bg, clk):
     keySelectFlag: int = 0
     pushSelect: int = 0
     pushCount: int = 0
-    eventState: int = -1
-    story: int = 0
+    eventState: int = 0
+    story: int = 8
 
     # font set
     messageFont = pygame.font.Font(idef.FONT_FILE_PATH, idef.MESSAGE_FONT_SIZE)
@@ -1028,7 +1028,7 @@ def MapMain(bg, clk):
                         pushSelect = 0
                         pushCount = 12
                         idef.MessageInit()
-                        idef.MessageSet("学生A「この声は……廊下からだ！」")
+                        idef.MessageSet("学生A「この声は……隣の実験室からだ！」")
                 elif pushCount == 12:
                     idef.MessageDraw(bg, messageFont)
                     if pushSelect == 1:
@@ -1359,14 +1359,14 @@ def MapMain(bg, clk):
                         pushSelect = 0
                         pushCount = 2
                         idef.MessageInit()
-                        idef.MessageSet(user.Name + "「アタシは粘菌。")
+                        idef.MessageSet("？？？「待っていたぜ、大腸菌！")
                 elif pushCount == 2:
                     idef.MessageDraw(bg, messageFont)
                     if pushSelect == 1:
                         pushSelect = 0
                         pushCount = 3
                         idef.MessageInit()
-                        idef.MessageSet("？？？「研究室のヤツらを返して欲しくば、")
+                        idef.MessageSet("　　　　研究室のヤツらを返して欲しくば、")
                         idef.MessageSet("　　　　オレ様と勝負するんだな。」")
                 elif pushCount == 3:
                     idef.MessageDraw(bg, messageFont)
@@ -1863,8 +1863,14 @@ def MapMain(bg, clk):
                     if pushSelect == 1:
                         pushSelect = 0
                         pushCount = 2
-                        idef.MessageSet("　　　『5種類のサンプル』が入っていたのだが…")
+                        idef.MessageSet("　　　君を含めて『5種類のサンプル』が")
                 elif pushCount == 2:
+                    idef.MessageDraw(bg, messageFont)
+                    if pushSelect == 1:
+                        pushSelect = 0
+                        pushCount = 2
+                        idef.MessageSet("　　　入っていたのだが…")
+                elif pushCount == 3:
                     idef.MessageDraw(bg, messageFont)
                     if pushSelect == 1:
                         pushSelect = 0
@@ -1919,7 +1925,7 @@ def MapMain(bg, clk):
             elif story == 8:
                 if pushCount == 0:
                     pushSelect = 0
-                    pushCount = 1
+                    pushCount = 0
                     eventState = -1
 
         # 看板 map 3
@@ -1964,7 +1970,6 @@ def MapMain(bg, clk):
             idef.MessageSet("『清掃中・立ち入り禁止』");
             idef.MessageSet("と書いてある。")
             eventState = 1
-
 
         pygame.display.update()
         clk.tick(33)
