@@ -610,8 +610,8 @@ def MapMain(bg, clk):
     keySelectFlag: int = 0
     pushSelect: int = 0
     pushCount: int = 0
-    eventState: int = 0
-    story: int = 8
+    eventState: int = -1
+    story: int = 0
 
     # font set
     messageFont = pygame.font.Font(idef.FONT_FILE_PATH, idef.MESSAGE_FONT_SIZE)
