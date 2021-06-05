@@ -18,7 +18,7 @@ import random
 #----------------------------
 def main():
     # debug mode select
-    DEBUG_MODE: int = 3
+    DEBUG_MODE: int = 2
     
     # pygame init
     pygame.init()
