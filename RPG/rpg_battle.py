@@ -29,7 +29,7 @@ commandboxImg = pygame.image.load("img/textbox.150.png")
 playerImg = pygame.image.load("img/battle/e_coli100.png")
 
 # background image data
-backgroundImg = pygame.image.load("img/battle/background/btlbg0.png")
+backgroundImg = pygame.image.load("img/battle/background/roka.jpg")
 
 # enemy data
 enemyA: idef.enemy
@@ -85,11 +85,11 @@ def EnemyRead(_enemy: int) -> idef.enemy:
         enemyData.LUK = 100
         enemyData.EXP = 1000
 
-        backgroundImg = pygame.image.load("img/battle/background/toshokan.jpg")
+        backgroundImg = pygame.image.load("img/battle/background/nakaniwa.jpg")
 
     elif _enemy == 3:
         enemyData.Num = 3
-        enemyData.ImgPath = "img/battle/enemy/enemy2.png"
+        enemyData.ImgPath = "img/battle/enemy/enemy3.png"
         enemyData.Name = "好熱菌"
         enemyData.MaxHP = 1000
         enemyData.HP = 1000
@@ -103,11 +103,11 @@ def EnemyRead(_enemy: int) -> idef.enemy:
         enemyData.LUK = 100
         enemyData.EXP = 1000
 
-        backgroundImg = pygame.image.load("img/battle/background/nakaniwa.jpg")
+        backgroundImg = pygame.image.load("img/battle/background/roka.jpg")
 
     elif _enemy == 4:
         enemyData.Num = 4
-        enemyData.ImgPath = "img/battle/enemy/enemy3.png"
+        enemyData.ImgPath = "img/battle/enemy/enemy4.png"
         enemyData.Name = "粘菌"
         enemyData.MaxHP = 5000
         enemyData.HP = 5000
@@ -121,10 +121,10 @@ def EnemyRead(_enemy: int) -> idef.enemy:
         enemyData.LUK = 100
         enemyData.EXP = 1000
 
-        backgroundImg = pygame.image.load("img/battle/background/kaidan.jpg")
+        backgroundImg = pygame.image.load("img/battle/background/toshokan.jpg")
 
     else:
-        enemyData.ImgPath = "img/battle/enemy/enemy4.png"
+        enemyData.ImgPath = "img/battle/enemy/enemy5.png"
         enemyData.Num = 5
         enemyData.Name = "完全体・O157"
         enemyData.MaxHP = 1000

@@ -36,6 +36,7 @@ KEY_DOWN: int = 0x02
 KEY_LEFT: int = 0x04
 KEY_RIGHT: int = 0x08
 KEY_SELECT: int = 0x10 
+KEY_ENTER: int = 0x20
 
 #----------------------------
 # file path

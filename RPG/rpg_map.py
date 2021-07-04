@@ -615,7 +615,7 @@ def MapMain(bg, clk):
     pushCount: int = 0
     eventState: int = -1
     story: int = 0
-    charShowFlag = 1
+    charShowFlag = 0        # 0:非表示 1:表示
     # font set
     messageFont = pygame.font.Font(idef.FONT_FILE_PATH, idef.MESSAGE_FONT_SIZE)
     
@@ -1273,6 +1273,7 @@ def MapMain(bg, clk):
                     if pushSelect == 1:
                         pushSelect = 0
                         ibattle.BattleMain(bg,clk,user, 2)
+                        user.Command.append("プラスミド[ユーグレナ]")
                         pushCount = 8
                         idef.MessageInit()
                         idef.MessageSet("ユーグレナ「そうか、これもまた運命……")
@@ -1322,6 +1323,7 @@ def MapMain(bg, clk):
                     if pushSelect == 1:
                         pushSelect = 0
                         ibattle.BattleMain(bg,clk,user, 3)
+                        user.Command.append("プラスミド[好熱菌]")
                         pushCount = 8
                         idef.MessageInit()
                         idef.MessageSet("好熱菌「ぐう、熱さが足りない！」")
@@ -1395,6 +1397,7 @@ def MapMain(bg, clk):
                     if pushSelect == 1:
                         pushSelect = 0
                         ibattle.BattleMain(bg,clk,user, 4)
+                        user.Command.append("プラスミド[粘菌]")
                         pushCount = 8
                         idef.MessageInit()
                         idef.MessageSet("粘菌「美しさだけではダメなのね……！」")
