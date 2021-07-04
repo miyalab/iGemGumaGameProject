@@ -50,7 +50,7 @@ def StaffrollMain(bg, clk):
     roll.append("    Mizuki Kita")
     roll.append("")
     roll.append("MAP SYSTEM")
-    roll.append("    1234567890123456789012345678901234567890")
+    roll.append("    Koshiro Miyauchi")
     roll.append("    Mizuki Kita")
     roll.append("")
     roll.append("BATTLE SYSTEM")

@@ -615,7 +615,7 @@ def MapMain(bg, clk):
     pushCount: int = 0
     eventState: int = -1
     story: int = 0
-    charShowFlag = 1
+    charShowFlag = 0        # 0:非表示 1:表示
     # font set
     messageFont = pygame.font.Font(idef.FONT_FILE_PATH, idef.MESSAGE_FONT_SIZE)
     
@@ -728,6 +728,9 @@ def MapMain(bg, clk):
                         posX = 3
                         posY = 2
                         mapNow = MapLoad(mapNum)   
+
+                    if posX == 0 and posY == 2:
+                        eventState = 950
 
                 # 外
                 elif mapNum == 1:
@@ -1273,6 +1276,7 @@ def MapMain(bg, clk):
                     if pushSelect == 1:
                         pushSelect = 0
                         ibattle.BattleMain(bg,clk,user, 2)
+                        user.Command.append("プラスミド[ユーグレナ]")
                         pushCount = 8
                         idef.MessageInit()
                         idef.MessageSet("ユーグレナ「そうか、これもまた運命……")
@@ -1322,6 +1326,7 @@ def MapMain(bg, clk):
                     if pushSelect == 1:
                         pushSelect = 0
                         ibattle.BattleMain(bg,clk,user, 3)
+                        user.Command.append("プラスミド[好熱菌]")
                         pushCount = 8
                         idef.MessageInit()
                         idef.MessageSet("好熱菌「ぐう、熱さが足りない！」")
@@ -1395,6 +1400,7 @@ def MapMain(bg, clk):
                     if pushSelect == 1:
                         pushSelect = 0
                         ibattle.BattleMain(bg,clk,user, 4)
+                        user.Command.append("プラスミド[粘菌]")
                         pushCount = 8
                         idef.MessageInit()
                         idef.MessageSet("粘菌「美しさだけではダメなのね……！」")
@@ -1933,7 +1939,7 @@ def MapMain(bg, clk):
                     idef.MessageDraw(bg, messageFont)
                     if pushSelect == 1:
                         pushSelect = 0
-                        pushCount = 2
+                        pushCount = 3
                         idef.MessageSet("　　　入っていたのだが…")
                 elif pushCount == 3:
                     idef.MessageDraw(bg, messageFont)
@@ -2112,7 +2118,6 @@ def MapMain(bg, clk):
             idef.MessageSet("もう　あっちへ　いこう。")
             eventState = 1
 
-
         # map 0
         elif eventState == 700:
             idef.MessageInit()
@@ -2170,9 +2175,6 @@ def MapMain(bg, clk):
             idef.MessageSet("　と　かいてある。")
             eventState = 1
 
-       
-
-
         # なし
         elif eventState == 800:
             idef.MessageInit()
@@ -2185,10 +2187,8 @@ def MapMain(bg, clk):
             idef.MessageInit()
             idef.MessageSet("・・・・・・");
             idef.MessageSet("へんてこりんな　せきぞう　が　ある。")
-
             eventState = 1
 
-            
         # map 3　掲示板
         elif eventState == 900:
             idef.MessageInit()
@@ -2226,6 +2226,14 @@ def MapMain(bg, clk):
             idef.MessageSet("　・・・そういえば　ぼくは　なぜ　じ　が　よめるんだろう。")
             eventState = 1
 
+        elif eventState == 950:
+            idef.MessageInit()
+            idef.MessageSet("ゆっくり休もう");
+            idef.MessageSet("HPとMPが回復した")
+            idef.MessageSet("")
+            user.HP = user.MaxHP
+            user.MP = user.MaxMP
+            eventState = 1
 
         # map 5
         elif eventState == 1000:
