@@ -60,8 +60,8 @@ class player():
     MP: int = 100
     MaxMP: int = 100
     LV: int = 10
-    ATK: int = 15000
-    DEF: int = 50
+    ATK: int = 100
+    DEF: int = 100
     INT: int = 10
     AGI: int = 10
     LUK: int = 10

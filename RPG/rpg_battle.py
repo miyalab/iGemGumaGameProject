@@ -75,11 +75,11 @@ def EnemyRead(_enemy: int) -> idef.enemy:
         enemyData.Name = "ユーグレナ"
         enemyData.MaxHP = 200
         enemyData.HP = 200
-        enemyData.MaxMP = 100
+        enemyData.MaxMP = 200
         enemyData.MP = 100
         enemyData.LV = 1
-        enemyData.ATK = 120
-        enemyData.DEF = 100
+        enemyData.ATK = 130
+        enemyData.DEF = 70
         enemyData.INT = 100
         enemyData.AGI = 100
         enemyData.LUK = 100
@@ -92,12 +92,12 @@ def EnemyRead(_enemy: int) -> idef.enemy:
         enemyData.ImgPath = "img/battle/enemy/enemy3.png"
         enemyData.Name = "好熱菌"
         enemyData.MaxHP = 1000
-        enemyData.HP = 1000
-        enemyData.MaxMP = 100
+        enemyData.HP = 500
+        enemyData.MaxMP = 500
         enemyData.MP = 100
         enemyData.LV = 1
-        enemyData.ATK = 100
-        enemyData.DEF = 100
+        enemyData.ATK = 130
+        enemyData.DEF = 70
         enemyData.INT = 100
         enemyData.AGI = 100
         enemyData.LUK = 100
@@ -109,13 +109,13 @@ def EnemyRead(_enemy: int) -> idef.enemy:
         enemyData.Num = 4
         enemyData.ImgPath = "img/battle/enemy/enemy4.png"
         enemyData.Name = "粘菌"
-        enemyData.MaxHP = 5000
-        enemyData.HP = 5000
-        enemyData.MaxMP = 100
+        enemyData.MaxHP = 1000
+        enemyData.HP = 500
+        enemyData.MaxMP = 500
         enemyData.MP = 100
         enemyData.LV = 1
-        enemyData.ATK = 100
-        enemyData.DEF = 100
+        enemyData.ATK = 130
+        enemyData.DEF = 70
         enemyData.INT = 100
         enemyData.AGI = 100
         enemyData.LUK = 100
@@ -132,11 +132,11 @@ def EnemyRead(_enemy: int) -> idef.enemy:
         enemyData.MaxMP = 100
         enemyData.MP = 100
         enemyData.LV = 1
-        enemyData.ATK = 200
-        enemyData.DEF = 1000
-        enemyData.INT = 10
-        enemyData.AGI = 10
-        enemyData.LUK = 10
+        enemyData.ATK = 130
+        enemyData.DEF = 70
+        enemyData.INT = 100
+        enemyData.AGI = 100
+        enemyData.LUK = 100
         enemyData.EXP = 1000
 
         backgroundImg = pygame.image.load("img/battle/background/okujo.jpg")
@@ -265,22 +265,28 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
                 if damage > 9999: damage = 9999
                 scene = 21
                 timer = 0
-            elif(key[pygame.locals.K_2] == 1 and len(user.Command)>=2):
+            elif(key[pygame.locals.K_2] == 1 and len(user.Command)>=2) and user.MP >= 10:
                 idef.MessageSet(str(user.Name) + "の" + user.Command[1] + "による攻撃")
-                damage = user.ATK - enemyA.DEF + random.randint(0, 50)
+                damage = user.ATK * 1.2 - enemyA.DEF + random.randint(0, 50)
                 if damage < 0: damage = 0
+                if damage > 9999: damage = 9999
+                user.MP = user.MP - 10
                 scene = 22
                 timer = 0
-            elif(key[pygame.locals.K_3] == 1 and len(user.Command)>=3):
+            elif(key[pygame.locals.K_3] == 1 and len(user.Command)>=3) and user.MP >= 20:
                 idef.MessageSet(str(user.Name) + "の" + user.Command[2] + "による攻撃")
-                damage = user.ATK - enemyA.DEF + random.randint(0, 100)
+                damage = user.ATK * 1.5 - enemyA.DEF + random.randint(0, 100)
                 if damage < 0: damage = 0
+                if damage > 9999: damage = 9999
+                user.MP = user.MP - 20
                 scene = 23
                 timer = 0
-            elif(key[pygame.locals.K_4] == 1 and len(user.Command)>=4):
+            elif(key[pygame.locals.K_4] == 1 and len(user.Command)>=4) and user.MP >= 30:
                 idef.MessageSet(str(user.Name) + "の" + user.Command[3] + "による攻撃")
-                damage = user.ATK - enemyA.DEF + random.randint(0, 150)
+                damage = user.ATK * 2.0 - enemyA.DEF + random.randint(0, 150)
                 if damage < 0: damage = 0
+                if damage > 9999: damage = 9999
+                user.MP = user.MP - 30
                 scene = 24
                 timer = 0
 
@@ -388,13 +394,13 @@ def BattleMain(scr, clk, user: idef.player, emyNum: int):
             if key[pygame.locals.K_SPACE] == 1:
                 # key input setup
                 pygame.key.set_repeat(1,1)
-                
                 scene = -1
 
         # プレイヤー敗北
         elif scene == 101:
             idef.MessageDraw(scr, messageFont)
             idef.MessageSet(user.Name + "は敗北した．")
+            idef.MessageSet("ゲームを再開するには再起動してください．")
             scene = 102
 
         # プレイヤー敗北後のキー入力待ち

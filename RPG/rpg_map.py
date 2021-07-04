@@ -729,6 +729,9 @@ def MapMain(bg, clk):
                         posY = 2
                         mapNow = MapLoad(mapNum)   
 
+                    if posX == 0 and posY == 2:
+                        eventState = 950
+
                 # 外
                 elif mapNum == 1:
                     if 2 <= posX and posX <= 5 and 6 <= posY and posY <= 9 and story == 4:
@@ -2115,7 +2118,6 @@ def MapMain(bg, clk):
             idef.MessageSet("もう　あっちへ　いこう。")
             eventState = 1
 
-
         # map 0
         elif eventState == 700:
             idef.MessageInit()
@@ -2173,9 +2175,6 @@ def MapMain(bg, clk):
             idef.MessageSet("　と　かいてある。")
             eventState = 1
 
-       
-
-
         # なし
         elif eventState == 800:
             idef.MessageInit()
@@ -2188,10 +2187,8 @@ def MapMain(bg, clk):
             idef.MessageInit()
             idef.MessageSet("・・・・・・");
             idef.MessageSet("へんてこりんな　せきぞう　が　ある。")
-
             eventState = 1
 
-            
         # map 3　掲示板
         elif eventState == 900:
             idef.MessageInit()
@@ -2229,6 +2226,14 @@ def MapMain(bg, clk):
             idef.MessageSet("　・・・そういえば　ぼくは　なぜ　じ　が　よめるんだろう。")
             eventState = 1
 
+        elif eventState == 950:
+            idef.MessageInit()
+            idef.MessageSet("ゆっくり休もう");
+            idef.MessageSet("HPとMPが回復した")
+            idef.MessageSet("")
+            user.HP = user.MaxHP
+            user.MP = user.MaxMP
+            eventState = 1
 
         # map 5
         elif eventState == 1000:

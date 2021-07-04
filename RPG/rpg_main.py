@@ -20,7 +20,7 @@ openingImg = pygame.image.load("img/opening.png")
 #----------------------------
 def main():
     # debug mode select
-    DEBUG_MODE: int = 2
+    DEBUG_MODE: int = 0
     
     # pygame init
     pygame.init()
