@@ -1939,7 +1939,7 @@ def MapMain(bg, clk):
                     idef.MessageDraw(bg, messageFont)
                     if pushSelect == 1:
                         pushSelect = 0
-                        pushCount = 2
+                        pushCount = 3
                         idef.MessageSet("　　　入っていたのだが…")
                 elif pushCount == 3:
                     idef.MessageDraw(bg, messageFont)
